@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>建模-元胞自动机(CA) - Eric&#39;s Blog</title>
+
+
+    <meta name="description" content="元胞自动机（Cellular Automaton）概念看上去很厉害，其实就是一种仿真模型，根据一定的规则，通过上一时刻状态对空间内（通常是二维）的数组变量进行下一状态的推算。">
+<meta name="keywords" content="元胞自动机,社会力学模型,仿真模拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建模-元胞自动机(CA)">
+<meta property="og:url" content="http://yoursite.com/2020/08/17/建模-元胞自动机-CA/index.html">
+<meta property="og:site_name" content="Eric&#39;s Blog">
+<meta property="og:description" content="元胞自动机（Cellular Automaton）概念看上去很厉害，其实就是一种仿真模型，根据一定的规则，通过上一时刻状态对空间内（通常是二维）的数组变量进行下一状态的推算。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-09-04T12:02:04.418Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="建模-元胞自动机(CA)">
+<meta name="twitter:description" content="元胞自动机（Cellular Automaton）概念看上去很厉害，其实就是一种仿真模型，根据一定的规则，通过上一时刻状态对空间内（通常是二维）的数组变量进行下一状态的推算。">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/thumbnail.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159370438-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159370438-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/thumbnail.svg" alt="建模-元胞自动机(CA)" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-16T22:49:11.000Z">2020-08-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/数学建模/">数学建模</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1093 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                建模-元胞自动机(CA)
+            
+        </h1>
+        <div class="content">
+            <h3 id="元胞自动机（Cellular-Automaton）"><a href="#元胞自动机（Cellular-Automaton）" class="headerlink" title="元胞自动机（Cellular Automaton）"></a>元胞自动机（Cellular Automaton）</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>看上去很厉害，其实就是一种仿真模型，根据一定的规则，通过上一时刻状态对空间内（通常是二维）的数组变量进行下一状态的推算。</p>
+<a id="more"></a>
+
+<p>拿一维CA举例：</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/image-20200816230250546.png" alt="一维CA"></p>
+<p>假设初始状态是（如图）：010010000（每个格子的01随机取定/根据初始化约束确定）</p>
+<p>那么从上面初始状态进行一代代迭代就可以得到（黑色表示1，白色表示0）：</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/image-20200816230421350.png" alt="一维分形"></p>
+<p>不妨将其称为CA三要素：</p>
+<ul>
+<li>初始状态</li>
+<li>转移规则</li>
+<li>结束状态</li>
+</ul>
+<p>建模中常用的是二维/三维上的CA，用于模拟一些系统（森林火灾、封闭空间逃生、疾病传播、城镇扩张、洪水演进等）。</p>
+<p>btw，对于某个元胞，有两种邻居称呼方式：</p>
+<ul>
+<li>VonNeumann邻居，即只考虑前后左右的邻居。<img src="https://ericblog.oss-cn-beijing.aliyuncs.com/8615260-7ef9326203528042.png" alt="VonNeumann邻居"></li>
+<li>Moore邻居，即考虑周边相邻的所有邻居。<img src="https://ericblog.oss-cn-beijing.aliyuncs.com/8615260-175c2332baaf3386.png" alt="Moore邻居"></li>
+</ul>
+<h4 id="有什么用"><a href="#有什么用" class="headerlink" title="有什么用"></a>有什么用</h4><p>CA通常可以应用于研究<strong>系统问题</strong>，which由若干不同的对象组成，对象之间可以相互作用，因此适用于一些<strong>机理建模</strong>的问题中。从上面的简述也可以看出，起<strong>决定作用</strong>的是<strong>转移规则</strong>的定义。根据具体问题的不同可以自行定义<strong>适合题目要求</strong>的规则，并设置一定的迭代次数，在根据题目要求或者直接随机初始化元胞，之后按照迭代次数和转移规则仿真模拟系统在不同时刻（或其他物理量）的变化状况与趋势，最后综合评估系统状况以及转移规则是否合适。</p>
+<h4 id="具体应用"><a href="#具体应用" class="headerlink" title="具体应用"></a>具体应用</h4><h5 id="人员疏散模型："><a href="#人员疏散模型：" class="headerlink" title="人员疏散模型："></a>人员疏散模型：</h5><p>具体参考：</p>
+<p><a href="http://html.rhhz.net/WHDXXBXXKXB/html/20170921.htm#zz">张鑫龙, 陈秀万, 李怀瑜, 李飞. 一种改进元胞自动机的人员疏散模型. 武汉大学学报·信息科学版, 2017, 42(9): 1330-1336.</a></p>
+<p>该模型将社会力模型应用于人员疏散的CA中，社会力模型可表示为：</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/image-20200816234608779.png" alt="社会力学"></p>
+<p>根据每个元胞受力不同，计算该元胞下一时刻的速度方向及大小变化，从而推算出所有元胞的下一时刻所在位置及状态（速度方向、大小、加速度方向、大小）。</p>
+<p>为了将行人（元胞）之间的碰撞情况也纳入考量，该模型将默认元胞自动机“每个元胞占据一个单元格的设定”改为“每个元胞占据四个单元格”，以能够模拟出行人的拥挤状况。</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/image-20200816233010294.png" alt="改进的元胞自动机"></p>
+<h5 id="教室逃生模型："><a href="#教室逃生模型：" class="headerlink" title="教室逃生模型："></a>教室逃生模型：</h5><p><img src="%E5%BB%BA%E6%A8%A1-%E5%85%83%E8%83%9E%E8%87%AA%E5%8A%A8%E6%9C%BA-CA/image-20200816233139926.png" alt="image-20200816233139926"></p>
+<h5 id="森林火灾模型"><a href="#森林火灾模型" class="headerlink" title="森林火灾模型"></a>森林火灾模型</h5><p>假如某棵树着火了，那么在cell里的数值，就应当是1，代表这棵树着火了，并且在下一个时刻，这个cell的数值将变成0，代表树烧没了。在森林火灾模型中，规则就是：<strong>只要4个邻居cells有一个是1，并且自己是2，那么下个时间节点自己将变成1，再下一个时间节点自己变成0。</strong></p>
+<p>有点类似于最著名的生命游戏的规则：</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/image-20200816233706489.png" alt="生命游戏规则"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>可以看到，大多数时候CA只是一种概念，如何在具体问题中去应用CA进行系统分析，才是建模过程中需要认真考虑的问题。</p>
+<p>一些想法：</p>
+<ul>
+<li>既然多数CA用二维数组实现，是不是可以考虑使用卷积简化运算？</li>
+<li>除了最常用的matlab实现，是否可以考虑使用D3.js等可视化工具让生成的CA更好看？</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/仿真模拟/">仿真模拟</a>, <a class="has-link-grey -link" href="/tags/元胞自动机/">元胞自动机</a>, <a class="has-link-grey -link" href="/tags/社会力学模型/">社会力学模型</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/08/18/建模-无约束优化问题-1/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">建模-无约束优化问题-1</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/13/程设Week13-15-作业/">
+                <span class="level-item">程设Week13-15-作业</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/526a0243008d13b8f61530a4f98259e8?s=128" alt="Eric">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Eric
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student from SDU
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shandong, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            44
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            64
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/eirc-whyte" target="_blank" rel="noopener">
+                 Follow
+            </a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            <!-- 引入iconfront -->
+            <link rel="stylesheet" href="/css/iconfont.css">
+            <script src="/js/iconfont.js"></script>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=982680793&amp;site=qq&amp;menu=yes">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-QQ"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Email" href="mailto:982680793@qq.com">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-email"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="weibo" href="https://weibo.com/u/1675634500">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-weibo"></use>
+                </svg>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#元胞自动机（Cellular-Automaton）">
+        <span class="has-mr-6">1</span>
+        <span>元胞自动机（Cellular Automaton）</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#概念">
+        <span class="has-mr-6">1.1</span>
+        <span>概念</span>
+        </a></li><li>
+        <a class="is-flex" href="#有什么用">
+        <span class="has-mr-6">1.2</span>
+        <span>有什么用</span>
+        </a></li><li>
+        <a class="is-flex" href="#具体应用">
+        <span class="has-mr-6">1.3</span>
+        <span>具体应用</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#人员疏散模型：">
+        <span class="has-mr-6">1.3.1</span>
+        <span>人员疏散模型：</span>
+        </a></li><li>
+        <a class="is-flex" href="#教室逃生模型：">
+        <span class="has-mr-6">1.3.2</span>
+        <span>教室逃生模型：</span>
+        </a></li><li>
+        <a class="is-flex" href="#森林火灾模型">
+        <span class="has-mr-6">1.3.3</span>
+        <span>森林火灾模型</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#总结">
+        <span class="has-mr-6">1.4</span>
+        <span>总结</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/thumbnail.svg" alt="建模-元胞自动机(CA)" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Eric Sheeran&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

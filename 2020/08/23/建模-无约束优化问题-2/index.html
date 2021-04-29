@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>建模-无约束优化问题-2 - Eric&#39;s Blog</title>
+
+
+    <meta name="description" content="二维搜索方法本文描述了求取实值函数极小点的方法。主要包括最速下降法、牛顿法、拟牛顿法。">
+<meta name="keywords" content="优化问题,牛顿法,多维搜索方法,梯度下降法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建模-无约束优化问题-2">
+<meta property="og:url" content="http://yoursite.com/2020/08/23/建模-无约束优化问题-2/index.html">
+<meta property="og:site_name" content="Eric&#39;s Blog">
+<meta property="og:description" content="二维搜索方法本文描述了求取实值函数极小点的方法。主要包括最速下降法、牛顿法、拟牛顿法。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-09-04T12:02:04.446Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="建模-无约束优化问题-2">
+<meta name="twitter:description" content="二维搜索方法本文描述了求取实值函数极小点的方法。主要包括最速下降法、牛顿法、拟牛顿法。">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/thumbnail.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159370438-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159370438-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/thumbnail.svg" alt="建模-无约束优化问题-2" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-22T22:42:02.000Z">2020-08-22</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/数学建模/">数学建模</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes read (About 709 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                建模-无约束优化问题-2
+            
+        </h1>
+        <div class="content">
+            <h3 id="二维搜索方法"><a href="#二维搜索方法" class="headerlink" title="二维搜索方法"></a>二维搜索方法</h3><p>本文描述了求取实值函数极小点的方法。主要包括最速下降法、牛顿法、拟牛顿法。</p>
+<a id="more"></a>
+
+<h4 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h4><p>又叫最速下降法，是梯度方法的一种具体实现。在目标函数一阶可导时，应利用导数（梯度）的信息， 向负梯度方向搜索前进， 使得每一步的目标函数值都减小。</p>
+<p>具体方法是：每次从初始点出发，沿着<strong>梯度负方向$-\nabla f(x^{(k)})$开展一维搜索</strong>，找到该方向上的<strong>极小值点</strong>$x^{(k+1)}$，再从此点继续迭代搜索。</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20200822224937855.png" alt="image-20200822224937855"></p>
+<p>算法优化：</p>
+<ol>
+<li><strong>算法的步长选择</strong>。步长取值取决于数据样本，可以多取一些值，从大到小，分别运行算法，看看迭代效果，如果损失函数在变小，说明取值有效，否则要增大步长。步长太大，会导致迭代过快，甚至有可能错过最优解。步长太小，迭代速度太慢，很长时间算法都不能结束。所以算法的步长需要多次运行后才能得到一个较为优的值。也可以选择相对值作为停止规则，以<strong>避免数据尺度不同</strong>造成的影响。例如使用：<br>$$<br>\frac{|f(x^{(k+1)})-f(x^{(k)})|}{|f(x^{(k)})|}&lt;\epsilon<br>$$<br>或者<br>$$<br>\frac{|x^{(k+1)}-x^{(k)}|}{|x^{(k)}|}&lt;\epsilon<br>$$</li>
+</ol>
+<ol start="2">
+<li><p><strong>算法参数的初始值选择</strong>。初始值不同，获得的最小值也有可能不同，因此梯度下降求得的只是局部最小值；当然如果损失函数是凸函数则一定是最优解。由于有局部最优解的风险，需要<strong>多次用不同初始值</strong>运行算法，关键损失函数的最小值，选择损失函数最小化的初值。</p>
+</li>
+<li><p><strong>归一化</strong>。由于样本不同特征的取值范围不一样，可能导致迭代很慢，为了<strong>减少特征取值</strong>的影响，可以对特征数据归一化。</p>
+</li>
+</ol>
+<h4 id="牛顿法"><a href="#牛顿法" class="headerlink" title="牛顿法"></a>牛顿法</h4><p>在确定搜索方向时，梯度下降法只是用了一阶导数（梯度），如果函数存在二阶以上导数时，引入高阶导数，则效率可能提高。</p>
+<p>原理是利用泰勒公式，在$x_0$处进行二阶泰勒展开。</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20200822232309382.png" alt="image-20200822232309382"></p>
+<h4 id="拟牛顿法"><a href="#拟牛顿法" class="headerlink" title="拟牛顿法"></a>拟牛顿法</h4><blockquote>
+<p>ref：</p>
+<p><a href="https://www.math.pku.edu.cn/teachers/lidf/docs/statcomp/html/_statcompbook/opt-uncons.html#opt-uncons-quaisnewton">无约束优化方法</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/37524275">梯度下降法、牛顿法和拟牛顿法</a></p>
+</blockquote>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/优化问题/">优化问题</a>, <a class="has-link-grey -link" href="/tags/多维搜索方法/">多维搜索方法</a>, <a class="has-link-grey -link" href="/tags/梯度下降法/">梯度下降法</a>, <a class="has-link-grey -link" href="/tags/牛顿法/">牛顿法</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/08/25/建模-因子分析/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">建模-因子分析</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/08/21/建模-主成分分析/">
+                <span class="level-item">建模-主成分分析</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/526a0243008d13b8f61530a4f98259e8?s=128" alt="Eric">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Eric
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student from SDU
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shandong, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            44
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            64
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/eirc-whyte" target="_blank" rel="noopener">
+                 Follow
+            </a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            <!-- 引入iconfront -->
+            <link rel="stylesheet" href="/css/iconfont.css">
+            <script src="/js/iconfont.js"></script>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=982680793&amp;site=qq&amp;menu=yes">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-QQ"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Email" href="mailto:982680793@qq.com">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-email"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="weibo" href="https://weibo.com/u/1675634500">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-weibo"></use>
+                </svg>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#二维搜索方法">
+        <span class="has-mr-6">1</span>
+        <span>二维搜索方法</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#梯度下降法">
+        <span class="has-mr-6">1.1</span>
+        <span>梯度下降法</span>
+        </a></li><li>
+        <a class="is-flex" href="#牛顿法">
+        <span class="has-mr-6">1.2</span>
+        <span>牛顿法</span>
+        </a></li><li>
+        <a class="is-flex" href="#拟牛顿法">
+        <span class="has-mr-6">1.3</span>
+        <span>拟牛顿法</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/thumbnail.svg" alt="建模-无约束优化问题-2" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Eric Sheeran&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

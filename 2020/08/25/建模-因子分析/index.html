@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>建模-因子分析 - Eric&#39;s Blog</title>
+
+
+    <meta name="description" content="因子分析因子分析（Factor Analysis，FA）是一种数据简化技术，通过研究众多变量之间的内部依赖关系，探求观测数据的基本结构，并用少数几个假想变量（因子）来表示原始数据。">
+<meta name="keywords" content="综合评价方法,因子分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建模-因子分析">
+<meta property="og:url" content="http://yoursite.com/2020/08/25/建模-因子分析/index.html">
+<meta property="og:site_name" content="Eric&#39;s Blog">
+<meta property="og:description" content="因子分析因子分析（Factor Analysis，FA）是一种数据简化技术，通过研究众多变量之间的内部依赖关系，探求观测数据的基本结构，并用少数几个假想变量（因子）来表示原始数据。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-09-04T12:02:04.442Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="建模-因子分析">
+<meta name="twitter:description" content="因子分析因子分析（Factor Analysis，FA）是一种数据简化技术，通过研究众多变量之间的内部依赖关系，探求观测数据的基本结构，并用少数几个假想变量（因子）来表示原始数据。">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/thumbnail.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159370438-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159370438-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/thumbnail.svg" alt="建模-因子分析" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-08-24T22:20:30.000Z">2020-08-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/数学建模/">数学建模</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 993 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                建模-因子分析
+            
+        </h1>
+        <div class="content">
+            <h3 id="因子分析"><a href="#因子分析" class="headerlink" title="因子分析"></a>因子分析</h3><p>因子分析（Factor Analysis，FA）是一种数据简化技术，通过研究众多变量之间的内部依赖关系，探求观测数据的基本结构，并用少数几个假想变量（因子）来表示原始数据。</p>
+<a id="more"></a>
+
+<h4 id="与主成分分析的区别"><a href="#与主成分分析的区别" class="headerlink" title="与主成分分析的区别"></a>与主成分分析的区别</h4><p>因子分析区别于主成分分析的地方在于：</p>
+<ul>
+<li><p>因子具有明确解释性，而主成分解释含义较原始数据比较模糊</p>
+</li>
+<li><p>主成分的解唯一，而因子有多解（由于增加了<strong>特殊因子</strong>向量），可以进行旋转而增大可解释的可能性</p>
+</li>
+<li><p>主成分分析不需要构造模型，而因子分析需要构造一个因子模型，并伴随几个关键性的假定</p>
+</li>
+</ul>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20200824222905593.png" alt="image-20200824222905593"></p>
+<h4 id="因子分析的一般模型"><a href="#因子分析的一般模型" class="headerlink" title="因子分析的一般模型"></a>因子分析的一般模型</h4><p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20200824223058768.png" alt="image-20200824223058768"></p>
+<p>根据模型意义，我们给出几个<strong>重要假设</strong>：</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20200824223236708.png" alt="image-20200824223236708"></p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><h5 id="1-原始变量X的协方差矩阵分解"><a href="#1-原始变量X的协方差矩阵分解" class="headerlink" title="1. 原始变量X的协方差矩阵分解"></a>1. 原始变量X的协方差矩阵分解</h5><p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20200824224439572.png" alt="image-20200824224439572"></p>
+<p>说明：<strong>特殊因子的协方差越小，公共因子共享的成分越多。</strong></p>
+<h5 id="2-载荷矩阵不唯一"><a href="#2-载荷矩阵不唯一" class="headerlink" title="2. 载荷矩阵不唯一"></a>2. 载荷矩阵不唯一</h5><p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20200824224737737.png" alt="image-20200824224737737"></p>
+<p>说明：可以通过对载荷矩阵进行正交旋转，在不改变特殊因子的情况下寻求<strong>更鲜明的实际意义或可解释性</strong>的因子。</p>
+<h4 id="载荷矩阵中的统计意义"><a href="#载荷矩阵中的统计意义" class="headerlink" title="载荷矩阵中的统计意义"></a>载荷矩阵中的统计意义</h4><h5 id="1-变量共同度"><a href="#1-变量共同度" class="headerlink" title="1. 变量共同度"></a>1. 变量共同度</h5><p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20200824225016559.png" alt="image-20200824225016559"></p>
+<p>即：<strong>横向</strong>代表所有载荷因子对某变量影响的程度。</p>
+<h5 id="2-因子重要性"><a href="#2-因子重要性" class="headerlink" title="2. 因子重要性"></a>2. 因子重要性</h5><p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20200824225256111.png" alt="image-20200824225256111"></p>
+<p>即：<strong>纵向</strong>代表某载荷因子对整体x变量的贡献度。</p>
+<h5 id="3-因子载荷的统计意义"><a href="#3-因子载荷的统计意义" class="headerlink" title="3. 因子载荷的统计意义"></a>3. 因子载荷的统计意义</h5><p>因子载荷$a_{ij}$是第$i$个变量与第$j$个公共因子的相关系数，反映了第$i$个变量与第$ j$<br>个公共因子的相关重要性。绝对值越大，相关的密切程度越高。</p>
+<h4 id="载荷矩阵A的估计方法"><a href="#载荷矩阵A的估计方法" class="headerlink" title="载荷矩阵A的估计方法"></a>载荷矩阵A的估计方法</h4><ol>
+<li><strong>主成分</strong>分析法（这里可以发现是用主成分方法解的）</li>
+<li>极大似然估计法</li>
+<li>主轴因子法</li>
+</ol>
+<p>spss上直接选即可。</p>
+<h4 id="载荷矩阵A的旋转方法"><a href="#载荷矩阵A的旋转方法" class="headerlink" title="载荷矩阵A的旋转方法"></a>载荷矩阵A的旋转方法</h4><p>我们可以通过正交变换使矩阵$A$中有尽可能多的元素等于或接近于0，从而使因子载荷矩阵结构简单化，便于做出更有实际意义的解释。  </p>
+<p>常用方法有：<strong>最大方差法</strong>、Oblimin方法、最优斜交旋转等。</p>
+<p>spss上直接选即可。</p>
+<h4 id="计算公共因子取值——因子得分"><a href="#计算公共因子取值——因子得分" class="headerlink" title="计算公共因子取值——因子得分"></a>计算公共因子取值——因子得分</h4><p>前面我们主要解决了用公共因子的线性组合来表示一组观测变量的有关问题。如果我们要使用这些因子做其他的研究，比如把得到的因子作为自变量来做回归分析，对样本进行分类或评价，这就需要我们对公共因子进行测度，即给出公共因子的值。</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20200824230101915.png" alt="image-20200824230101915"></p>
+<p>常用Anderson-Rubin方法。</p>
+<p>spss上直接选即可。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>综上所述，因子分析的基本步骤可概括；</p>
+<ol>
+<li><p>求样本相关系数矩阵R的特征值（依大小次序）及其相应的特征向量。 取前面k个特征值使其累积方差贡献率超过85%，并给出前k个特征值对应的特征向量。</p>
+</li>
+<li><p>求因子载荷矩阵 A 。</p>
+</li>
+<li><p>对载荷矩阵A作正交旋转 ，使得到的矩阵方差和最大</p>
+</li>
+</ol>
+<blockquote>
+<p>ref：</p>
+<p><a href="https://blog.csdn.net/qq_29831163/article/details/88901245">因子分析 factor analysis</a></p>
+</blockquote>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/因子分析/">因子分析</a>, <a class="has-link-grey -link" href="/tags/综合评价方法/">综合评价方法</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/08/27/建模-数学规划模型-1/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">建模-数学规划模型-1</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/08/23/建模-无约束优化问题-2/">
+                <span class="level-item">建模-无约束优化问题-2</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/526a0243008d13b8f61530a4f98259e8?s=128" alt="Eric">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Eric
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student from SDU
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shandong, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            44
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            64
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/eirc-whyte" target="_blank" rel="noopener">
+                 Follow
+            </a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            <!-- 引入iconfront -->
+            <link rel="stylesheet" href="/css/iconfont.css">
+            <script src="/js/iconfont.js"></script>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=982680793&amp;site=qq&amp;menu=yes">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-QQ"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Email" href="mailto:982680793@qq.com">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-email"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="weibo" href="https://weibo.com/u/1675634500">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-weibo"></use>
+                </svg>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#因子分析">
+        <span class="has-mr-6">1</span>
+        <span>因子分析</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#与主成分分析的区别">
+        <span class="has-mr-6">1.1</span>
+        <span>与主成分分析的区别</span>
+        </a></li><li>
+        <a class="is-flex" href="#因子分析的一般模型">
+        <span class="has-mr-6">1.2</span>
+        <span>因子分析的一般模型</span>
+        </a></li><li>
+        <a class="is-flex" href="#性质">
+        <span class="has-mr-6">1.3</span>
+        <span>性质</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-原始变量X的协方差矩阵分解">
+        <span class="has-mr-6">1.3.1</span>
+        <span>1. 原始变量X的协方差矩阵分解</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-载荷矩阵不唯一">
+        <span class="has-mr-6">1.3.2</span>
+        <span>2. 载荷矩阵不唯一</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#载荷矩阵中的统计意义">
+        <span class="has-mr-6">1.4</span>
+        <span>载荷矩阵中的统计意义</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-变量共同度">
+        <span class="has-mr-6">1.4.1</span>
+        <span>1. 变量共同度</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-因子重要性">
+        <span class="has-mr-6">1.4.2</span>
+        <span>2. 因子重要性</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-因子载荷的统计意义">
+        <span class="has-mr-6">1.4.3</span>
+        <span>3. 因子载荷的统计意义</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#载荷矩阵A的估计方法">
+        <span class="has-mr-6">1.5</span>
+        <span>载荷矩阵A的估计方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#载荷矩阵A的旋转方法">
+        <span class="has-mr-6">1.6</span>
+        <span>载荷矩阵A的旋转方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#计算公共因子取值——因子得分">
+        <span class="has-mr-6">1.7</span>
+        <span>计算公共因子取值——因子得分</span>
+        </a></li><li>
+        <a class="is-flex" href="#总结">
+        <span class="has-mr-6">1.8</span>
+        <span>总结</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/thumbnail.svg" alt="建模-因子分析" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Eric Sheeran&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

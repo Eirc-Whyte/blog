@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Week6-作业+周模拟题 - Eric&#39;s Blog</title>
+
+
+    <meta name="description" content="本周并查集专题">
+<meta name="keywords" content="并查集,树的直径,最小生成树,最小生成森林">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Week6-作业+周模拟题">
+<meta property="og:url" content="http://yoursite.com/2020/03/31/程设Week6-作业/index.html">
+<meta property="og:site_name" content="Eric&#39;s Blog">
+<meta property="og:description" content="本周并查集专题">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/gallery/chengshe.png">
+<meta property="og:updated_time" content="2020-03-30T09:31:27.137Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week6-作业+周模拟题">
+<meta name="twitter:description" content="本周并查集专题">
+<meta name="twitter:image" content="http://yoursite.com/gallery/chengshe.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/thumbnail.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159370438-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159370438-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/thumbnail.svg" alt="Week6-作业+周模拟题" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-30T16:44:43.000Z">2020-03-30</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/程序设计思维与实践/">程序设计思维与实践</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1143 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Week6-作业+周模拟题
+            
+        </h1>
+        <div class="content">
+            <p>本周并查集专题</p>
+<a id="more"></a>
+
+<p>然而A题并不是并查集.jpg</p>
+<h3 id="A-氪金带东"><a href="#A-氪金带东" class="headerlink" title="A - 氪金带东"></a><a href="https://vjudge.net/contest/363991#problem/A">A - 氪金带东</a></h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给出一棵树，求距离每个点最远的点的距离。</p>
+<h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><p>输入文件包含多组测试数据。对于每组测试数据，第一行一个整数N (N&lt;=10000)，接下来有N-1行，每一行两个数，对于第i行的两个数，它们表示与i号电脑连接的电脑编号以及它们之间网线的长度。网线的总长度不会超过10^9，每个数之间用一个空格隔开。</p>
+<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><p>对于每组测试数据输出N行，第i行表示i号电脑的答案 (1&lt;=i&lt;=N).</p>
+<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li>因为是树所以存在直；</li>
+<li>到某个点最远距离的点必然为直径两端点中的一个点；</li>
+<li>题目转为：求树上直径两端点，并分别求两端点到所有点的距离；</li>
+<li>那么只需要进行三次遍历：<ul>
+<li>第一次：从任一点开始，找到距离最远的点记为<code>L</code>，<code>L</code>为直径的一个端点；</li>
+<li>第二次：从<code>L</code>点开始，找到距离最远的点记为<code>R</code>，<code>R</code>为直径的另一端点，顺便求出<code>L</code>到所有点的距离；</li>
+<li>第三次：从<code>R</code>点开始，找到<code>R</code>到所有点的距离。</li>
+</ul>
+</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> from,to,w;</span><br><span class="line">    Edge(<span class="keyword">int</span> f,<span class="keyword">int</span> t,<span class="keyword">int</span> w):from(f),to(t),w(w)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;Edge&gt; G[<span class="number">10001</span>];</span><br><span class="line"><span class="keyword">bool</span> v[<span class="number">10001</span>];</span><br><span class="line"><span class="keyword">int</span> ld[<span class="number">10001</span>],rd[<span class="number">10001</span>];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> f,<span class="keyword">int</span> dis[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;=n;i++) &#123;dis[i] = <span class="number">0</span>;v[i] = <span class="number">0</span>;&#125;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">    q.push(f);</span><br><span class="line">    v[f] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">        <span class="keyword">int</span> h = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;e:G[h])&#123;</span><br><span class="line">            <span class="keyword">if</span>(!v[e.to])&#123;</span><br><span class="line">                v[e.to] = <span class="number">1</span>;</span><br><span class="line">                q.push(e.to);</span><br><span class="line">                dis[e.to] = dis[h] + e.w;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> last = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(dis[i] &gt; dis[last])&#123;</span><br><span class="line">            last = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> last;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> f,<span class="keyword">int</span> dis[])</span></span>&#123;</span><br><span class="line">    v[f] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> pos = f;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;e:G[f])&#123;</span><br><span class="line">        <span class="keyword">if</span>(!v[e.to])&#123;</span><br><span class="line">            dis[e.to] = dis[f] + e.w;</span><br><span class="line">            <span class="keyword">int</span> s = dfs(e.to,dis);</span><br><span class="line">            pos = dis[pos] &gt; dis[s] ? pos : s;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pos;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++) G[i].clear();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> v = <span class="number">2</span>;v&lt;=n;v++)&#123;</span><br><span class="line">            <span class="keyword">int</span> u,w;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;u&gt;&gt;w;</span><br><span class="line">            G[u].emplace_back(u,v,w);</span><br><span class="line">            G[v].emplace_back(v,u,w);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;=n;i++) &#123;rd[i] = <span class="number">0</span>;v[i] = <span class="number">0</span>;&#125;</span><br><span class="line">        <span class="keyword">int</span> r = dfs(<span class="number">1</span>,rd);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;=n;i++) &#123;rd[i] = <span class="number">0</span>;v[i] = <span class="number">0</span>;&#125;</span><br><span class="line">        <span class="keyword">int</span> l = dfs(r,rd);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;=n;i++) &#123;ld[i] = <span class="number">0</span>;v[i] = <span class="number">0</span>;&#125;</span><br><span class="line">        dfs(l,ld);</span><br><span class="line">        <span class="comment">// cout&lt;&lt;l&lt;&lt;" "&lt;&lt;r&lt;&lt;"\n";</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">            <span class="comment">// cout&lt;&lt;rd[i]&lt;&lt;" "&lt;&lt;ld[i]&lt;&lt;"\n";</span></span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;max(rd[i],ld[i])&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="B-戴好口罩"><a href="#B-戴好口罩" class="headerlink" title="B - 戴好口罩"></a><a href="https://vjudge.net/contest/363991#problem/B">B - 戴好口罩</a></h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>新型冠状病毒肺炎（Corona Virus Disease 2019，COVID-19），简称“新冠肺炎”，是指2019新型冠状病毒感染导致的肺炎。<br>如果一个感染者走入一个群体，那么这个群体需要被隔离！<br>小A同学被确诊为新冠感染，并且没有戴口罩！！！！！！<br>危！！！<br>时间紧迫！！！！<br>需要尽快找到所有和小A同学直接或者间接接触过的同学，将他们隔离，防止更大范围的扩散。<br>众所周知，学生的交际可能是分小团体的，一位学生可能同时参与多个小团体内。<br>请你编写程序解决！戴口罩！！</p>
+<h5 id="输入-1"><a href="#输入-1" class="headerlink" title="输入"></a>输入</h5><p>多组数据，对于每组测试数据：<br>第一行为两个整数n和m（n = m = 0表示输入结束，不需要处理），n是学生的数量，m是学生群体的数量。0 &lt; n &lt;= 3e4 ， 0 &lt;= m &lt;= 5e2<br>学生编号为0~n-1<br>小A编号为0<br>随后，m行，每行有一个整数num即小团体人员数量。随后有num个整数代表这个小团体的学生。</p>
+<h5 id="输出-1"><a href="#输出-1" class="headerlink" title="输出"></a>输出</h5><p>输出要隔离的人数，每组数据的答案输出占一行</p>
+<h4 id="题目分析-1"><a href="#题目分析-1" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li>将每个小团体加入同一个并查集，如果多个小团体之间的成员有重合则应该合并为同一个小团体；</li>
+<li>最终查找一遍与0号在同一个小团体的人数即可。</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> father[<span class="number">500000</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> father[x] == x ?  x : father[x] = find(father[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    father[find(a)] = find(b);</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">0</span>&amp;&amp;m==<span class="number">0</span>)<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;=n;i++) father[i] = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> k,first,other;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;k&gt;&gt;first;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j &lt; k;j++)&#123;</span><br><span class="line">                <span class="built_in">cin</span>&gt;&gt;other;</span><br><span class="line">                <span class="keyword">if</span>(find(first) != find(other))&#123;</span><br><span class="line">                    merge(first,other);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> fa = find(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(find(i) == fa)&#123;</span><br><span class="line">                ans++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="C-掌握魔法的东东"><a href="#C-掌握魔法的东东" class="headerlink" title="C - 掌握魔法的东东"></a><a href="https://vjudge.net/contest/363991#problem/C">C - 掌握魔法的东东</a></h3><h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><p>东东在老家农村无聊，想种田。农田有 n 块，编号从 1~n。种田要灌水<br>众所周知东东是一个魔法师，他可以消耗一定的 MP 在一块田上施展魔法，使得黄河之水天上来。他也可以消耗一定的 MP 在两块田的渠上建立传送门，使得这块田引用那块有水的田的水。 (1&lt;=n&lt;=3e2)<br>黄河之水天上来的消耗是 Wi，i 是农田编号 (1&lt;=Wi&lt;=1e5)<br>建立传送门的消耗是 Pij，i、j 是农田编号 (1&lt;= Pij &lt;=1e5, Pij = Pji, Pii =0)<br>东东为所有的田灌水的最小消耗</p>
+<h5 id="输入-2"><a href="#输入-2" class="headerlink" title="输入"></a>输入</h5><p>第1行：一个数n<br>第2行到第n+1行：数wi<br>第n+2行到第2n+1行：矩阵即pij矩阵</p>
+<h5 id="输出-2"><a href="#输出-2" class="headerlink" title="输出"></a>输出</h5><p>东东最小消耗的MP值</p>
+<h4 id="题目分析-2"><a href="#题目分析-2" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li><p>对于每块田，有两种选择：黄河之水天上来；或者从最近的有水的田引水；</p>
+</li>
+<li><p>枚举一下情况：</p>
+<ul>
+<li>一块田$i$黄河之水天上来，剩下的全都直接或间接引水；那么代价就是最小生成树+$w_i$</li>
+<li>两块田$i、j$黄河之水天上来，剩下的全都直接或间接引水；那么就变成了两棵树，每棵树符合上述情况；</li>
+<li>以此类推</li>
+</ul>
+</li>
+<li><p>可以将每个田的“天”和其连一条边，然后和田与田之间的边共同参与最小生成森林的构造，最小生成森林最终应该有n条边；</p>
+</li>
+<li><p>注意：将两个已经分别连到天的树再连起来是<strong>没有意义的</strong>，合并的时候应该直接跳过，所以从天上引水的并查集要打上标记。</p>
+</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxx = <span class="number">2e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; &gt; edge;</span><br><span class="line"><span class="keyword">int</span> father[maxx];</span><br><span class="line"><span class="keyword">bool</span> v[maxx];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> father[x] == x ?  x : father[x] = find(father[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> fa = find(a);</span><br><span class="line">    <span class="keyword">int</span> fb = find(b);</span><br><span class="line">    father[fa] = fb;</span><br><span class="line">    <span class="keyword">if</span>(v[fa] || v[fb]) v[fa] = v[fb] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> pair&lt;<span class="keyword">int</span>,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt;&amp; a,<span class="keyword">const</span> pair&lt;<span class="keyword">int</span>,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt;&amp; b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.first &lt; b.first;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,w,p;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;w;</span><br><span class="line">        father[i] = i;</span><br><span class="line">        father[i+n] = i+n;</span><br><span class="line">        v[i+n] = <span class="number">1</span>;</span><br><span class="line">        edge.push_back(make_pair(w,make_pair(i+n,i)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;p;</span><br><span class="line">            <span class="keyword">if</span>(i&lt;=j)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                edge.push_back(make_pair(p,make_pair(i,j)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(edge.begin(),edge.end(),cmp);</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span> ,ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;i:edge)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = i.second.first;</span><br><span class="line">        <span class="keyword">int</span> t = i.second.second;</span><br><span class="line">        <span class="keyword">int</span> w = i.first;</span><br><span class="line">        <span class="keyword">int</span> fu = find(u);</span><br><span class="line">        <span class="keyword">int</span> ft = find(t);</span><br><span class="line">        <span class="keyword">if</span>(!(v[fu]&amp;&amp;v[ft]) &amp;&amp; fu != ft  )&#123;</span><br><span class="line">            merge(u,t);</span><br><span class="line">            ans += w;</span><br><span class="line">            <span class="comment">// cout&lt;&lt;u&lt;&lt;" "&lt;&lt;t&lt;&lt;" "&lt;&lt;w&lt;&lt;"\n";</span></span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt == n)<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="D-csp201812-4数据中心"><a href="#D-csp201812-4数据中心" class="headerlink" title="D - csp201812-4数据中心"></a><a href="https://vjudge.net/contest/363991#problem/D">D - csp201812-4数据中心</a></h3><h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><p>求最小生成树的最大边</p>
+<h5 id="输入-3"><a href="#输入-3" class="headerlink" title="输入"></a>输入</h5><p>一个无向图</p>
+<h5 id="输出-3"><a href="#输出-3" class="headerlink" title="输出"></a>输出</h5><p>最小生成树的最大边值</p>
+<h4 id="题目分析-3"><a href="#题目分析-3" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li><p>直接Kruskal求出最小生成树的同时记录最大边值即可</p>
+</li>
+<li><p>注意：题目中给的root完全没用，原题的意思是：以root为根构造一棵树，求<strong>每一层</strong>的<strong>最大边值</strong>中的<strong>最大值</strong></p>
+<p>这不就是最小生成树的最大边值🐎，嗯？阅读理解题？</p>
+</li>
+</ul>
+<h4 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxx = <span class="number">2e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; &gt; edge;</span><br><span class="line"><span class="keyword">int</span> father[maxx];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> father[x] == x ?  x : father[x] = find(father[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    father[find(a)] = find(b);</span><br><span class="line">    <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">const</span> pair&lt;<span class="keyword">int</span>,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt;&amp; a,<span class="keyword">const</span> pair&lt;<span class="keyword">int</span>,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt;&amp; b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.first &lt; b.first;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,p,r,m;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;r;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++) father[i] = i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v,u,w;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;v&gt;&gt;u&gt;&gt;w;</span><br><span class="line">        edge.push_back(make_pair(w,make_pair(u,v)));</span><br><span class="line">    &#125;</span><br><span class="line">    sort(edge.begin(),edge.end(),cmp);</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span> ,ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;i:edge)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = i.second.first;</span><br><span class="line">        <span class="keyword">int</span> v = i.second.second;</span><br><span class="line">        <span class="keyword">int</span> w = i.first;</span><br><span class="line">        <span class="keyword">if</span>( find(u) != find(v)  )&#123;</span><br><span class="line">            <span class="comment">// cout&lt;&lt;u&lt;&lt;" "&lt;&lt;v&lt;&lt;" "&lt;&lt;w&lt;&lt;"\n";</span></span><br><span class="line">            merge(u,v);</span><br><span class="line">            ans = w;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt == n<span class="number">-1</span>) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="周模拟题-掌握魔法的东东2"><a href="#周模拟题-掌握魔法的东东2" class="headerlink" title="周模拟题 - 掌握魔法的东东2"></a><a href="https://vjudge.net/contest/364699#problem/A">周模拟题 - 掌握魔法的东东2</a></h3><h4 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h4><p>从瑞神家打牌回来后，东东痛定思痛，决定苦练牌技，终成赌神！<br>东东有 <strong><em>A</em> × <em>B</em> 张扑克牌</strong>。每张扑克牌有一个大小(整数，记为a，范围区间是 0 到 <em>A</em> - 1）和一个花色（整数，记为b，范围区间是 0 到 <em>B</em> - 1。<br>扑克牌是互异的，也就是独一无二的，也就是说<strong>没有两张牌大小和花色都相同</strong>。<br>“一手牌”的意思是你手里有5张不同的牌，这 5 张牌<strong>没有谁在前谁在后的顺序之分</strong>，它们可以形成一个牌型。 我们定义了 9 种牌型，如下是 9 种牌型的规则，我们用“低序号优先”来匹配牌型，即这“一手牌”从上到下满足的第一个牌型规则就是它的“牌型编号”（一个整数，属于1到9）：</p>
+<ol>
+<li>同花顺: 同时满足规则 2 和规则 3.</li>
+<li>顺子 : 5张牌的大小形如 <em>x</em>, <em>x</em> + 1, <em>x</em> + 2, <em>x</em> + 3, <em>x</em> + 4</li>
+<li>同花 : 5张牌都是相同花色的.</li>
+<li>炸弹 : 5张牌其中有4张牌的大小相等.</li>
+<li>三带二 : 5张牌其中有3张牌的大小相等，且另外2张牌的大小也相等.</li>
+<li>两对: 5张牌其中有2张牌的大小相等，且另外3张牌中2张牌的大小相等.</li>
+<li>三条: 5张牌其中有3张牌的大小相等.</li>
+<li>一对: 5张牌其中有2张牌的大小相等.</li>
+<li>要不起: 这手牌不满足上述的牌型中任意一个.</li>
+</ol>
+<p>现在, 东东从<em>A</em> × <em>B</em> 张扑克牌中<strong>拿走了 2 张牌</strong>！分别是 (<em>a</em>1, <em>b</em>1) 和 (<em>a</em>2, <em>b</em>2). （其中a表示大小，b表示花色）<br>现在要从剩下的扑克牌中再随机拿出 3 张！组成一手牌！！<br>其实东东除了会打代码，他业余还是一个魔法师，现在他要预言他的未来的可能性，即他将拿到的“一手牌”的可能性，我们用一个“牌型编号（一个整数，属于1到9）”来表示这手牌的牌型，那么他的未来有 9 种可能，但每种可能的方案数不一样。<br>现在，东东的阿戈摩托之眼没了，你需要帮他算一算 9 种牌型中，每种牌型的<strong>方案数</strong>。</p>
+<h5 id="输入-4"><a href="#输入-4" class="headerlink" title="输入"></a>输入</h5><p>第 1 行包含了整数 <em>A</em> 和 <em>B</em> (5 ≤ <em>A</em> ≤ 25, 1 ≤ <em>B</em> ≤ 4).</p>
+<p>第 2 行包含了整数 <em>a</em>1, <em>b</em>1, <em>a</em>2, <em>b</em>2 (0 ≤ <em>a</em>1, <em>a</em>2 ≤ <em>A</em> - 1, 0 ≤ <em>b</em>1, <em>b</em>2 ≤ <em>B</em> - 1, (<em>a</em>1, <em>b</em>1) ≠ (<em>a</em>2, <em>b</em>2)).</p>
+<h5 id="输出-4"><a href="#输出-4" class="headerlink" title="输出"></a>输出</h5><p>输出一行，这行有 9 个整数，每个整数代表了 9 种牌型的方案数（按牌型编号从小到大的顺序）</p>
+<h4 id="题目分析-4"><a href="#题目分析-4" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li>因为已经抽走了两张牌，所以直接枚举剩下的三张牌就好，然后每次进行判断是那种牌型；</li>
+<li>看数据范围没有问题</li>
+<li>一些细节问题：<ul>
+<li>三带二、两对、三条、一对、炸弹都是要求统计<strong>数字相同的牌的数量</strong>，所以可以开大小为25（$5\leq A\leq25$）的<strong>数字桶</strong>，再套上大小为4（$1\leq B\leq4$）的<strong>数量桶</strong>，就可以非常方便地进行统计；</li>
+<li>判断顺子/同花顺的时候需要对数组进行排序，这里应该是取数组的复制而不是直接排序原数组，否则会影响之后的枚举。</li>
+</ul>
+</li>
+</ul>
+<h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>],b[<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> num[<span class="number">26</span>],cnt[<span class="number">5</span>];</span><br><span class="line"><span class="keyword">int</span> A,B;</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">10</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; card,hand;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&amp; a,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&amp; b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a.first == b.first)&#123;</span><br><span class="line">        <span class="keyword">return</span> a.second &lt; b.second;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> a.first &lt; b.first;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">jud</span><span class="params">(<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; hand)</span></span>&#123;</span><br><span class="line">    sort(hand.begin(),hand.end(),cmp);</span><br><span class="line">    <span class="keyword">bool</span> flag1 = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// shunzi</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(hand[i<span class="number">-1</span>].first == hand[i].first<span class="number">-1</span>)&#123;</span><br><span class="line">            flag1 = <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;flag1 = <span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> flag2 = <span class="number">0</span> ;</span><br><span class="line">    <span class="comment">// tonghua</span></span><br><span class="line">    <span class="keyword">int</span> color = hand[<span class="number">0</span>].second;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;i:hand)&#123;</span><br><span class="line">        <span class="keyword">if</span>(color == i.second)&#123;</span><br><span class="line">            flag2 = <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            flag2 = <span class="number">0</span>;<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(flag1 &amp;&amp; flag2) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(flag1) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(flag2) <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;=<span class="number">30</span>;i++) num[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;i:hand)&#123;</span><br><span class="line">        num[i.first]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;=<span class="number">10</span>;i++) cnt[i] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i&lt;=<span class="number">30</span>;i++) </span><br><span class="line">        cnt[num[i]]++;</span><br><span class="line">    <span class="keyword">if</span>(cnt[<span class="number">4</span>] == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">if</span>(cnt[<span class="number">3</span>] == <span class="number">1</span> &amp;&amp; cnt[<span class="number">2</span>] == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">if</span>(cnt[<span class="number">2</span>] == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">if</span>(cnt[<span class="number">3</span>] == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">if</span>(cnt[<span class="number">2</span>] == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> pos)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">3</span>)&#123;</span><br><span class="line">        ans[jud(hand)]++;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> size = card.size();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = pos;i&lt;size;i++)&#123;</span><br><span class="line">        hand.push_back(card[i]);</span><br><span class="line">        dfs(n+<span class="number">1</span>,i+<span class="number">1</span>);</span><br><span class="line">        hand.pop_back();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;A&gt;&gt;B;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a[<span class="number">1</span>]&gt;&gt;b[<span class="number">1</span>]&gt;&gt;a[<span class="number">2</span>]&gt;&gt;b[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;A;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;B;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>((i == a[<span class="number">1</span>] &amp;&amp; j == b[<span class="number">1</span>]) || (i == a[<span class="number">2</span>] &amp;&amp; j== b[<span class="number">2</span>])) &#123;</span><br><span class="line">                hand.push_back(make_pair(i,j));</span><br><span class="line">            &#125;<span class="keyword">else</span> card.push_back(make_pair(i,j));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">9</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ans[i]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/并查集/">并查集</a>, <a class="has-link-grey -link" href="/tags/最小生成树/">最小生成树</a>, <a class="has-link-grey -link" href="/tags/最小生成森林/">最小生成森林</a>, <a class="has-link-grey -link" href="/tags/树的直径/">树的直径</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/03/31/从hexo部署成功后不显示新文章看http缓存/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">从hexo部署成功后不显示新文章看http缓存</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/27/程设Week5-作业+周模拟题/">
+                <span class="level-item">程设Week5-作业</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/526a0243008d13b8f61530a4f98259e8?s=128" alt="Eric">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Eric
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student from SDU
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shandong, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            44
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            64
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/eirc-whyte" target="_blank" rel="noopener">
+                 Follow
+            </a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            <!-- 引入iconfront -->
+            <link rel="stylesheet" href="/css/iconfont.css">
+            <script src="/js/iconfont.js"></script>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=982680793&amp;site=qq&amp;menu=yes">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-QQ"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Email" href="mailto:982680793@qq.com">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-email"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="weibo" href="https://weibo.com/u/1675634500">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-weibo"></use>
+                </svg>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#A-氪金带东">
+        <span class="has-mr-6">1</span>
+        <span>A - 氪金带东</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#题目描述">
+        <span class="has-mr-6">1.1</span>
+        <span>题目描述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入">
+        <span class="has-mr-6">1.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出">
+        <span class="has-mr-6">1.1.2</span>
+        <span>输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#题目分析">
+        <span class="has-mr-6">1.2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码">
+        <span class="has-mr-6">1.3</span>
+        <span>代码</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#B-戴好口罩">
+        <span class="has-mr-6">2</span>
+        <span>B - 戴好口罩</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#题目描述-1">
+        <span class="has-mr-6">2.1</span>
+        <span>题目描述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入-1">
+        <span class="has-mr-6">2.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出-1">
+        <span class="has-mr-6">2.1.2</span>
+        <span>输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#题目分析-1">
+        <span class="has-mr-6">2.2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码-1">
+        <span class="has-mr-6">2.3</span>
+        <span>代码</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#C-掌握魔法的东东">
+        <span class="has-mr-6">3</span>
+        <span>C - 掌握魔法的东东</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#题目描述-2">
+        <span class="has-mr-6">3.1</span>
+        <span>题目描述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入-2">
+        <span class="has-mr-6">3.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出-2">
+        <span class="has-mr-6">3.1.2</span>
+        <span>输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#题目分析-2">
+        <span class="has-mr-6">3.2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码-2">
+        <span class="has-mr-6">3.3</span>
+        <span>代码</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#D-csp201812-4数据中心">
+        <span class="has-mr-6">4</span>
+        <span>D - csp201812-4数据中心</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#题目描述-3">
+        <span class="has-mr-6">4.1</span>
+        <span>题目描述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入-3">
+        <span class="has-mr-6">4.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出-3">
+        <span class="has-mr-6">4.1.2</span>
+        <span>输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#题目分析-3">
+        <span class="has-mr-6">4.2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码-3">
+        <span class="has-mr-6">4.3</span>
+        <span>代码</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#周模拟题-掌握魔法的东东2">
+        <span class="has-mr-6">5</span>
+        <span>周模拟题 - 掌握魔法的东东2</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#题目描述-4">
+        <span class="has-mr-6">5.1</span>
+        <span>题目描述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入-4">
+        <span class="has-mr-6">5.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出-4">
+        <span class="has-mr-6">5.1.2</span>
+        <span>输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#题目分析-4">
+        <span class="has-mr-6">5.2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码-4">
+        <span class="has-mr-6">5.3</span>
+        <span>代码</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/thumbnail.svg" alt="Week6-作业+周模拟题" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Eric Sheeran&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

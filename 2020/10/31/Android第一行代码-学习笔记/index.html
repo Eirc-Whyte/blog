@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>[Android第一行代码]学习笔记 - Eric&#39;s Blog</title>
+
+
+    <meta name="description" content="aaaa冲oppo杯！">
+<meta name="keywords" content="Android,开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Android第一行代码]学习笔记">
+<meta property="og:url" content="http://yoursite.com/2020/10/31/Android第一行代码-学习笔记/index.html">
+<meta property="og:site_name" content="Eric&#39;s Blog">
+<meta property="og:description" content="aaaa冲oppo杯！">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2021-03-03T15:12:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Android第一行代码]学习笔记">
+<meta name="twitter:description" content="aaaa冲oppo杯！">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/thumbnail.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159370438-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159370438-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/thumbnail.svg" alt="[Android第一行代码]学习笔记" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-10-31T14:58:20.000Z">2020-10-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    21 minutes read (About 3082 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                [Android第一行代码]学习笔记
+            
+        </h1>
+        <div class="content">
+            <p>aaaa冲oppo杯！</p>
+<a id="more"></a>
+
+<h1 id="第0章-–-Kotlin"><a href="#第0章-–-Kotlin" class="headerlink" title="第0章 – Kotlin"></a>第0章 – Kotlin</h1><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p><code>val(value)</code>用于声明<strong>不可变</strong>变量</p>
+<p><code>var(variable)</code>用于声明<strong>可变</strong>变量</p>
+<p>显式声明<code>Int</code>类型变量：<code>var:Int = 10</code></p>
+<p>tips:优先使用val声明一个变量，不够用时才用var</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>示例：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">methodName</span><span class="params">(param1:<span class="type">Int</span>, param2:<span class="type">Int</span>)</span></span>:<span class="built_in">Int</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 语法糖：</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">methodName</span><span class="params">(param1:<span class="type">Int</span>, param2:<span class="type">Int</span>)</span></span> = max(param1,param2)</span><br><span class="line"><span class="comment">// 自动类型推导并省略函数体</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="逻辑语句"><a href="#逻辑语句" class="headerlink" title="逻辑语句"></a>逻辑语句</h3><h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><p><strong>与else一起使用时</strong>可以有返回值，返回值为代码块中最后一行代码的返回值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> value = <span class="keyword">if</span> (num1 &gt; num2)&#123;</span><br><span class="line">	num1</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">	num2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getMin</span><span class="params">(a:<span class="type">Int</span>,b:<span class="type">Int</span>)</span></span> = <span class="keyword">if</span> (a &lt; b) a <span class="keyword">else</span> b</span><br></pre></td></tr></table></figure>
+
+<h4 id="when"><a href="#when" class="headerlink" title="when"></a>when</h4><p>类似switch-case</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getScore</span><span class="params">(name:<span class="type">String</span>)</span></span> = <span class="keyword">when</span> (name)&#123;</span><br><span class="line">	<span class="string">"Tommy"</span>-&gt;<span class="number">86</span></span><br><span class="line">	<span class="string">"Jimmy"</span>-&gt;<span class="number">77</span></span><br><span class="line">	<span class="string">"Jacky"</span>-&gt;<span class="number">95</span></span><br><span class="line">	<span class="keyword">else</span> -&gt; <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>is</code> 类型判断</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">checkNum</span><span class="params">(num:<span class="type">Number</span>)</span></span> = <span class="keyword">when</span> (num)&#123;</span><br><span class="line">	<span class="keyword">is</span> <span class="built_in">Int</span> -&gt; println(<span class="string">"Int is incorrect"</span>)</span><br><span class="line">    <span class="keyword">is</span> <span class="built_in">Double</span> -&gt; ...</span><br><span class="line">    <span class="keyword">else</span> -&gt; ,,,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">checkNum</span><span class="params">(num:<span class="type">Number</span>)</span></span> = <span class="keyword">when</span> &#123;</span><br><span class="line">	num <span class="keyword">is</span> <span class="built_in">Int</span> -&gt; println(<span class="string">"Int is incorrect"</span>)</span><br><span class="line">    num <span class="keyword">is</span> <span class="built_in">Double</span> -&gt; ...</span><br><span class="line">    <span class="keyword">else</span> -&gt; ,,,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="for"><a href="#for" class="headerlink" title="for"></a>for</h4><p>创建双端区间：<code>val range = 0..10</code></p>
+<p>创建单端闭区间：<code>val range = 0 until 10</code></p>
+<p>控制step：<code>val range = 0 until 10 step 2</code></p>
+<p>降序：<code>downTo</code></p>
+<h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(name:String)&#123;</span><br><span class="line">	<span class="keyword">var</span> name = name</span><br><span class="line">	<span class="function"><span class="keyword">fun</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">		println(<span class="string">"eating"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">var</span> p = Person()</span><br><span class="line"><span class="comment">//可继承:</span></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>()&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span>: <span class="type">Person</span></span>()&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为什么Person后要加括号？——主构函数和次构函数</p>
+<p>主构函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(name:String)&#123;</span><br><span class="line">    <span class="keyword">init</span>&#123;</span><br><span class="line">        println(<span class="string">"name is"</span>+ name)</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">var</span> name = name</span><br><span class="line">	<span class="function"><span class="keyword">fun</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">		println(<span class="string">"eating"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>继承时：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>(name:String)&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>(name:String) : Person(name)&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>次构造函数：用于补充主构造函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>(name:String,<span class="keyword">val</span> grade:<span class="built_in">Int</span>) : Person(name)&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(name:String):<span class="keyword">this</span>(name,<span class="number">0</span>)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数据类：</p>
+<p><code>data class Cellphone(val brand:String,val price:Double)</code></p>
+<p>自动生成<code>equals(),hashCode(),toStirng()</code></p>
+<p>单例类：(全局仅允许拥有一个实例)</p>
+<p><code>object class Singleton {}</code></p>
+<h3 id="Lambda编程"><a href="#Lambda编程" class="headerlink" title="Lambda编程"></a>Lambda编程</h3><p>可变列表：<code>mutableListOf()</code></p>
+<p>不可变列表：<code>listOf()</code></p>
+<p>可用<code>for-in</code>遍历</p>
+<p>set、map类似</p>
+<h4 id="lambda语法"><a href="#lambda语法" class="headerlink" title="lambda语法"></a>lambda语法</h4><p><code>{参数名1：参数类型，参数名2：参数类型 -&gt; 函数体}</code></p>
+<p>当只有一个参数时，参数名可以用it代替</p>
+<p><code>val maxLengthFruit =- list.maxBy {it.length}</code></p>
+<p><code>val newList = list.filter {it.length &lt;= 5} . map{it.toUpperCase()}</code></p>
+<p><code>val anyResult = list.any {it.length &lt;= 5}</code></p>
+<p><code>val allResult = list.all {it.length &lt;= 5 }</code></p>
+<h3 id="空指针检查"><a href="#空指针检查" class="headerlink" title="空指针检查"></a>空指针检查</h3><p>Kotlin默认所有指针和变量不可空</p>
+<p>如果希望传入参数可以为空</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">doStudy</span><span class="params">(study: <span class="type">Study</span>?)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(study != <span class="literal">null</span>)&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>允许为空时必须要对空类型进行处理（if …）</p>
+<p>辅助判空工具（运算符）</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">doStudy</span><span class="params">(text: <span class="type">String</span>?)</span></span>&#123;</span><br><span class="line">	text?.doSomething()</span><br><span class="line">	text?.length ?: <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>?.</code>运算符等价于上边的if判断</p>
+<p><code>?:</code>左边表达式不为空时返回左边表达式结果，否则返回右边表达式的结果</p>
+<p><code>!!</code>非空断言，告诉编译器前面的对象不会为空</p>
+<p><code>let()</code>函数：将调用let函数的对象本身作为参数传入函数中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fun doStudy(study: Study?)&#123;</span><br><span class="line">	study.?let&#123; stu -&gt;</span><br><span class="line">		stu.readBooks()</span><br><span class="line">		stu.doHomeWork()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相比于用多个<code>?.</code>每次调用检查一次，<code>?.let</code>仅检查一次，效率更高</p>
+<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h3 id="0-项目文件结构"><a href="#0-项目文件结构" class="headerlink" title="0.项目文件结构"></a>0.项目文件结构</h3><p>项目结构模式</p>
+<ul>
+<li>Android模式：适合快速开发</li>
+<li>Project模式：真实文件结构</li>
+</ul>
+<p>App目录下：</p>
+<img src="Android第一行代码-学习笔记/image-20201031150645222.png" alt="image-20201031150645222" style="zoom: 33%;" />
+
+<ul>
+<li>libs：放置第三方jar包</li>
+<li>androidTest：编写test用例</li>
+<li>java：放置我们<strong>编写的java代码</strong></li>
+<li>res：放置图片、布局、字符串等<strong>资源</strong>，用于解决多分辨率设备的兼容性问题<ul>
+<li>只有一张图——放drawable-xxhdpi下</li>
+<li><code>R.string.hello_world</code>或者<code>@string/hello_world</code>方式都可以对res中的<code>strings.xml</code>的字符串进行引用</li>
+<li>同理，引用图片就是<code>@drawable</code>，引用图标就是<code>@mipmap</code></li>
+<li><code>@+id/button_1</code>在xml中新定义一个id</li>
+</ul>
+</li>
+<li>AndroidManifest.xml：（n.旅客名单）配置文件，用于注册组件（四大组件：Activity、Service、Content Provider、BroadcastReceiver），还可以给应用添加权限声明；</li>
+<li>test：用于编写Unit Test；</li>
+<li>proguard-rules.pro：用于指定打包时的混淆规则</li>
+<li>逻辑与视图分离：布局文件都在<code>res/layout</code>路径下，通过<code>setContentView()</code>引用进来</li>
+</ul>
+<h3 id="1-日志工具使用"><a href="#1-日志工具使用" class="headerlink" title="1. 日志工具使用"></a>1. 日志工具使用</h3><p><img src="Android%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201031153528619.png" alt="image-20201031153528619"></p>
+<p>例如：<code>Log.d(tag:string, msg:string);</code></p>
+<p>第一个参数为tag，一般传入当前类名，用于对打印信息进行<strong>过滤</strong>；</p>
+<p>第二个参数msg，即想输出的错误信息；</p>
+<p>与<code>system.out.println()</code>区别在于<strong>可控性</strong></p>
+<p>小trick：在<code>onCreate</code>外面输入<code>logt</code>可以自动生成TAG常量（类名），避免每次手动输入的麻烦；</p>
+<p>可以通过左下角Logcat系统进行日志过滤；</p>
+<h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><h3 id="1-Activity活动"><a href="#1-Activity活动" class="headerlink" title="1. Activity活动"></a>1. Activity活动</h3><ul>
+<li><p>创建活动</p>
+<ul>
+<li>通过<code>setContentView()</code>加载布局</li>
+<li>在Manifest文件中注册（每次都会自动注册）&lt;application&gt;标签内</li>
+<li>在&lt;activity&gt;中加入&lt;intent-filter&gt;，添加声明：</li>
+</ul>
+<p><img src="Android%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201031155237758.png" alt="image-20201031155237758">从而将当前活动设置为主活动（打开app首先启动的活动）</p>
+</li>
+<li><p>添加Toast：</p>
+<ul>
+<li>布局中定义的元素可以通过<code>findViewById(@id/xx)</code>方法找到；方法本身返回一个<strong>View对象</strong>，可以向下转换为Button等对象；</li>
+<li>button对象通过<code>setOnClickListener(Listener:View.OnClickListenter())</code>方法绑定监听器。</li>
+<li><code>Toast.makeText(context:Activity, msg:string, length:Toast.LENGTH_SHORT/Toast.LENGTH_LONG);</code>显示Toast内容</li>
+</ul>
+</li>
+<li><p>使用Menu：</p>
+<ul>
+<li>首先在res目录下新建一个menu文件夹，右键添加Menu源文件</li>
+<li>每个item通过id指定标识符，title表示项名称</li>
+<li>在活动中重写<code>onCreateOptionsMenu(menu:Menu)</code>、<code>onOptionsItemSelected(item:Menuitem)</code>方法。</li>
+</ul>
+</li>
+<li><p>销毁活动：</p>
+<ul>
+<li>自动销毁：back</li>
+<li>手动销毁：调用<code>finish()</code>方法</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-使用Intent在活动中穿梭"><a href="#2-使用Intent在活动中穿梭" class="headerlink" title="2. 使用Intent在活动中穿梭"></a>2. 使用Intent在活动中穿梭</h3><ul>
+<li><p>显式intent：</p>
+<ul>
+<li>构造意图（intent）：<code>Intent(context:Context, cls:Class&lt;?&gt;)</code>第一个参数表示想要启动新活动的上下文，第二个参数表示目标活动</li>
+<li>通过<code>startActivity(intent)</code>实现意图</li>
+</ul>
+</li>
+<li><p>隐式intent：</p>
+<ul>
+<li><p><strong>不明确指出</strong>要启动的活动，只给出要启动的活动的要求（含蓄）</p>
+</li>
+<li><p>当前活动能够相应的action和category等信息都在配置文件中的<code>intent-filter</code>（名称由来），只有<strong>每种标签</strong>都匹配上才能相应；</p>
+<img src="Android第一行代码-学习笔记/image-20201031161435069.png" alt="image-20201031161435069" style="zoom:50%;" />
+</li>
+<li><p>还可以通过隐式Intent启动其他软件<img src="Android第一行代码-学习笔记/image-20201031161531150.png" alt="image-20201031161531150" style="zoom: 50%;" /></p>
+</li>
+<li><p>还可以添加data标签，通过<code>setData()</code>方法传输数据；<strong>只有data标签和intent携带的data完全一致时才会进行响应</strong>。</p>
+</li>
+<li><p>还可以通过intent的<code>putExtra(dataName:string, data)</code>向下一个Activity传递数据；用<code>intent = getIntent()+intent.getStringExtra(dataName)</code>取出。</p>
+</li>
+<li><p>还可以通过<code>startActivityForResult(intent:Intent, code)</code>方法启动一个带有result存储器的活动，该活动通过<code>setResult(code, intent:Intent)</code>方法设置专门用于传输数据的intent，活动销毁之后，就可以通过原活动的<code>onActivityResult(requestCode, resultCode, data:Intent)</code>接受到下一个活动回传的数据。</p>
+<p>例子：</p>
+<p>原活动中：</p>
+<p><img src="Android%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201031162902620.png" alt="image-20201031162902620"></p>
+<p><img src="Android%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201031162910849.png" alt="image-20201031162910849"></p>
+<p><img src="Android%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201031162931161.png" alt="image-20201031162931161"></p>
+<p>目标活动中：</p>
+<p><img src="Android%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201031162940487.png" alt="image-20201031162940487"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-活动的生命周期"><a href="#3-活动的生命周期" class="headerlink" title="3. 活动的生命周期"></a>3. 活动的生命周期</h3><p>生命周期图示:</p>
+<img src="Android第一行代码-学习笔记/image-20201031163148479.png" alt="image-20201031163148479" style="zoom:50%;" />
+
+<ul>
+<li><code>onCreate()-onDestroy()</code>：完整生存期。初始化-释放内存</li>
+<li><code>onStart()-onStop()</code>：可见生存期。期间应当管理用户可见的资源</li>
+<li><code>onResume()-onPause()</code>：前台生存期。例如Dialog会使其下层活动进入<code>onPause()</code></li>
+<li>使用Bundle的声明周期间数据保存方法：<ul>
+<li>Bundle类提供一系列方法用于保存数据</li>
+<li>回收前：<img src="Android第一行代码-学习笔记/image-20201031164025983.png" alt="image-20201031164025983" style="zoom:50%;" /></li>
+<li>回收后：<img src="Android第一行代码-学习笔记/image-20201031164059836.png" alt="image-20201031164059836" style="zoom:50%;" /></li>
+<li>tips：可以用intent存储bundle对象进行数据传输。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-活动的启动模式："><a href="#4-活动的启动模式：" class="headerlink" title="4. 活动的启动模式："></a>4. 活动的启动模式：</h3><p>通过修改配置文件中&lt;activity&gt;项的<code>android:launchMode</code>改变活动启动模式</p>
+<ul>
+<li><p>standard：</p>
+<p>标准栈启动模式</p>
+<img src="Android第一行代码-学习笔记/image-20201031164606286.png" alt="image-20201031164606286" style="zoom:33%;" />
+</li>
+<li><p>singleTop：</p>
+<p>不会重复创建<strong>栈顶活动</strong></p>
+</li>
+</ul>
+<img src="Android第一行代码-学习笔记/image-20201031170111469.png" alt="image-20201031170111469" style="zoom:33%;" />
+
+<ul>
+<li><p>singleTask：</p>
+<p>不会重复创建<strong>已经创建过的活动</strong></p>
+</li>
+</ul>
+<img src="Android第一行代码-学习笔记/image-20201031170233223.png" alt="image-20201031170233223" style="zoom:33%;" />
+
+<ul>
+<li><p>singleInstance：</p>
+<p>每次启动该活动会<strong>创建一个新的返回栈</strong>来管理活动</p>
+<img src="Android第一行代码-学习笔记/image-20201031170354193.png" alt="image-20201031170354193" style="zoom:33%;" />
+
+</li>
+</ul>
+<h3 id="5-活动最佳实践"><a href="#5-活动最佳实践" class="headerlink" title="5. 活动最佳实践"></a>5. 活动最佳实践</h3><ul>
+<li><p>使用BaseActivity继承AppComatActivity，定制BaseActivity的onCreate方法</p>
+<p>其他子活动继承BaseActivity，即可看到当前活动名。</p>
+<p><img src="Android%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201031170923463.png" alt="image-20201031170923463"></p>
+</li>
+<li><p>使用活动管理器进行活动管理：</p>
+</li>
+</ul>
+<p><img src="Android%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201031171529361.png" alt="image-20201031171529361"><img src="Android%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201031171537979.png" alt="image-20201031171537979"></p>
+<p>​    BaseActivity中：</p>
+<img src="Android第一行代码-学习笔记/image-20201031171600286.png" alt="image-20201031171600286" style="zoom:50%;" />
+
+<ul>
+<li><p>启用活动的最佳写法：</p>
+<p>避免别的开发者要给你的活动传递数据时不清楚需要putExtra中写什么内容</p>
+<p>在你的活动中添加：</p>
+<p><img src="Android%E7%AC%AC%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201031171900308.png" alt="image-20201031171900308"></p>
+</li>
+</ul>
+<p>这样其他活动要穿越到你的活动时只需要：</p>
+<img src="Android第一行代码-学习笔记/image-20201031172107908.png" alt="image-20201031172107908" style="zoom:50%;" />
+
+<h1 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h1><h3 id="1-常用控件的使用方法"><a href="#1-常用控件的使用方法" class="headerlink" title="1. 常用控件的使用方法"></a>1. 常用控件的使用方法</h3><ul>
+<li><p>TextView</p>
+<p><code>android:id</code>：每个控件都有的唯一标识符</p>
+<p><code>android:layout_width/height</code>：控件宽度/高度，可选值有<code>match_parent</code>、<code>fill_parent</code>、<code>wrap_content</code>前两者：继承父组件布局，后者：内容决定控件大小。</p>
+<p><code>android:text</code>：内容</p>
+<p><code>android:gravity</code>：指定文字对齐方式，可选:<code>top/bottom/left/right/center/center_vertical/center_horizontal</code>；可用<code>|</code>同时指定多个值。</p>
+<p><code>android:textSize</code>：文字大小，使用sp作为单位。dp、px区别：$px=dp\times (dpi/160)$ $dpi = \frac{\sqrt{height^2+width^2}}{size（对角线长度）}$；dp、sp区别：dp不适配文字，sp还可以适配文字，因此多采用sp作为大小单位。</p>
+</li>
+</ul>
+<ul>
+<li><p>Button</p>
+<p>实现监听方式：</p>
+<ol>
+<li>匿名类</li>
+<li>继承接口</li>
+</ol>
+</li>
+<li><p>EditText</p>
+<p><code>android:hint</code>：提示字符</p>
+<p><code>android:maxLines</code>：指定最大行数，超过就会slide</p>
+</li>
+<li><p>ImageView</p>
+<p><code>android:src=@drawable/xx</code>：指定要显示的图片,可以通过<code>setImageResource()</code>方法进行动态修改；</p>
+</li>
+<li><p>ProgressBar</p>
+<p><code>android:visibility</code>：可选值：<code>visible/invisible/gone</code>表示可见/不可见/不可见且不再占用空间；可以使用<code>setVisibility(View.VISIBLE/INVISIBLE/GONE)</code>方法进行设置；默认圆形进度条，可以设置<code>style=&quot;?android:attr/progressBarStyleHorizontal&quot;</code>改为水平进度条，然后设置<code>android:max=&quot;100&quot;</code>进度条最大值为100，通过方法<code>getProgress()/setProgress()</code>更改进度条的进度。</p>
+</li>
+<li><p>AlertDialog</p>
+<p>弹出一个屏蔽掉其他控件的对话框，用于提示重要的内容或警告信息。</p>
+<img src="Android第一行代码-学习笔记/image-20201101173021706.png" alt="image-20201101173021706" style="zoom:40%;" />
+
+<p>类似的还有ProgressDialog，用于提示进度。不同的是如果在<code>setCancelable()</code>时传入False，则不能通过back键取消掉。此时必须要在恰当的时候调用<code>dismiss()</code>方法来关闭对话框。</p>
+</li>
+</ul>
+<h3 id="2-详解4种基本布局"><a href="#2-详解4种基本布局" class="headerlink" title="2. 详解4种基本布局"></a>2. 详解4种基本布局</h3><p>​    布局是一种可用于放置很多控件的容器，它可以按照一定的规律调整内部控件的位置。</p>
+<h4 id="LinearLayout线性布局"><a href="#LinearLayout线性布局" class="headerlink" title="LinearLayout线性布局"></a>LinearLayout线性布局</h4><ul>
+<li><p>所有控件在<strong>线性方向</strong>上垂直排列，可以通过<code>android:orientation=&quot;vertical/horizontal&quot;</code>设置；</p>
+</li>
+<li><p>需要注意的是，如果设置为<code>horizontal</code>水平，就不能把子控件<strong>宽度</strong>设置为<code>match_parent</code>,否则单独一个控件将会把整个水平方向占满。</p>
+</li>
+<li><p><code>android:layout_gravity</code>用于指定布局的对齐方式，需要注意不能与线性方向冲突，否则会失效；可以用<code>|</code>连接；</p>
+</li>
+<li><p><code>android:layout_weight</code>使用在<strong>线性方向上</strong>用<strong>比例方式</strong>指定控件的大小，例如有两个button的weight都是1，则他们每个的宽度就是$ \frac{1}{2} $；若只指定部分控件的weight，则被指定的控件的”1”=总宽度-未指定weight控件的宽度。</p>
+</li>
+</ul>
+<h4 id="RelativeLayout相对布局"><a href="#RelativeLayout相对布局" class="headerlink" title="RelativeLayout相对布局"></a>RelativeLayout相对布局</h4><ul>
+<li><p>可通过<strong>相对定位</strong>的方式让控件出现在布局的<strong>任何位置</strong></p>
+</li>
+<li><p>各种属性：</p>
+<p>相对于父组件的：</p>
+<ul>
+<li><code>layout_alighParentLeft/Top/Right/Bottom/centerInParent</code></li>
+</ul>
+<p>相对于兄弟组件的：</p>
+<ul>
+<li><code>layout_above/toLeftOf/below/toRightOf=&quot;@id/xx&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="FrameLayout帧布局"><a href="#FrameLayout帧布局" class="headerlink" title="FrameLayout帧布局"></a>FrameLayout帧布局</h4><ul>
+<li>默认摆放在<strong>左上角</strong></li>
+<li>默认情况下多个组件会叠加在左上角</li>
+<li>可以通过<code>layout_gravity</code>属性指定对齐方式</li>
+</ul>
+<h4 id="PercentFrameLayout百分比布局"><a href="#PercentFrameLayout百分比布局" class="headerlink" title="PercentFrameLayout百分比布局"></a>PercentFrameLayout百分比布局</h4><ul>
+<li>不需要指定控件大小，直接按比例指定控件所占布局的百分比；</li>
+<li>需要先导入依赖</li>
+<li>继承了Frame的属性，默认左上角；因此还有<strong>PercentRelativeLayout</strong>可用。</li>
+</ul>
+<h3 id="3-自定义控件"><a href="#3-自定义控件" class="headerlink" title="3. 自定义控件"></a>3. 自定义控件</h3><ul>
+<li><p>自定义布局（避免重复创建布局）：</p>
+<p>引用一个actionBar</p>
+<ul>
+<li>新建一个布局文件title.xml</li>
+<li>在其他xml文件中&lt;include layout=”@layout/title”/&gt;即可</li>
+</ul>
+</li>
+<li><p>自定义控件（避免重复创建监听响应代码）</p>
+<ul>
+<li>新建TitleLayout继承LinearLayout</li>
+<li><code>inflate()</code>加载动态布局文件<code>R.layout.title</code></li>
+<li>注册onClick</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-ListView"><a href="#4-ListView" class="headerlink" title="4. ListView"></a>4. ListView</h3>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Android/">Android</a>, <a class="has-link-grey -link" href="/tags/开发/">开发</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2021/01/23/React学习笔记/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">React学习笔记</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/09/30/DeepLearning-ai-by-Andrew-Ng/">
+                <span class="level-item">DeepLearning.ai by Andrew Ng</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/526a0243008d13b8f61530a4f98259e8?s=128" alt="Eric">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Eric
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student from SDU
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shandong, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            44
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            64
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/eirc-whyte" target="_blank" rel="noopener">
+                 Follow
+            </a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            <!-- 引入iconfront -->
+            <link rel="stylesheet" href="/css/iconfont.css">
+            <script src="/js/iconfont.js"></script>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=982680793&amp;site=qq&amp;menu=yes">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-QQ"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Email" href="mailto:982680793@qq.com">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-email"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="weibo" href="https://weibo.com/u/1675634500">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-weibo"></use>
+                </svg>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#第0章-–-Kotlin">
+        <span class="has-mr-6">1</span>
+        <span>第0章 – Kotlin</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#变量">
+        <span class="has-mr-6">1.1</span>
+        <span>变量</span>
+        </a></li><li>
+        <a class="is-flex" href="#函数">
+        <span class="has-mr-6">1.2</span>
+        <span>函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#逻辑语句">
+        <span class="has-mr-6">1.3</span>
+        <span>逻辑语句</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#if">
+        <span class="has-mr-6">1.3.1</span>
+        <span>if</span>
+        </a></li><li>
+        <a class="is-flex" href="#when">
+        <span class="has-mr-6">1.3.2</span>
+        <span>when</span>
+        </a></li><li>
+        <a class="is-flex" href="#for">
+        <span class="has-mr-6">1.3.3</span>
+        <span>for</span>
+        </a></li><li>
+        <a class="is-flex" href="#面向对象">
+        <span class="has-mr-6">1.3.4</span>
+        <span>面向对象</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Lambda编程">
+        <span class="has-mr-6">1.4</span>
+        <span>Lambda编程</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#lambda语法">
+        <span class="has-mr-6">1.4.1</span>
+        <span>lambda语法</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#空指针检查">
+        <span class="has-mr-6">1.5</span>
+        <span>空指针检查</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#第一章">
+        <span class="has-mr-6">2</span>
+        <span>第一章</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#0-项目文件结构">
+        <span class="has-mr-6">2.1</span>
+        <span>0.项目文件结构</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-日志工具使用">
+        <span class="has-mr-6">2.2</span>
+        <span>1. 日志工具使用</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#第二章">
+        <span class="has-mr-6">3</span>
+        <span>第二章</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-Activity活动">
+        <span class="has-mr-6">3.1</span>
+        <span>1. Activity活动</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-使用Intent在活动中穿梭">
+        <span class="has-mr-6">3.2</span>
+        <span>2. 使用Intent在活动中穿梭</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-活动的生命周期">
+        <span class="has-mr-6">3.3</span>
+        <span>3. 活动的生命周期</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-活动的启动模式：">
+        <span class="has-mr-6">3.4</span>
+        <span>4. 活动的启动模式：</span>
+        </a></li><li>
+        <a class="is-flex" href="#5-活动最佳实践">
+        <span class="has-mr-6">3.5</span>
+        <span>5. 活动最佳实践</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#第三章">
+        <span class="has-mr-6">4</span>
+        <span>第三章</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-常用控件的使用方法">
+        <span class="has-mr-6">4.1</span>
+        <span>1. 常用控件的使用方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-详解4种基本布局">
+        <span class="has-mr-6">4.2</span>
+        <span>2. 详解4种基本布局</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#LinearLayout线性布局">
+        <span class="has-mr-6">4.2.1</span>
+        <span>LinearLayout线性布局</span>
+        </a></li><li>
+        <a class="is-flex" href="#RelativeLayout相对布局">
+        <span class="has-mr-6">4.2.2</span>
+        <span>RelativeLayout相对布局</span>
+        </a></li><li>
+        <a class="is-flex" href="#FrameLayout帧布局">
+        <span class="has-mr-6">4.2.3</span>
+        <span>FrameLayout帧布局</span>
+        </a></li><li>
+        <a class="is-flex" href="#PercentFrameLayout百分比布局">
+        <span class="has-mr-6">4.2.4</span>
+        <span>PercentFrameLayout百分比布局</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#3-自定义控件">
+        <span class="has-mr-6">4.3</span>
+        <span>3. 自定义控件</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-ListView">
+        <span class="has-mr-6">4.4</span>
+        <span>4. ListView</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/thumbnail.svg" alt="[Android第一行代码]学习笔记" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Eric Sheeran&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

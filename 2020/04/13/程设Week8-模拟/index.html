@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>程设Week8-模拟 - Eric&#39;s Blog</title>
+
+
+    <meta name="description" content="T3最后一分钟没交上啊啊啊啊啊啊啊啊 以后看都不看先打暴力！！！ 下次一定！！！">
+<meta name="keywords" content="思维题,尺取,二分+前缀和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程设Week8-模拟">
+<meta property="og:url" content="http://yoursite.com/2020/04/13/程设Week8-模拟/index.html">
+<meta property="og:site_name" content="Eric&#39;s Blog">
+<meta property="og:description" content="T3最后一分钟没交上啊啊啊啊啊啊啊啊 以后看都不看先打暴力！！！ 下次一定！！！">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/gallery/chengshe.png">
+<meta property="og:updated_time" content="2020-04-12T15:01:26.619Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程设Week8-模拟">
+<meta name="twitter:description" content="T3最后一分钟没交上啊啊啊啊啊啊啊啊 以后看都不看先打暴力！！！ 下次一定！！！">
+<meta name="twitter:image" content="http://yoursite.com/gallery/chengshe.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/thumbnail.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159370438-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159370438-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/thumbnail.svg" alt="程设Week8-模拟" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-12T22:25:31.000Z">2020-04-12</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/程序设计思维与实践/">程序设计思维与实践</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 949 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                程设Week8-模拟
+            
+        </h1>
+        <div class="content">
+            <p>T3最后一分钟没交上啊啊啊啊啊啊啊啊</p>
+<p>以后看都不看先打暴力！！！</p>
+<p>下次一定！！！</p>
+<a id="more"></a>
+
+<h3 id="T1-序列"><a href="#T1-序列" class="headerlink" title="T1 序列"></a>T1 序列</h3><p>有一个序列a，问是否存在一个K，让a中的一些数+K或者-K或者不变，最后序列中所有的数相等。</p>
+<h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><p>输入第一行是一个正整数 表示数据组数。 接下来对于每组数据，输入的第一个正整数 表示序列 的长 度，随后一行有 个整数，表示序列 。 </p>
+<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><p>输出共包含 行，每组数据输出一行。对于每组数据，如果存在这样的K，输出”YES”，否则输出“NO”。 （输出不包含引号） </p>
+<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li>一开始以为是平均数，后来想T3的时候突然惊觉好像不对劲，赶紧回来改了。</li>
+<li>序列a中最多存在3种不同的数：一种是数A，一种是+K=A，一种是-K=A<ul>
+<li>序列a中存在1/2种数：必然存在K；</li>
+<li>序列a中存在3种数：sort一下判断差值是否相等，如果相等则可以</li>
+<li>序列a中存在多于三种数：必然不存在K</li>
+</ul>
+</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> k,nums[<span class="number">10100</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;k;</span><br><span class="line">            <span class="keyword">bool</span> flag = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;cnt;j++) <span class="keyword">if</span>(nums[j] == k) flag = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(!flag) nums[cnt++] = k;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt&gt;<span class="number">3</span>) &#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"NO\n"</span>;&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(cnt == <span class="number">3</span>)&#123;</span><br><span class="line">            sort(nums,nums+cnt);</span><br><span class="line">            <span class="keyword">if</span>(nums[<span class="number">2</span>]-nums[<span class="number">1</span>] == nums[<span class="number">1</span>] - nums[<span class="number">0</span>]) <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES\n"</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO\n"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"YES\n"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="T2-学英语"><a href="#T2-学英语" class="headerlink" title="T2 学英语"></a>T2 学英语</h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个字符串，字符串中包括26个大写字母和特殊字 符’?’，特殊字符’？’可以代表<strong>任何一个大写字母</strong>。现在TT问你是否存在一个<strong>位置连续的且由26个大写字 母组成的子串</strong>，在这个子串中每个字母出现且仅出现一次，如果存在，请输出从左侧算起的第一个出现 的符合要求的子串，并且要求，如果有多组解同时符合位置最靠左，则输出字典序最小的那个解</p>
+<h5 id="输入-1"><a href="#输入-1" class="headerlink" title="输入"></a>输入</h5><p>输入只有一行，一个符合题目描述的字符串。 </p>
+<h5 id="输出-1"><a href="#输出-1" class="headerlink" title="输出"></a>输出</h5><p>输出只有一行，如果存在这样的子串，请输出，否则输出-1 </p>
+<h4 id="题目分析-1"><a href="#题目分析-1" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li><p>因为看到<strong>连续子串</strong>，所以考虑尺取类似的方法。（其实更像滑动窗口？</p>
+<ul>
+<li><p>右端点右移的条件：前面的串不够26长</p>
+<p>右移时把新的一位加入到当前子串的字符记录里</p>
+</li>
+<li><p>左端点右移的条件：当前串不符合要求（没有26个不一样的英文字母</p>
+<p>右移时把旧的一位从当前子串的字符记录里删除</p>
+</li>
+</ul>
+</li>
+<li><p>字典序最小只需要最后算出剩余字母并按字典序从前向后填充<code>?</code>的位置</p>
+</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> sp[<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;s;</span><br><span class="line">    <span class="keyword">int</span> len = s.length(),l = <span class="number">-1</span>, r = <span class="number">0</span>,cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(s[<span class="number">0</span>]!=<span class="string">'?'</span>) &#123;sp[s[<span class="number">0</span>] - <span class="string">'A'</span>]++; cnt++;&#125;</span><br><span class="line">    <span class="keyword">else</span> sp[<span class="number">26</span>]++;</span><br><span class="line">    <span class="keyword">while</span>(r&lt;len)&#123;</span><br><span class="line">        <span class="keyword">if</span>(r-l &lt; <span class="number">26</span>) &#123;</span><br><span class="line">            r++;</span><br><span class="line">            <span class="keyword">if</span>(r == len) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">if</span>(s[r]!=<span class="string">'?'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!sp[s[r]-<span class="string">'A'</span>])&#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                &#125;</span><br><span class="line">                sp[s[r] - <span class="string">'A'</span>]++; </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> sp[<span class="number">26</span>]++;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(r-l == <span class="number">26</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(cnt + sp[<span class="number">26</span>] == <span class="number">26</span>)&#123;</span><br><span class="line">                    <span class="keyword">char</span> block[<span class="number">26</span>];</span><br><span class="line">                    <span class="keyword">int</span> ct = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">25</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(!sp[i]) block[ct++] = i+<span class="string">'A'</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> i = l+<span class="number">1</span>;i&lt;=r;i++)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(s[i] != <span class="string">'?'</span>)<span class="built_in">cout</span>&lt;&lt;s[i];</span><br><span class="line">                        <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;block[--ct];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    l++;</span><br><span class="line">                    <span class="keyword">if</span>(s[l]!=<span class="string">'?'</span>)&#123;</span><br><span class="line">                        sp[s[l] - <span class="string">'A'</span>]--; </span><br><span class="line">                        <span class="keyword">if</span>(!sp[s[l]-<span class="string">'A'</span>])&#123;</span><br><span class="line">                            cnt--;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> sp[<span class="number">26</span>]--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"-1"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="T3-奇妙序列"><a href="#T3-奇妙序列" class="headerlink" title="T3 奇妙序列"></a>T3 奇妙序列</h3><p>有一个奇怪的无限序列：112123123412345 ……这个序列由连续正整数组成的若干部分构成，其 中第一部分包含1至1之间的所有数字，第二部分包含1至2之间的所有数字，第三部分包含1至3之间的所 有数字，第i部分总是包含1至i之间的所有数字。所以，这个序列的前56项会是 11212312341234512345612345671234567812345678912345678910，其中第1项是1，第3项是2，第20项是 5，第38项是2，第56项是0。咕咕东 现在想知道第 k 项数字是多少</p>
+<h5 id="输入-2"><a href="#输入-2" class="headerlink" title="输入"></a>输入</h5><p>输入由多行组成。<br>第一行一个整数q表示有q组询问<br>接下来第i+1行表示第i个输入 ，表示询问第 项数字</p>
+<h5 id="输出-2"><a href="#输出-2" class="headerlink" title="输出"></a>输出</h5><p>输出包含q行<br>第i行输出对询问 的输出结果。 </p>
+<h4 id="题目分析-2"><a href="#题目分析-2" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li>记1为第一轮，12为第二轮，1….n第n轮；</li>
+<li>记1121231234…9为数列a1，1..1011/1…101112……99为数列2…..</li>
+<li>那么可以轻易算出来数列1-8所包含的<strong>数字数量</strong>：<ul>
+<li>数列1为首项为1公差为1大小为9的等差数列</li>
+<li>数列2为首项为10公差为2大小为90的等差数列</li>
+<li>…</li>
+<li>等差数列求和不用我多说了8，再顺便求个前缀和也很easy</li>
+</ul>
+</li>
+<li>1-8的数列就已经包含到$10^{20}$位数字了，所以我们只需要把输入和前缀和数组相比较，就可以知道要找的数在<strong>哪个数列</strong>里；</li>
+<li>知道了在哪个数列，然后就要算在<strong>哪个轮次</strong>里。</li>
+<li>由于数列8的大小为$9\times10^8$，因此需要在这里用一次二分，算一下要求的数在哪个轮次；</li>
+<li>然后就和上面差不多，我们可以算出1到9是9*1=9位，10到99是90<em>2=180位…最多$9\times 10 ^ 8 \times 8$位，那么最多只需要比较8次我们就可以知道*</em>要求的数的所在数字**有几位，假设有k位；</li>
+<li>那么只需要<code>所在数字-(前置数列总数字个数+前置轮次总数字个数+前置不同位数字总数字个数)/k = n ...m</code></li>
+<li>那么所求数字就是当前位数数字的开头数字+（n - 1） * 数字位数（+1）是否加一取决于余数m</li>
+<li>细节：<ul>
+<li>如果余数m==0，那么要取前一个数的末尾数字；否则直接从当前的数截取；</li>
+<li>因为很多地方用到了10的幂（算位数、最后截取），因此可以直接预处理出10的幂数组方便使用;</li>
+<li>注意开longlong</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ten[<span class="number">20</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">req</span>&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> a0,d,n,an;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> sum;</span><br><span class="line">    req()&#123;&#125;</span><br><span class="line">    req(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> a0,<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> d,<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> n):a0(a0),d(d),n(n)&#123;</span><br><span class="line">        sum = (a0+a0+(n<span class="number">-1</span>)*d)*n/<span class="number">2</span>;</span><br><span class="line">        an = a0+(n<span class="number">-1</span>)*d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;a[<span class="number">100</span>],b[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> c[<span class="number">30</span>],d[<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ten[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">18</span>;i++) ten[i] = ten[i<span class="number">-1</span>] * <span class="number">10</span>;</span><br><span class="line">    a[<span class="number">1</span>] = req(<span class="number">1</span>,<span class="number">1</span>,<span class="number">9</span>); </span><br><span class="line">    c[<span class="number">1</span>] = a[<span class="number">1</span>].sum;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i &lt;= <span class="number">9</span>;i++)&#123;</span><br><span class="line">        a[i] = req(a[i<span class="number">-1</span>].an + i,i,<span class="number">9</span>*ten[i<span class="number">-1</span>]);</span><br><span class="line">        c[i] = c[i<span class="number">-1</span>] + a[i].sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">18</span>;i++)&#123;</span><br><span class="line">        b[i] = req(ten[i<span class="number">-1</span>],<span class="number">0</span>,<span class="number">9</span>*ten[i<span class="number">-1</span>]);</span><br><span class="line">        d[i] = d[i<span class="number">-1</span>] + i*<span class="number">9</span>*ten[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> q;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;q;</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> k,p = <span class="number">0</span>,p1 = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;k;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">9</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(c[i] &gt; k) &#123;p = i<span class="number">-1</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> las = k-c[p];</span><br><span class="line">        p = p+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> l = <span class="number">0</span>,r = a[p].n;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> mid = (l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>((a[p].a0 + a[p].a0 + (mid<span class="number">-1</span>) * a[p].d)*mid/<span class="number">2</span> &gt;= las)&#123;</span><br><span class="line">                r = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                l = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> k1 = las - (a[p].a0 + a[p].a0 + (r<span class="number">-1</span>) * a[p].d)*r/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">18</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(d[i] &gt; k1) &#123;p1 = i<span class="number">-1</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> la = k1 - d[p1];</span><br><span class="line">        <span class="keyword">int</span> bits = p1+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> s = la/bits,yu = la-s*bits;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> num = b[bits].a0 + s ;</span><br><span class="line">        <span class="comment">// cout&lt;&lt;num&lt;&lt;"\n";</span></span><br><span class="line">        <span class="keyword">if</span>(yu == <span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;(num<span class="number">-1</span>)%<span class="number">10</span>&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;num/ten[bits-yu]%<span class="number">10</span>&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/二分-前缀和/">二分+前缀和</a>, <a class="has-link-grey -link" href="/tags/尺取/">尺取</a>, <a class="has-link-grey -link" href="/tags/思维题/">思维题</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/04/13/程设Week8-作业/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">程设Week8-作业</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/04/13/程设Week7-作业/">
+                <span class="level-item">程设Week7-作业</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/526a0243008d13b8f61530a4f98259e8?s=128" alt="Eric">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Eric
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student from SDU
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shandong, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            44
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            64
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/eirc-whyte" target="_blank" rel="noopener">
+                 Follow
+            </a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            <!-- 引入iconfront -->
+            <link rel="stylesheet" href="/css/iconfont.css">
+            <script src="/js/iconfont.js"></script>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=982680793&amp;site=qq&amp;menu=yes">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-QQ"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Email" href="mailto:982680793@qq.com">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-email"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="weibo" href="https://weibo.com/u/1675634500">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-weibo"></use>
+                </svg>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#T1-序列">
+        <span class="has-mr-6">1</span>
+        <span>T1 序列</span>
+        </a><ul class="menu-list"><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入">
+        <span class="has-mr-6">1.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出">
+        <span class="has-mr-6">1.1.2</span>
+        <span>输出</span>
+        </a></li></ul><li>
+        <a class="is-flex" href="#题目分析">
+        <span class="has-mr-6">1.2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码">
+        <span class="has-mr-6">1.3</span>
+        <span>代码</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#T2-学英语">
+        <span class="has-mr-6">2</span>
+        <span>T2 学英语</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#题目描述">
+        <span class="has-mr-6">2.1</span>
+        <span>题目描述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入-1">
+        <span class="has-mr-6">2.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出-1">
+        <span class="has-mr-6">2.1.2</span>
+        <span>输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#题目分析-1">
+        <span class="has-mr-6">2.2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码-1">
+        <span class="has-mr-6">2.3</span>
+        <span>代码</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#T3-奇妙序列">
+        <span class="has-mr-6">3</span>
+        <span>T3 奇妙序列</span>
+        </a><ul class="menu-list"><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入-2">
+        <span class="has-mr-6">3.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出-2">
+        <span class="has-mr-6">3.1.2</span>
+        <span>输出</span>
+        </a></li></ul><li>
+        <a class="is-flex" href="#题目分析-2">
+        <span class="has-mr-6">3.2</span>
+        <span>题目分析</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#代码-2">
+        <span class="has-mr-6">4</span>
+        <span>代码</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/thumbnail.svg" alt="程设Week8-模拟" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Eric Sheeran&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

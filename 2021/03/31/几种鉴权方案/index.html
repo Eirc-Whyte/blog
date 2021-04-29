@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>几种鉴权方案 - Eric&#39;s Blog</title>
+
+
+    <meta name="description" content="鉴权也叫身份验证（Authentication），是指验证用户是否拥有访问系统的权利。在日常的生活中，身份验证随处可见，比如：进入高铁站候车室、机场候机楼需要检查票据和身份证件；游玩主题乐园、名胜风景区需要购买门票，并由入口处人员鉴定有效后方可拥有进入园区游玩的权利。  面试时提到但经常叙述不清，开个专栏记录下。">
+<meta name="keywords" content="前端,安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几种鉴权方案">
+<meta property="og:url" content="http://yoursite.com/2021/03/31/几种鉴权方案/index.html">
+<meta property="og:site_name" content="Eric&#39;s Blog">
+<meta property="og:description" content="鉴权也叫身份验证（Authentication），是指验证用户是否拥有访问系统的权利。在日常的生活中，身份验证随处可见，比如：进入高铁站候车室、机场候机楼需要检查票据和身份证件；游玩主题乐园、名胜风景区需要购买门票，并由入口处人员鉴定有效后方可拥有进入园区游玩的权利。  面试时提到但经常叙述不清，开个专栏记录下。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2021-04-29T09:45:12.310Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="几种鉴权方案">
+<meta name="twitter:description" content="鉴权也叫身份验证（Authentication），是指验证用户是否拥有访问系统的权利。在日常的生活中，身份验证随处可见，比如：进入高铁站候车室、机场候机楼需要检查票据和身份证件；游玩主题乐园、名胜风景区需要购买门票，并由入口处人员鉴定有效后方可拥有进入园区游玩的权利。  面试时提到但经常叙述不清，开个专栏记录下。">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/thumbnail.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159370438-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159370438-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/thumbnail.svg" alt="几种鉴权方案" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2021-03-31T11:13:10.000Z">2021-03-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/前端/">前端</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    10 minutes read (About 1457 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                几种鉴权方案
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>鉴权也叫身份验证（Authentication），是指验证用户是否拥有访问系统的权利。在日常的生活中，身份验证随处可见，比如：进入高铁站候车室、机场候机楼需要检查票据和身份证件；游玩主题乐园、名胜风景区需要购买门票，并由入口处人员鉴定有效后方可拥有进入园区游玩的权利。</p>
+</blockquote>
+<p>面试时提到但经常叙述不清，开个专栏记录下。</p>
+<a id="more"></a>
+
+<h2 id="Session-Cookie"><a href="#Session-Cookie" class="headerlink" title="Session-Cookie"></a>Session-Cookie</h2><p>同时在服务端设置session以及浏览器端设置cookie；</p>
+<p>session可以保存在内存中，也可以保存在redis；</p>
+<p>首次访问时在服务端创建session，该session有一个唯一的标识字符串，然后再set-cookie中设置该唯一字符串（sid）；session的内容包括用户角色、登录时间等。</p>
+<p>服务器接受客户端请求时解析cookie中的sid，然后去寻找有无对应session，判断该请求是否合法。</p>
+<p>中间可以对sid进行加密处理（签名）</p>
+<p><a href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html">阮一峰-数字签名是什么</a></p>
+<p>弊端：session消耗服务器内存</p>
+<p>cookie容易受到CSRF攻击</p>
+<h2 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h2><p><img src="http://img.mrsingsing.com/authentication-token-authencation.jpg" alt="Token 认证流程图"></p>
+<h4 id="流程："><a href="#流程：" class="headerlink" title="流程："></a>流程：</h4><ol>
+<li>用户输入登录信息并请求登录</li>
+<li>服务端收到请求，验证用户输入的登录信息</li>
+<li>验证成功后，服务端会 <code>签发</code>一个 Token（通常包含用户基础信息、权限范围和有效时间等），并把这个 Token 返回给客户端</li>
+<li>客户端收到 Token 后需要把它存储起来，比如放在 localStorage 或 sessionStorage 里（<strong>一般不放 Cookie</strong> 因为可能会有跨域问题，以及安全性问题）</li>
+<li>后续客户端每次向服务端请求资源的时候，将 Token 附带于 HTTP 请求头 <strong>Authorization</strong> 字段中发送请求</li>
+<li>服务端收到请求后，去校验客户端请求中 Token，如果验证成功，就向客户端返回请求的数据，否则拒绝返还（返回401）</li>
+</ol>
+<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ul>
+<li><strong>服务端无状态</strong>：Token 机制在服务端不需要存储会话（Session）信息，因为 Token 自身包含了其所标识用户的相关信息，这有利于在<strong>多个服务器</strong>间共享用户状态</li>
+<li>支持<strong>移动设备</strong>（因为移动设备没有cookie）</li>
+<li>支持<strong>跨域跨程序</strong>调用，因为 Cookie 是不允许跨域访问的，而 Token 则不存在这个问题</li>
+<li>有效避免 CSRF 攻击（因为不需要 Cookie），但是会存在 XSS 攻击中被盗的风险，但是可选择 Token 存储在标记为 <code>httpOnly</code> 的 Cookie 中，能够有效避免浏览器中的 JS 脚本对 Cookie 的修改</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>占带宽：正常情况下比 <code>sid</code> 更大，消耗更多流量，挤占更多宽带。（几乎可以忽略）</li>
+<li>性能问题：相比较于 Session-Cookie 认证来说，Token 需要服务端花费更多时间和性能来对 Token 进行解密验证，其实 Token 相较于 Session—Cookie 来说就是一个<strong>时间换空间</strong>的方案</li>
+<li>由于服务器不保存session,因此一旦签发就无法修改权限,及有效期限;</li>
+<li>为了减少盗用机会,JWT不应该使用http,应该使用https</li>
+</ul>
+<h2 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h2><p><a href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html">阮一峰-JWT入门</a></p>
+<p>服务器认证后生成一个JSON对象，签名后发送回用户；</p>
+<p>结构：</p>
+<p><code>Header.Payload.Signature</code></p>
+<h4 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h4><p>是一个完整的JSON对象</p>
+<p>header描述JST的<strong>元数据</strong>，包括<code>alg</code>：<strong>签名</strong>使用的算法，<code>typ</code>表示token类型；使用时用<strong>base64UR</strong>L转化成字符串</p>
+<h4 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h4><p>也是一个JSON对象，用来存放实际要传递的数据</p>
+<p>JWT提供了7个官方字段：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">iss (issuer)：签发人</span><br><span class="line">exp (expiration time)：过期时间</span><br><span class="line">sub (subject)：主题</span><br><span class="line">aud (audience)：受众</span><br><span class="line">nbf (Not Before)：生效时间</span><br><span class="line">iat (Issued At)：签发时间</span><br><span class="line">jti (JWT ID)：编号</span><br></pre></td></tr></table></figure>
+
+<p>也可以定义私用字段；</p>
+<p>也用<strong>base64URL</strong>转成字符串</p>
+<h4 id="Signature"><a href="#Signature" class="headerlink" title="Signature"></a>Signature</h4><p>使用Header中指定的算法进行签名；</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">  base64UrlEncode(header) + "." +</span><br><span class="line">  base64UrlEncode(payload),</span><br><span class="line">  secret)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Base64和Base64URL"><a href="#Base64和Base64URL" class="headerlink" title="Base64和Base64URL"></a>Base64和Base64URL</h4><blockquote>
+<p>前面提到，Header 和 Payload 串型化的算法是 Base64URL。这个算法跟 Base64 算法基本类似，但有一些小的不同。</p>
+<p>JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 api.example.com/?token=xxx）。Base64 有三个字符<code>+</code>、<code>/</code>和<code>=</code>，在 URL 里面有特殊含义，所以要被替换掉：<code>=</code>被省略、<code>+</code>替换成<code>-</code>，<code>/</code>替换成<code>_</code> 。这就是 Base64URL 算法。</p>
+</blockquote>
+<p>优缺点同上述token;</p>
+<h4 id="主动让JWT失效的方法"><a href="#主动让JWT失效的方法" class="headerlink" title="主动让JWT失效的方法"></a>主动让JWT失效的方法</h4><blockquote>
+<p>目前常见的处理方法有:</p>
+<ul>
+<li>1,将 token 存入 DB（如 Redis）中，失效则删除；但增加了一个每次校验时候都要先从 DB 中查询 token是否存在的步骤，而且违背了 JWT 的无状态原则（不推荐）。</li>
+<li>2,维护一个 token 黑名单，失效则加入黑名单中(用的比较多)。</li>
+<li>3,在 JWT 中增加一个版本号字段，失效则改变该版本号。</li>
+<li>4,在服务端设置加密的 key 时，为每个用户生成唯一的 key，失效则改变该 key。</li>
+</ul>
+</blockquote>
+<p>其中,124都需要<strong>在服务器存储状态</strong>,3利用JWT可以<strong>传输数据</strong>的特点;</p>
+<p>实际工程中2使用比较多,开销比较小</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/前端/">前端</a>, <a class="has-link-grey -link" href="/tags/安全/">安全</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2021/03/31/EdWordle笔记/">
+                <span class="level-item">EdWordle笔记</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/526a0243008d13b8f61530a4f98259e8?s=128" alt="Eric">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Eric
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student from SDU
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shandong, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            44
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            64
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/eirc-whyte" target="_blank" rel="noopener">
+                 Follow
+            </a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            <!-- 引入iconfront -->
+            <link rel="stylesheet" href="/css/iconfont.css">
+            <script src="/js/iconfont.js"></script>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=982680793&amp;site=qq&amp;menu=yes">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-QQ"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Email" href="mailto:982680793@qq.com">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-email"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="weibo" href="https://weibo.com/u/1675634500">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-weibo"></use>
+                </svg>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#Session-Cookie">
+        <span class="has-mr-6">1</span>
+        <span>Session-Cookie</span>
+        </a></li><li>
+        <a class="is-flex" href="#Token">
+        <span class="has-mr-6">2</span>
+        <span>Token</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#流程：">
+        <span class="has-mr-6">2.1</span>
+        <span>流程：</span>
+        </a></li><li>
+        <a class="is-flex" href="#优点：">
+        <span class="has-mr-6">2.2</span>
+        <span>优点：</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#JWT">
+        <span class="has-mr-6">3</span>
+        <span>JWT</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Header">
+        <span class="has-mr-6">3.1</span>
+        <span>Header</span>
+        </a></li><li>
+        <a class="is-flex" href="#Payload">
+        <span class="has-mr-6">3.2</span>
+        <span>Payload</span>
+        </a></li><li>
+        <a class="is-flex" href="#Signature">
+        <span class="has-mr-6">3.3</span>
+        <span>Signature</span>
+        </a></li><li>
+        <a class="is-flex" href="#Base64和Base64URL">
+        <span class="has-mr-6">3.4</span>
+        <span>Base64和Base64URL</span>
+        </a></li><li>
+        <a class="is-flex" href="#主动让JWT失效的方法">
+        <span class="has-mr-6">3.5</span>
+        <span>主动让JWT失效的方法</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/thumbnail.svg" alt="几种鉴权方案" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Eric Sheeran&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

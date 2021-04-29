@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>程设Week14-模拟 - Eric&#39;s Blog</title>
+
+
+    <meta name="description" content="又是时间模拟—、—">
+<meta name="keywords" content="模拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程设Week14-模拟">
+<meta property="og:url" content="http://yoursite.com/2020/06/10/程设Week14-模拟/index.html">
+<meta property="og:site_name" content="Eric&#39;s Blog">
+<meta property="og:description" content="又是时间模拟—、—">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/gallery/chengshe.png">
+<meta property="og:updated_time" content="2020-06-09T09:29:40.020Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程设Week14-模拟">
+<meta name="twitter:description" content="又是时间模拟—、—">
+<meta name="twitter:image" content="http://yoursite.com/gallery/chengshe.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/thumbnail.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159370438-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159370438-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/thumbnail.svg" alt="程设Week14-模拟" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-09T16:55:02.000Z">2020-06-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/程序设计思维与实践/">程序设计思维与实践</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 minutes read (About 1339 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                程设Week14-模拟
+            
+        </h1>
+        <div class="content">
+            <p>又是时间模拟—、—</p>
+<a id="more"></a>
+
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>众所周知，TT家里有一只魔法喵。这只喵十分嗜睡。一睡就没有白天黑夜。喵喵一天可以睡多次！！每次想睡多久就睡多久╭(╯^╰)╮</p>
+<p>喵睡觉的时段是连续的，即一旦喵喵开始睡觉了，就不能被打扰，不然喵会咬人哒[○･｀Д´･ ○]</p>
+<p>可以假设喵喵必须要睡眠连续不少于 A 个小时，即一旦喵喵开始睡觉了，至少连续 A 个小时内（即A*60分钟内）不能被打扰！</p>
+<p>现在你知道喵喵很嗜睡了，它一天的时长都在吃、喝、拉、撒、睡，换句话说要么睡要么醒着滴！</p>
+<p>众所周知，这只魔法喵很懒，和TT一样懒，它不能连续活动超过 B 个小时。</p>
+<p>猫主子是不用工作不用写代码滴，十分舒适，所以，它是想睡就睡滴。</p>
+<p>但是，现在猫主子有一件感兴趣的事，就是上BiliBili网站看的新番。</p>
+<p>新番的播放时间它已经贴在床头啦（每天都用同一张时间表哦），这段时间它必须醒着！！</p>
+<p>作为一只喵喵，它认为安排时间是很麻烦的事情，现在请你帮它安排睡觉的时间段。</p>
+<h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><p>多组数据，多组数据，多组数据哦，每组数据的格式如下：</p>
+<p>第1行输入三个整数，A 和 B 和 N (1 &lt;= A &lt;= 24, 1 &lt;= B &lt;= 24, 1 &lt;= n &lt;= 20)</p>
+<p>第2到N+1行为每日的新番时间表，每行一个时间段，格式形如 hh:mm-hh:mm (闭区间)，这是一种时间格式，hh:mm 的范围为 00:00 到 23:59。注意一下，时间段是保证不重叠的，但是可能出现跨夜的新番，即新番的开始时间点大于结束时间点。<br>保证每个时间段的开始时间点和结束时间点不一样，即不可能出现类似 08:00-08:00 这种的时间段。时长的计算由于是闭区间所以也是有点坑的，比如 12:00-13:59 的时长就是 120 分钟。<br>不保证输入的新番时间表有序。</p>
+<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><p>我们知道，时间管理是一项很难的活，所以你可能没有办法安排的那么好，使得这个时间段满足喵喵的要求，即每次睡必须时间连续且不少于 A 小时，每次醒必须时间连续且不大于 B 小时，还要能看完所有的番，所以输出的第一行是 Yes 或者 No，代表是否存在满足猫猫要求的时间管理办法。</p>
+<p>然后，对于时间管理，你只要告诉喵喵，它什么时候睡觉即可。<br>即第2行输出一个整数 k，代表当天有多少个时间段要睡觉<br>接下来 k 行是喵喵的睡觉时间段，每行一个时间段，格式形如 hh:mm-hh:mm (闭区间)，这个在前面也有定义。注意一下，如果喵喵的睡眠时段跨越当天到达了明天，比如从23点50分睡到0点40分，那就输出23:50-00:40，如果从今晚23:50睡到明天早上7:30，那就输出23:50-07:30。</p>
+<p>输出要排序吗？（输出打乱是能过的，也就是说，题目对输出的那些时间段间的顺序是没有要求的）</p>
+<p>哦对了，喵喵告诉你说，本题是 Special Judge，如果你的输出答案和 Sample 不太一样，也可能是对的，它有一个判题程序来判定你的答案（当然，你对你自己的答案肯定也能肉眼判断）</p>
+<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li><p>原则：能睡就睡，否则不睡。</p>
+</li>
+<li><p>跨天的处理：直接在第二天的时间上加上24h</p>
+</li>
+<li><p>最后一个事件的结束时间与第一个事件的开始时间中间事件段的处理：把第一个事件作为n+1个事件加24h然后加到序列末尾。</p>
+</li>
+<li><p>坑点：</p>
+<ul>
+<li>不能24h不睡，因为和第二天连起来就是48h不睡，和第三天连起来就是。。永远不睡，必然是不存在的。</li>
+<li>睡觉区间是闭区间，因此要注意+1-1</li>
+</ul>
+</li>
+<li><p>小tips：</p>
+<p><code>printf(&quot;%02d:%02d-%02d:%02d\n&quot;,...)</code>用于控制输出，香！</p>
+</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">event</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> begin,end;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    event(<span class="keyword">int</span> b,<span class="keyword">int</span> e):begin(b),end(e)&#123;&#125;</span><br><span class="line">    event()&#123;begin = end = t = <span class="number">0</span>;&#125;</span><br><span class="line">&#125;avi[<span class="number">50</span>],slp[<span class="number">50</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(event&amp; a,event&amp; b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.begin &lt; b.begin;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> scnt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> A,B,k;</span><br><span class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;A,&amp;B,&amp;k))&#123;</span><br><span class="line">        scnt = <span class="number">0</span>;</span><br><span class="line">        A *= <span class="number">60</span>,B *= <span class="number">60</span>;</span><br><span class="line">        <span class="built_in">memset</span>(slp,<span class="number">0</span>,<span class="keyword">sizeof</span>(slp));</span><br><span class="line">        <span class="built_in">memset</span>(avi,<span class="number">0</span>,<span class="keyword">sizeof</span>(avi));</span><br><span class="line">        <span class="keyword">int</span> sh,sm,eh,em;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d:%d-%d:%d"</span>,&amp;sh,&amp;sm,&amp;eh,&amp;em);</span><br><span class="line">            avi[i] = event(sh*<span class="number">60</span>+sm,eh*<span class="number">60</span>+em);</span><br><span class="line">            <span class="keyword">if</span>(avi[i].end &lt; avi[i].begin) avi[i].end += <span class="number">24</span>*<span class="number">60</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(avi,avi+k,cmp);</span><br><span class="line">        avi[k] = event(avi[<span class="number">0</span>].begin + <span class="number">24</span> * <span class="number">60</span> , avi[<span class="number">0</span>].end + <span class="number">24</span> * <span class="number">60</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=k;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(avi[i].begin <span class="number">-1</span> - avi[i<span class="number">-1</span>].end &gt;= A )&#123;</span><br><span class="line">                slp[scnt++] = event(avi[i<span class="number">-1</span>].end + <span class="number">1</span>,avi[i].begin - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        slp[scnt] = event(slp[<span class="number">0</span>].begin + <span class="number">24</span> * <span class="number">60</span>,slp[<span class="number">0</span>].end + <span class="number">24</span> * <span class="number">60</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;=scnt;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(slp[i].begin - <span class="number">1</span> - slp[i<span class="number">-1</span>].end &gt; B) &#123;flag = <span class="literal">false</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!flag || scnt == <span class="number">0</span> ) &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"No\n"</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"Yes\n"</span>&lt;&lt;scnt&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;scnt;i++)&#123;</span><br><span class="line">                slp[i].begin += <span class="number">24</span>*<span class="number">60</span>;</span><br><span class="line">                slp[i].begin %= <span class="number">24</span>*<span class="number">60</span> ;</span><br><span class="line">                slp[i].end += <span class="number">24</span>*<span class="number">60</span>;</span><br><span class="line">                slp[i].end %= <span class="number">24</span>*<span class="number">60</span>;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%02d:%02d-%02d:%02d\n"</span>,slp[i].begin / <span class="number">60</span>,slp[i].begin % <span class="number">60</span>,slp[i].end / <span class="number">60</span> ,slp[i].end % <span class="number">60</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/模拟/">模拟</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/06/10/程设Week16-模拟/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">程设Week16-模拟</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/05/15/程设Week12-作业/">
+                <span class="level-item">程设Week12-作业</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/526a0243008d13b8f61530a4f98259e8?s=128" alt="Eric">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Eric
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student from SDU
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shandong, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            44
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            64
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/eirc-whyte" target="_blank" rel="noopener">
+                 Follow
+            </a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            <!-- 引入iconfront -->
+            <link rel="stylesheet" href="/css/iconfont.css">
+            <script src="/js/iconfont.js"></script>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=982680793&amp;site=qq&amp;menu=yes">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-QQ"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Email" href="mailto:982680793@qq.com">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-email"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="weibo" href="https://weibo.com/u/1675634500">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-weibo"></use>
+                </svg>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#题目描述">
+        <span class="has-mr-6">1</span>
+        <span>题目描述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入">
+        <span class="has-mr-6">1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出">
+        <span class="has-mr-6">1.2</span>
+        <span>输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#题目分析">
+        <span class="has-mr-6">2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码">
+        <span class="has-mr-6">3</span>
+        <span>代码</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/thumbnail.svg" alt="程设Week14-模拟" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Eric Sheeran&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
