@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>程设Week13-15-作业 - Eric&#39;s Blog</title>
+
+
+    <meta name="description" content="dpdpdpdp TT 的神秘任务3题目描述TT 猫咖的生意越来越红火，人越来越多，也越来越拥挤。 为了解决这个问题，TT 决定扩大营业规模，但猫从哪里来呢？ TT 第一时间想到了神秘人，想要再次通过完成任务的方式获得猫咪。 而这一次，神秘人决定加大难度。 给定一个环，A[1], A[2], A[3], … , A[n]，其中 A[1] 的左边是 A[n]。要求从环上找出一段长度不超过 K 的连续">
+<meta name="keywords" content="单调队列优化,矩阵优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程设Week13-15-作业">
+<meta property="og:url" content="http://yoursite.com/2020/06/13/程设Week13-15-作业/index.html">
+<meta property="og:site_name" content="Eric&#39;s Blog">
+<meta property="og:description" content="dpdpdpdp TT 的神秘任务3题目描述TT 猫咖的生意越来越红火，人越来越多，也越来越拥挤。 为了解决这个问题，TT 决定扩大营业规模，但猫从哪里来呢？ TT 第一时间想到了神秘人，想要再次通过完成任务的方式获得猫咪。 而这一次，神秘人决定加大难度。 给定一个环，A[1], A[2], A[3], … , A[n]，其中 A[1] 的左边是 A[n]。要求从环上找出一段长度不超过 K 的连续">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-06-12T08:56:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程设Week13-15-作业">
+<meta name="twitter:description" content="dpdpdpdp TT 的神秘任务3题目描述TT 猫咖的生意越来越红火，人越来越多，也越来越拥挤。 为了解决这个问题，TT 决定扩大营业规模，但猫从哪里来呢？ TT 第一时间想到了神秘人，想要再次通过完成任务的方式获得猫咪。 而这一次，神秘人决定加大难度。 给定一个环，A[1], A[2], A[3], … , A[n]，其中 A[1] 的左边是 A[n]。要求从环上找出一段长度不超过 K 的连续">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/thumbnail.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159370438-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-159370438-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/thumbnail.svg" alt="程设Week13-15-作业" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-12T16:17:40.000Z">2020-06-12</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/程序设计思维与实践/">程序设计思维与实践</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 minutes read (About 1338 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                程设Week13-15-作业
+            
+        </h1>
+        <div class="content">
+            <p>dpdpdpdp</p>
+<h3 id="TT-的神秘任务3"><a href="#TT-的神秘任务3" class="headerlink" title="TT 的神秘任务3"></a><a href="https://vjudge.net/contest/373662#problem/E">TT 的神秘任务3</a></h3><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>TT 猫咖的生意越来越红火，人越来越多，也越来越拥挤。</p>
+<p>为了解决这个问题，TT 决定扩大营业规模，但猫从哪里来呢？</p>
+<p>TT 第一时间想到了神秘人，想要再次通过完成任务的方式获得猫咪。</p>
+<p>而这一次，神秘人决定加大难度。</p>
+<p>给定一个环，A[1], A[2], A[3], … , A[n]，其中 A[1] 的左边是 A[n]。要求从环上找出一段长度不超过 K 的连续序列，使其和最大。</p>
+<p>这一次，TT 陷入了沉思，他需要你们的帮助。</p>
+<h5 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h5><p>第一行一个整数 T，表示数据组数，不超过 100。</p>
+<p>每组数据第一行给定两个整数 N K。（1 ≤ N ≤ 100000, 1 ≤ K ≤ N）</p>
+<p>接下来一行，给出 N 个整数。（-1000 ≤ A[i] ≤ 1000）。</p>
+<h5 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h5><p>对于每一组数据，输出满足条件的最大连续和以及起始位置和终止位置。</p>
+<p>如果有多个结果，输出起始位置最小的，如果还是有多组结果，输出长度最短的。</p>
+<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li><p>环上——复制数组接到原数组后面</p>
+</li>
+<li><p>连续序列——考虑前缀和、单调队列</p>
+</li>
+<li><p>首先处理出原序列的前缀和数组，然后利用单调队列滑动窗口的思想，维护一个单调升的队列（因为每次要找到前面前缀和最小的位置，才能保证得到的连续序列和最大）</p>
+</li>
+<li><p>注意：先pop，再更新答案，最后将新元素加入队列末尾。</p>
+</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 0x3f3f3f3f</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">2001000</span>];</span><br><span class="line"><span class="comment">// int dp[200100];</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> out = <span class="number">0</span>,flag = <span class="number">1</span>;<span class="keyword">char</span> c = getchar();</span><br><span class="line">	<span class="keyword">while</span> (c &lt; <span class="number">48</span> || c &gt; <span class="number">57</span>) &#123;<span class="keyword">if</span> (c == <span class="string">'-'</span>) flag = <span class="number">-1</span>; c = getchar();&#125;</span><br><span class="line">	<span class="keyword">while</span> (c &gt;= <span class="number">48</span> &amp;&amp; c &lt;= <span class="number">57</span>) &#123;out = out * <span class="number">10</span> + c - <span class="number">48</span>; c = getchar();&#125;</span><br><span class="line">	<span class="keyword">return</span> out * flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> sum[<span class="number">2001000</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(sum,<span class="number">0</span>,<span class="keyword">sizeof</span>(sum));</span><br><span class="line">        <span class="comment">// memset(dp,0,sizeof(dp));</span></span><br><span class="line">        <span class="keyword">int</span> n,k;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;k;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            a[i+n] = a[i] = read();</span><br><span class="line">            sum[i] = a[i] + sum[i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n+<span class="number">1</span>;i&lt;=n*<span class="number">2</span>;i++)&#123;</span><br><span class="line">            sum[i] = a[i] + sum[i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">int</span> ans = -inf ,l = <span class="number">1</span>,r = <span class="number">1</span>;</span><br><span class="line">        q.push_back(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n*<span class="number">2</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(q.size() &amp;&amp; q.front() &lt; i-k) q.pop_front();</span><br><span class="line">            <span class="keyword">if</span>(ans &lt; sum[i] - sum[q.front()] )&#123;</span><br><span class="line">                ans = sum[i] - sum[q.front()];</span><br><span class="line">                l = q.front()+<span class="number">1</span>;</span><br><span class="line">                r = i&gt;n ? i-n:i;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(q.size() &amp;&amp; sum[q.back()] &gt; sum[i]) q.pop_back();</span><br><span class="line">            q.push_back(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d %d\n"</span>,ans,l,r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="E-Q老师度假"><a href="#E-Q老师度假" class="headerlink" title="E - Q老师度假"></a><a href="https://vjudge.net/problem/计蒜客-A1795">E - Q老师度假</a></h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>忙碌了一个学期的 Q老师 决定奖励自己 N 天假期。</p>
+<p>假期中不同的穿衣方式会有不同的快乐值。</p>
+<p>已知 Q老师 一共有 M 件衬衫，且如果昨天穿的是衬衫 A，今天穿的是衬衫 B，则 Q老师 今天可以获得 <code>f[A][B]</code> 快乐值。</p>
+<p>在 N 天假期结束后，Q老师 最多可以获得多少快乐值？</p>
+<h5 id="输入-1"><a href="#输入-1" class="headerlink" title="输入"></a>输入</h5><p>输入文件包含多组测试样例，每组测试样例格式描述如下：</p>
+<p>第一行给出两个整数 N M，分别代表假期长度与 Q老师 的衬衫总数。（2 ≤ N ≤ 100000, 1 ≤ M ≤ 100）</p>
+<p>接下来 M 行，每行给出 M 个整数，其中第 i 行的第 j 个整数，表示 f[i][j]。（1 ≤ f[i][j] ≤ 1000000）</p>
+<p>测试样例组数不会超过 10。</p>
+<h5 id="输出-1"><a href="#输出-1" class="headerlink" title="输出"></a>输出</h5><p>每组测试样例输出一行，表示 Q老师 可以获得的最大快乐值。</p>
+<h4 id="题目分析-1"><a href="#题目分析-1" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li><p>分析题目可以得出，转移方程可以写为：<code>dp[i][B] = max(dp[i-1][k]+f[k][B])</code></p>
+</li>
+<li><p>$$<br>ans[i] = \begin{bmatrix}<br>dp[i][1]     \<br>\vdots  \<br>dp[i][m]<br>\end{bmatrix}=\begin{bmatrix}<br>f[1][1]      &amp; \cdots &amp; f[m][1]      \<br>\vdots &amp; \ddots &amp; \vdots \<br>f[1][m]      &amp; \cdots &amp; f[m][m]<br>\end{bmatrix}\oplus\begin{bmatrix}<br>f[i-1][1]     \<br>\vdots\<br>f[i-1][m]<br>\end{bmatrix}<br>$$</p>
+</li>
+<li><p>$\oplus $运算将矩阵乘法的累加换成了max，乘换成了加（符合结合律、交换律）</p>
+</li>
+<li><p>那么只要构造出中间矩阵，做快速幂即可。</p>
+</li>
+</ul>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">matrix</span>&#123;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> mtx[<span class="number">105</span>][<span class="number">105</span>];</span><br><span class="line">    <span class="keyword">int</span> m,n;</span><br><span class="line">    matrix(<span class="keyword">int</span> n,<span class="keyword">int</span> m):n(n),m(m)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=m;j++)</span><br><span class="line">                mtx[i][j] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    matrix <span class="keyword">operator</span> * (<span class="keyword">const</span> matrix&amp; x)&#123;</span><br><span class="line">        <span class="function">matrix <span class="title">ans</span><span class="params">(n,x.m)</span></span>;</span><br><span class="line">        <span class="keyword">if</span>(m != x.n) <span class="keyword">return</span> ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=x.m;j++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>;k&lt;= m;k++)&#123;</span><br><span class="line">                    ans.mtx[i][j] = max(ans.mtx[i][j],mtx[i][k]+x.mtx[k][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// matrix (const matrix &amp;t)&#123;</span></span><br><span class="line">    <span class="comment">//     memcpy(mtx,t.mtx,sizeof(mtx));</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">                <span class="built_in">cout</span>&lt;&lt;mtx[i][j]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">            &#125;<span class="built_in">cout</span>&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">matrix <span class="title">fast_pow</span><span class="params">(matrix x,<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="function">matrix <span class="title">a</span><span class="params">(x.n,x.m)</span></span>;</span><br><span class="line">    <span class="keyword">for</span>(;p;p&gt;&gt;= <span class="number">1</span>,x = x * x)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p&amp;<span class="number">1</span>)&#123;</span><br><span class="line">            a = a * x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m)&#123;</span><br><span class="line">        <span class="function">matrix <span class="title">a</span><span class="params">(m,m)</span></span>;</span><br><span class="line">        <span class="function">matrix <span class="title">ori</span><span class="params">(m,<span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            ori.mtx[i][<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">                <span class="built_in">cin</span>&gt;&gt;a.mtx[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        matrix ans = fast_pow(a,n<span class="number">-1</span>) * ori;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> anss = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            anss = max(anss,ans.mtx[i][<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;anss&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="B-ZJM-与生日礼物"><a href="#B-ZJM-与生日礼物" class="headerlink" title="B - ZJM 与生日礼物"></a><a href="https://vjudge.net/problem/HDU-1305">B - ZJM 与生日礼物</a></h3><h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><p>ZJM 收到了 Q老师 送来的生日礼物，但是被 Q老师 加密了。只有 ZJM 能够回答对 Q老师 的问题，Q老师 才会把密码告诉 ZJM。</p>
+<p>Q老师 给了 ZJM 一些仅有 01 组成的二进制编码串, 他问 ZJM：是否存在一个串是另一个串的前缀.</p>
+<h5 id="输入-2"><a href="#输入-2" class="headerlink" title="输入"></a>输入</h5><p>多组数据。每组数据中包含多个仅有01组成的字符串，以一个9作为该组数据结束的标志。</p>
+<h5 id="输出-2"><a href="#输出-2" class="headerlink" title="输出"></a>输出</h5><p>对于第 k 组数据(从1开始标号)，如果不存在一个字符串使另一个的前缀，输出”Set k is immediately decodable”，否则输出”Set k is not immediately decodable”。<br>每组数据的输出单独一行</p>
+<h4 id="题目分析-2"><a href="#题目分析-2" class="headerlink" title="题目分析"></a>题目分析</h4><ul>
+<li>直接插入构造字典（？二叉）树</li>
+<li>把一个字符串每一位放到字典树上，每次新拓展一个节点时++cnt，否则直接移动到已经存在的节点上，过程中如果遇到flag，或者最终移动到已经存在的节点上则直接返回存在前缀，否则返回不存在。</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">rec</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> c[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> flag;</span><br><span class="line">&#125;node[<span class="number">200000</span>];</span><br><span class="line"><span class="keyword">int</span> cnt;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">insert</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> now = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">bool</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; s.size();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(node[now].c[s[i]-<span class="string">'0'</span>] == <span class="number">0</span>)&#123;</span><br><span class="line">            node[now].c[s[i]-<span class="string">'0'</span>] = ++cnt;</span><br><span class="line">            now = cnt;</span><br><span class="line">        &#125;<span class="keyword">else</span> now = node[now].c[s[i]-<span class="string">'0'</span>];</span><br><span class="line">        <span class="keyword">if</span>(node[now].flag == <span class="number">1</span>) &#123;<span class="keyword">return</span> <span class="literal">true</span>;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    node[now].flag = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(now == cnt) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">bool</span> f = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;s)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s[<span class="number">0</span>] == <span class="string">'9'</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!f) <span class="built_in">cout</span>&lt;&lt;<span class="string">"Set "</span>&lt;&lt;k&lt;&lt;<span class="string">" is immediately decodable\n"</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"Set "</span>&lt;&lt;k&lt;&lt;<span class="string">" is not immediately decodable\n"</span>;</span><br><span class="line">            f = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">memset</span>(node,<span class="number">0</span>,<span class="keyword">sizeof</span>(node));</span><br><span class="line">            cnt = <span class="number">0</span>;</span><br><span class="line">            k++;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            f = insert(s) || f;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/单调队列优化/">单调队列优化</a>, <a class="has-link-grey -link" href="/tags/矩阵优化/">矩阵优化</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/08/17/建模-元胞自动机-CA/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">建模-元胞自动机(CA)</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/06/10/程设Week-16-月模拟题/">
+                <span class="level-item">程设Week16-月模拟题</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://www.gravatar.com/avatar/526a0243008d13b8f61530a4f98259e8?s=128" alt="Eric">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Eric
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Student from SDU
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Shandong, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            46
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            67
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/eirc-whyte" target="_blank" rel="noopener">
+                 Follow
+            </a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            <!-- 引入iconfront -->
+            <link rel="stylesheet" href="/css/iconfont.css">
+            <script src="/js/iconfont.js"></script>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="QQ" href="http://wpa.qq.com/msgrd?v=3&amp;uin=982680793&amp;site=qq&amp;menu=yes">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-QQ"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Email" href="mailto:982680793@qq.com">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-email"></use>
+                </svg>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="weibo" href="https://weibo.com/u/1675634500">
+                
+                <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-weibo"></use>
+                </svg>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#TT-的神秘任务3">
+        <span class="has-mr-6">1</span>
+        <span>TT 的神秘任务3</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#题目描述">
+        <span class="has-mr-6">1.1</span>
+        <span>题目描述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入">
+        <span class="has-mr-6">1.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出">
+        <span class="has-mr-6">1.1.2</span>
+        <span>输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#题目分析">
+        <span class="has-mr-6">1.2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码">
+        <span class="has-mr-6">1.3</span>
+        <span>代码</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#E-Q老师度假">
+        <span class="has-mr-6">2</span>
+        <span>E - Q老师度假</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#题目描述-1">
+        <span class="has-mr-6">2.1</span>
+        <span>题目描述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入-1">
+        <span class="has-mr-6">2.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出-1">
+        <span class="has-mr-6">2.1.2</span>
+        <span>输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#题目分析-1">
+        <span class="has-mr-6">2.2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码-1">
+        <span class="has-mr-6">2.3</span>
+        <span>代码</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#B-ZJM-与生日礼物">
+        <span class="has-mr-6">3</span>
+        <span>B - ZJM 与生日礼物</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#题目描述-2">
+        <span class="has-mr-6">3.1</span>
+        <span>题目描述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#输入-2">
+        <span class="has-mr-6">3.1.1</span>
+        <span>输入</span>
+        </a></li><li>
+        <a class="is-flex" href="#输出-2">
+        <span class="has-mr-6">3.1.2</span>
+        <span>输出</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#题目分析-2">
+        <span class="has-mr-6">3.2</span>
+        <span>题目分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码-2">
+        <span class="has-mr-6">3.3</span>
+        <span>代码</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/thumbnail.svg" alt="程设Week13-15-作业" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2021 Eric Sheeran&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

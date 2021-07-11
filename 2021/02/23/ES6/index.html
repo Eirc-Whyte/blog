@@ -10,19 +10,19 @@
 <title>ES6学习笔记 - Eric&#39;s Blog</title>
 
 
-    <meta name="description" content="参考阮一峰《ES6标准入门》">
+    <meta name="description" content="参考阮一峰老师 《ES6标准入门》">
 <meta name="keywords" content="Javascript,前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6学习笔记">
 <meta property="og:url" content="http://yoursite.com/2021/02/23/ES6/index.html">
 <meta property="og:site_name" content="Eric&#39;s Blog">
-<meta property="og:description" content="参考阮一峰《ES6标准入门》">
+<meta property="og:description" content="参考阮一峰老师 《ES6标准入门》">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-03-10T03:46:08.000Z">
+<meta property="og:updated_time" content="2021-05-11T09:49:24.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6学习笔记">
-<meta name="twitter:description" content="参考阮一峰《ES6标准入门》">
+<meta name="twitter:description" content="参考阮一峰老师 《ES6标准入门》">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 minutes read (About 1306 words)
+                    10 minutes read (About 1572 words)
                 </span>
                 
                 
@@ -164,10 +164,13 @@
             
         </h1>
         <div class="content">
-            <p>参考阮一峰《ES6标准入门》</p>
+            <p>参考阮一峰老师 <a href="https://es6.ruanyifeng.com/#README">《ES6标准入门》</a></p>
 <a id="more"></a>
 
-<h3 id="let-amp-const"><a href="#let-amp-const" class="headerlink" title="let &amp; const"></a>let &amp; const</h3><p>ES6新增<code>let</code>命令，它的用法类似于<code>var</code>，但是所声明的变量，只在<code>let</code>命令所在的<strong>代码块内</strong>有效，没有变量提升。</p>
+<h2 id="ES6和ECMAScript2015"><a href="#ES6和ECMAScript2015" class="headerlink" title="ES6和ECMAScript2015"></a>ES6和ECMAScript2015</h2><p>因为在2011年发布完5.1后，ECMA发现，6.0版本引入语法功能太多，而且很多组织和个人不断提交新功能，因此不可能在同一个版本里包括所有将要引入的功能。<strong>常规的做法</strong>是：不断发布小版本，6.1，6.2，6.3等等</p>
+<p><strong>但是</strong>标准制定者想要指定一个常规流程：任何人在任何时候，都可以提交新语法提案，标准委员会每个月开一次会，讨论哪些可以被接受；也就是说，版本升级每个月一次；每年6月份发布一个正式版本作为当年的正式版本，接下来就按照上述方法改动，直到下一年。因此，就不需要之前的版本号，直接用年号标记版本就可以了。</p>
+<p>因此，ES6现在指的是<strong>2015年后发布的所有JS版本</strong>，包括ESMA2015，2016，2017等。</p>
+<h2 id="let-amp-const"><a href="#let-amp-const" class="headerlink" title="let &amp; const"></a>let &amp; const</h2><p>ES6新增<code>let</code>命令，它的用法类似于<code>var</code>，但是所声明的变量，只在<code>let</code>命令所在的<strong>代码块内</strong>有效，没有变量提升。</p>
 <blockquote>
 <p>变量提升：<code>var</code>命令会发生“变量提升”现象，即变量可以在声明之前使用，值为<code>undefined</code>。</p>
 </blockquote>
@@ -193,7 +196,7 @@
 <p>要将属性也冻结，可以递归调用Object.freeze:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> constantize = <span class="function">(<span class="params">obj</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">Object</span>.freeze(obj);</span><br><span class="line">  <span class="built_in">Object</span>.keys(obj).forEach( <span class="function">(<span class="params">key, i</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> obj[key] === <span class="string">'object'</span> ) &#123;</span><br><span class="line">      constantize( obj[key] );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h3 id="变量解构赋值"><a href="#变量解构赋值" class="headerlink" title="变量解构赋值"></a>变量解构赋值</h3><p>类似于Python的解构赋值</p>
+<h2 id="变量解构赋值"><a href="#变量解构赋值" class="headerlink" title="变量解构赋值"></a>变量解构赋值</h2><p>类似于Python的解构赋值</p>
 <p>可以这样</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, b, c] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
 
@@ -209,7 +212,7 @@
 
 <p>注意，当且仅当右边变量<strong>严格等于undefined</strong>，默认值才生效。null不是undefined。</p>
 <p>对象解构赋值时要求<strong>属性名严格相等</strong></p>
-<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><blockquote>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><blockquote>
 <ol>
 <li><p>对象的状态不受外界影响。<code>Promise</code>对象代表一个异步操作，有三种状态：<code>pending</code>（进行中）、<code>fulfilled</code>（已成功）和<code>rejected</code>（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是<code>Promise</code>这个名字的由来，它的英语意思就是“承诺”，表示其他手段无法改变。</p>
 </li>
@@ -219,7 +222,7 @@
 </li>
 </ol>
 </blockquote>
-<h1 id="async-amp-await"><a href="#async-amp-await" class="headerlink" title="async &amp; await"></a>async &amp; await</h1><p><code>async</code>函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而<code>await</code>命令就是内部<code>then</code>命令的语法糖。</p>
+<h2 id="async-amp-await"><a href="#async-amp-await" class="headerlink" title="async &amp; await"></a>async &amp; await</h2><p><code>async</code>函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而<code>await</code>命令就是内部<code>then</code>命令的语法糖。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gen = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> f1 = <span class="keyword">yield</span> readFile(<span class="string">'/etc/fstab'</span>);</span><br><span class="line">  <span class="keyword">const</span> f2 = <span class="keyword">yield</span> readFile(<span class="string">'/etc/shells'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(f1.toString());</span><br><span class="line">  <span class="built_in">console</span>.log(f2.toString());</span><br><span class="line">&#125;;</span><br><span class="line">&lt;==&gt;</span><br><span class="line"><span class="keyword">const</span> asyncReadFile = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> f1 = <span class="keyword">await</span> readFile(<span class="string">'/etc/fstab'</span>);</span><br><span class="line">  <span class="keyword">const</span> f2 = <span class="keyword">await</span> readFile(<span class="string">'/etc/shells'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(f1.toString());</span><br><span class="line">  <span class="built_in">console</span>.log(f2.toString());</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
@@ -310,7 +313,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            44
+                            49
                         </p>
                     </a>
                 </div>
@@ -334,7 +337,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            64
+                            69
                         </p>
                     </a>
                 </div>
@@ -394,37 +397,41 @@
                 <h3 class="menu-label">
                     Catalogue
                 </h3>
-                <ul class="menu-list"><ul class="menu-list"><li>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#ES6和ECMAScript2015">
+        <span class="has-mr-6">1</span>
+        <span>ES6和ECMAScript2015</span>
+        </a></li><li>
         <a class="is-flex" href="#let-amp-const">
-        <span class="has-mr-6">1.1</span>
+        <span class="has-mr-6">2</span>
         <span>let &amp; const</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#暂时性死区">
-        <span class="has-mr-6">1.1.1</span>
+        <span class="has-mr-6">2.1</span>
         <span>暂时性死区</span>
         </a></li><li>
         <a class="is-flex" href="#不允许重复声明">
-        <span class="has-mr-6">1.1.2</span>
+        <span class="has-mr-6">2.2</span>
         <span>不允许重复声明</span>
         </a></li><li>
         <a class="is-flex" href="#块级作用域">
-        <span class="has-mr-6">1.1.3</span>
+        <span class="has-mr-6">2.3</span>
         <span>块级作用域</span>
         </a></li><li>
         <a class="is-flex" href="#const">
-        <span class="has-mr-6">1.1.4</span>
+        <span class="has-mr-6">2.4</span>
         <span>const</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#变量解构赋值">
-        <span class="has-mr-6">1.2</span>
+        <span class="has-mr-6">3</span>
         <span>变量解构赋值</span>
-        </a></li></ul><li>
+        </a></li><li>
         <a class="is-flex" href="#Promise">
-        <span class="has-mr-6">2</span>
+        <span class="has-mr-6">4</span>
         <span>Promise</span>
         </a></li><li>
         <a class="is-flex" href="#async-amp-await">
-        <span class="has-mr-6">3</span>
+        <span class="has-mr-6">5</span>
         <span>async &amp; await</span>
         </a></li></ul>
             </div>
