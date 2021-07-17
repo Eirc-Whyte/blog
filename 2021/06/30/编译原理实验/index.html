@@ -10,19 +10,19 @@
 <title>编译原理实验 - Eric&#39;s Blog</title>
 
 
-    <meta name="description" content="一、实验过程整体程序采用面向对象思想，主要类有LexicalAnalyzer，SyntaxAnalyzer，Interpreter（词法分析器，语法/语义分析器，代码解释器）等；分别完成三部分实验的主要功能。还有一些附属的小类，如Word，TableItem，SyntaxTreeNode等。本实验中，我们采用自上而下分析法进行分析。  1.   词法分析词法分析将文档流转换为词语流。具体来说，你需">
+    <meta name="description" content="找回了写代码最初的快乐">
 <meta name="keywords" content="编译原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编译原理实验">
 <meta property="og:url" content="http://yoursite.com/2021/06/30/编译原理实验/index.html">
 <meta property="og:site_name" content="Eric&#39;s Blog">
-<meta property="og:description" content="一、实验过程整体程序采用面向对象思想，主要类有LexicalAnalyzer，SyntaxAnalyzer，Interpreter（词法分析器，语法/语义分析器，代码解释器）等；分别完成三部分实验的主要功能。还有一些附属的小类，如Word，TableItem，SyntaxTreeNode等。本实验中，我们采用自上而下分析法进行分析。  1.   词法分析词法分析将文档流转换为词语流。具体来说，你需">
+<meta property="og:description" content="找回了写代码最初的快乐">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-17T07:50:55.187Z">
+<meta property="og:updated_time" content="2021-07-17T09:19:56.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理实验">
-<meta name="twitter:description" content="一、实验过程整体程序采用面向对象思想，主要类有LexicalAnalyzer，SyntaxAnalyzer，Interpreter（词法分析器，语法/语义分析器，代码解释器）等；分别完成三部分实验的主要功能。还有一些附属的小类，如Word，TableItem，SyntaxTreeNode等。本实验中，我们采用自上而下分析法进行分析。  1.   词法分析词法分析将文档流转换为词语流。具体来说，你需">
+<meta name="twitter:description" content="找回了写代码最初的快乐">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour read (About 7616 words)
+                    an hour read (About 7628 words)
                 </span>
                 
                 
@@ -164,7 +164,10 @@
             
         </h1>
         <div class="content">
-            <h2 id="一、实验过程"><a href="#一、实验过程" class="headerlink" title="一、实验过程"></a>一、实验过程</h2><p>整体程序采用面向对象思想，主要类有LexicalAnalyzer，SyntaxAnalyzer，Interpreter（词法分析器，语法/语义分析器，代码解释器）等；分别完成三部分实验的主要功能。还有一些附属的小类，如Word，TableItem，SyntaxTreeNode等。本实验中，我们采用自上而下分析法进行分析。</p>
+            <p>找回了写代码最初的快乐</p>
+<a id="more"></a>
+
+<h2 id="一、实验过程"><a href="#一、实验过程" class="headerlink" title="一、实验过程"></a>一、实验过程</h2><p>整体程序采用面向对象思想，主要类有LexicalAnalyzer，SyntaxAnalyzer，Interpreter（词法分析器，语法/语义分析器，代码解释器）等；分别完成三部分实验的主要功能。还有一些附属的小类，如Word，TableItem，SyntaxTreeNode等。本实验中，我们采用自上而下分析法进行分析。</p>
 <p><img src="file:///C:/Users/Eric/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg" alt="img"></p>
 <h3 id="1-词法分析"><a href="#1-词法分析" class="headerlink" title="1.   词法分析"></a>1.   词法分析</h3><p>词法分析将文档流转换为词语流。具体来说，你需要过滤源程序中的空白符(空格，tab，换行等)，识别关键字、标识符、分隔符，数字以及运算符。</p>
 <p>一般来说，程序中的单词属于以上五种类型（分别是KEYWORD, OPERATOR, DELIMITER, NUMBER, IDENTIFIER），为了方便报错处理，我们添加ERROR类型。每当处理完一个单词，如果返回ERROR类型则直接抛出词法错误。</p>
