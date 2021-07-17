@@ -19,7 +19,7 @@
 <meta property="og:description" content="使用Word Embeding利用已经训练好的WordEmbedding数据集可以进行迁移学习">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-11T11:11:25.707Z">
+<meta property="og:updated_time" content="2021-07-11T14:21:10.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DeepLearning.ai by Andrew Ng">
 <meta name="twitter:description" content="使用Word Embeding利用已经训练好的WordEmbedding数据集可以进行迁移学习">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 665 words)
+                    6 minutes read (About 915 words)
                 </span>
                 
                 
@@ -190,7 +190,14 @@
 <p>$\theta_t$是与​背景词有关的参数（背景词的词向量），$e_c$是中心词的词向量，这里通过softmax函数计算条件概率，即：在$c$为中心词的条件下，$c$附近出现的所有单词中出现$t$的概率。</p>
 <p>如果上下文窗口设置为$m$，则对上下文的单词集合求最大似然即可：<br>$$<br>\prod_{-m \leq j \leq m,\ j \neq 0} P((c+j) \mid c)<br>$$<br>对于一个长度为T的文本序列来说，似然函数应该是：<br>$$<br>\prod_{c=1}^{T}\prod_{-m \leq j \leq m,\ j \neq 0} P((c+j) \mid c)<br>$$<br>最大化似然函数，对于一个单词可以得到它的中心词向量和背景词向量，一般采用<strong>中心词向量</strong>作为词的表征向量。</p>
 <h4 id="负采样"><a href="#负采样" class="headerlink" title="负采样"></a>负采样</h4><p>给定一对词语，判断他们两个是否接近。</p>
-<p>&lt;正在更新…&gt;</p>
+<p>转化成分类问题：</p>
+<p>将规模巨大的softmax问题转化成根据1个正样本和k个随机负样本进行k+1分类的分类问题；</p>
+<p>如何选取负样本？</p>
+<p>根据频率、随机抽取、启发式抽取：根据词频的3/4次幂抽样</p>
+<h4 id="GloVe"><a href="#GloVe" class="headerlink" title="GloVe"></a>GloVe</h4><p>最优化目标：<br>$$<br>minimize \ (\theta^T_ie_j - logX_{ij})^2<br>$$<br>where, j 是中心词，i是背景词 $X_{ij}$是所有中心词$j$附近$i$出现的次数。</p>
+<p>为了避免$X_{ij}=0$导致函数值-&gt;$-\infin$的问题，需要在前面加一个权值项$f(X_{ij})$，使得当$X_{ij}=0$时整体值为0。同时我们还可以通过控制权重项来给常用词和不常用词一个合适的权重.</p>
+<p>此时$\theta_i$和$e_i$的数学意义上是对称的（不是一个背景词向量一个中心词向量了）就可以直接取平均值来作为最后词嵌入的结果。</p>
+<p>&lt;待续..&gt;</p>
 
         </div>
         
@@ -279,7 +286,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            48
+                            49
                         </p>
                     </a>
                 </div>
@@ -291,7 +298,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            9
+                            10
                         </p>
                     </a>
                 </div>
@@ -303,7 +310,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            69
+                            70
                         </p>
                     </a>
                 </div>
@@ -391,6 +398,10 @@
         <a class="is-flex" href="#负采样">
         <span class="has-mr-6">5.2</span>
         <span>负采样</span>
+        </a></li><li>
+        <a class="is-flex" href="#GloVe">
+        <span class="has-mr-6">5.3</span>
+        <span>GloVe</span>
         </a></li></ul></li></ul>
             </div>
         </div>
