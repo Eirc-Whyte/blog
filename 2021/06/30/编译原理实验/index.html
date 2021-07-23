@@ -19,7 +19,7 @@
 <meta property="og:description" content="找回了写代码最初的快乐">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-17T09:19:56.133Z">
+<meta property="og:updated_time" content="2021-07-18T08:26:54.755Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理实验">
 <meta name="twitter:description" content="找回了写代码最初的快乐">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour read (About 7628 words)
+                    an hour read (About 7625 words)
                 </span>
                 
                 
@@ -168,7 +168,7 @@
 <a id="more"></a>
 
 <h2 id="一、实验过程"><a href="#一、实验过程" class="headerlink" title="一、实验过程"></a>一、实验过程</h2><p>整体程序采用面向对象思想，主要类有LexicalAnalyzer，SyntaxAnalyzer，Interpreter（词法分析器，语法/语义分析器，代码解释器）等；分别完成三部分实验的主要功能。还有一些附属的小类，如Word，TableItem，SyntaxTreeNode等。本实验中，我们采用自上而下分析法进行分析。</p>
-<p><img src="file:///C:/Users/Eric/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg" alt="img"></p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210718162551616.png" alt="image-20210718162551616"></p>
 <h3 id="1-词法分析"><a href="#1-词法分析" class="headerlink" title="1.   词法分析"></a>1.   词法分析</h3><p>词法分析将文档流转换为词语流。具体来说，你需要过滤源程序中的空白符(空格，tab，换行等)，识别关键字、标识符、分隔符，数字以及运算符。</p>
 <p>一般来说，程序中的单词属于以上五种类型（分别是KEYWORD, OPERATOR, DELIMITER, NUMBER, IDENTIFIER），为了方便报错处理，我们添加ERROR类型。每当处理完一个单词，如果返回ERROR类型则直接抛出词法错误。</p>
 <p>为了方便分析，我将类型判断封装成了3个函数分别对关键字，运算符和分隔符进行识别；标识符和数字识别则直接写到parser函数中。</p>
@@ -231,7 +231,7 @@
 <p><strong>过程</strong>是进入时先存下当前的目标代码栈位置cur，每个过程的第一条指令都是 jmp，此时<strong>跳转地址空出</strong>，之后可能会有常量定义或者其他声明部分；整个过程结束时才把 jmp 指令的跳转地址给<strong>补上</strong>（即此时的目标代码栈顶位置），这个时候表示存下当前代码块<strong>可执行部分</strong>的起始位置。</p>
 <p>对于重名变量的处理方式：</p>
 <p>由于仅使用了一张名字表进行记录，因此这里采取将重名变量按照加入表中的时间顺序拉成一条链，并记录其所在level；需要引用到变量内容时，查找名字表时从前向后遍历，找到<strong>level**</strong>值小于等于查找时所在level<strong>**值</strong>的最后一个位置的tableItem内容（因为PL/0不允许访问层次低于当前层的变量）即可。那如何发现<strong>某过程中的重复声明</strong>问题并报错？遗憾的是，单使用当前结构的名字表，确实没办法判断是<strong>同层级的不同过程声明</strong>还是<strong>单个过程中的重复声明</strong>（见下图，显然后者应报错）。我采取了一种比较取巧的做法：在SyntaxAnalyzer中维护一个set数组，存储以层级为下标的标识符名字，如果声明一个变量时set中已经存在该变量名则报错；在退出当前层级时将该层级的set清空；因为如果是在相同层级的不同过程中声明的变量，中间必然存在一个退栈清空的过程，因而问题得以解决。</p>
-<p><img src="file:///C:/Users/Eric/AppData/Local/Temp/msohtmlclip1/01/clip_image006.jpg" alt="img"> <img src="file:///C:/Users/Eric/AppData/Local/Temp/msohtmlclip1/01/clip_image008.jpg" alt="img"></p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210718162622708.png" alt="image-20210718162622708"><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210718162637890.png" alt="image-20210718162637890"></p>
 <p>在 getFactor 中完成常量的 lit 或变量的 lod，在 getItem 中完成乘除的 opr，getExp 中完成加减和负号的 opr，getCondition 中完成逻辑运算的 opr，getSentence 中完成赋值 sto、过程调用 cal、getBranch 以及 getWhile 的跳转 jmp、jpc，getBlock 中完成程序运行跳转 jmp 和开栈空间 int等。同时需要维护调用栈层级，符号表层级等。以及过程、条件、跳转、判断函数的翻译方式比较特殊，需要特别注意。</p>
 <p>由于OPR指令需要自定义支持加减乘除取反比较等操作，因此定义了enum类型变量CALCULATE来表示这些操作；</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> CALCULATE&#123;</span><br><span class="line">  ADD=<span class="number">1</span>,SUB,MUL,DIV,NOT,ODD,EQL,NEQ,LEQ,LSS,GEQ,GTR,RD,WT</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>

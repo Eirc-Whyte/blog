@@ -19,7 +19,7 @@
 <meta property="og:description" content="只 能 多 写！ 冲了朋友们！">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-17T09:08:04.201Z">
+<meta property="og:updated_time" content="2021-07-17T14:31:47.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css training">
 <meta name="twitter:description" content="只 能 多 写！ 冲了朋友们！">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    15 minutes read (About 2222 words)
+                    31 minutes read (About 4673 words)
                 </span>
                 
                 
@@ -275,7 +275,7 @@
 <ul>
 <li>标签属性选择器（根据一个元素上<strong>是否存在</strong>某个属性或属性值来选择）</li>
 </ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[title]</span> &#123;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[href="https://example.com"]</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[title]</span> &#123;&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-attr">[href="https://example.com"]</span> &#123;&#125;</span><br><span class="line">[attr~=value]  // 至少有一个值为 value</span><br><span class="line">[attr|=value] // 表示带有以 attr 命名的属性的元素，属性值为“value”或是以“value-”为前缀（"-"为连字符，Unicode 编码为 U+002D）开头。典型的应用场景是用来匹配语言简写代码（如 zh-CN，zh-TW 可以用 zh 作为 value）。</span><br><span class="line">[attr^=value]  //  表示带有以 attr 命名的属性，且属性值是以 value 开头的元素。</span><br><span class="line">[attr$=value] // 表示带有以 attr 命名的属性，且属性值是以 value 结尾的元素。</span><br><span class="line">[attr*=value] // 表示带有以 attr 命名的属性，且属性值至少包含一个 value 值的元素。</span><br><span class="line">[attr operator value i] // 忽略大小写</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>伪类、伪元素</li>
@@ -328,10 +328,176 @@
 <p>注意有设定<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float">float</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position#absolute">position=absolute</a>的元素不会产生外边距重叠行为。</p>
 </blockquote>
 <h3 id="块级格式上下文BFC"><a href="#块级格式上下文BFC" class="headerlink" title="块级格式上下文BFC"></a>块级格式上下文BFC</h3><p>BFC是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。</p>
+<h4 id="创建BFC"><a href="#创建BFC" class="headerlink" title="创建BFC"></a>创建BFC</h4><ul>
+<li>根元素（<code>&lt;html&gt;）</code></li>
+<li>浮动元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float"><code>float</code></a> 不是 <code>none</code>）</li>
+<li>绝对定位元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position"><code>position</code></a> 为 <code>absolute</code> 或 <code>fixed</code>）</li>
+<li>行内块元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>inline-block</code>）</li>
+<li>表格单元格（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>table-cell</code>，HTML表格单元格默认为该值）</li>
+<li>表格标题（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>table-caption</code>，HTML表格标题默认为该值）</li>
+<li>匿名表格单元格元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>table、``table-row</code>、 <code>table-row-group、``table-header-group、``table-footer-group</code>（分别是HTML table、row、tbody、thead、tfoot 的默认属性）或 <code>inline-table</code>）</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow"><code>overflow</code></a> 计算值(Computed)不为 <code>visible</code> 的块元素</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 值为 <code>flow-root</code> 的元素（可以创建无副作用的BFC）</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/contain"><code>contain</code></a> 值为 <code>layout</code>、<code>content</code>或 paint 的元素</li>
+<li>弹性元素（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>flex</code> 或 <code>inline-flex</code>元素的直接子元素）</li>
+<li>网格元素（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素）</li>
+<li>多列容器（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/column-count"><code>column-count</code></a> 或 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/column-width"><code>column-width</code> (en-US)</a> 不为 <code>auto，包括 ``column-count</code> 为 <code>1</code>）</li>
+<li><code>column-span</code> 为 <code>all</code> 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（<a href="https://github.com/w3c/csswg-drafts/commit/a8634b96900279916bd6c505fda88dda71d8ec51">标准变更</a>，<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=709362">Chrome bug</a>）。</li>
+</ul>
+<p>块格式化上下文对浮动定位（参见 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float"><code>float</code></a>）与清除浮动（参见 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear"><code>clear</code></a>）都很重要。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其它BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing">Margin collapsing</a>）也只会发生在属于同一BFC的块级元素之间</p>
+<h3 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h3><p>英文字体放在英文字体前</p>
+<p>使用webFonts：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">font-face</span>&#123;</span><br><span class="line"> <span class="attribute">font-family</span>:<span class="string">'Megrim'</span>;</span><br><span class="line"> <span class="attribute">src</span>:<span class="built_in">url</span>(<span class="string">"....ttf"</span>) <span class="built_in">format</span>(<span class="string">"truetype"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h1</span>&#123;</span><br><span class="line">    <span class="attribute">font-family</span>: Megrim;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外一种添加字体的方法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">'https://fonts.googleapis.com/css?family=Rock+Salt'</span> <span class="attr">rel</span>=<span class="string">'stylesheet'</span> <span class="attr">type</span>=<span class="string">'text/css'</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>设置size的三种方式：</strong></p>
+<ul>
+<li>关键字(small, medium, large)</li>
+<li>长度(px, em)</li>
+<li>百分数</li>
+</ul>
+<p>em是相对于父级文字的大小</p>
+<p><strong>设置font-weight：</strong></p>
+<p>支持100-900的粗细，normal=400，bold=700</p>
+<p><strong>统一设置font：</strong></p>
+<p><code>font: style weight size/height family</code></p>
+<h3 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h3><p>绝对长度单位：</p>
+<table>
+<thead>
+<tr>
+<th align="left">单位</th>
+<th align="left">名称</th>
+<th align="left">等价换算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>cm</code></td>
+<td align="left">厘米</td>
+<td align="left">1cm = 96px/2.54</td>
+</tr>
+<tr>
+<td align="left"><code>mm</code></td>
+<td align="left">毫米</td>
+<td align="left">1mm = 1/10th of 1cm</td>
+</tr>
+<tr>
+<td align="left"><code>Q</code></td>
+<td align="left">四分之一毫米</td>
+<td align="left">1Q = 1/40th of 1cm</td>
+</tr>
+<tr>
+<td align="left"><code>in</code></td>
+<td align="left">英寸</td>
+<td align="left">1in = 2.54cm = 96px</td>
+</tr>
+<tr>
+<td align="left"><code>pc</code></td>
+<td align="left">十二点活字</td>
+<td align="left">1pc = 1/16th of 1in</td>
+</tr>
+<tr>
+<td align="left"><code>pt</code></td>
+<td align="left">点</td>
+<td align="left">1pt = 1/72th of 1in</td>
+</tr>
+<tr>
+<td align="left"><code>px</code></td>
+<td align="left">像素</td>
+<td align="left">1px = 1/96th of 1in</td>
+</tr>
+</tbody></table>
+<p>相对长度单位：</p>
+<table>
+<thead>
+<tr>
+<th align="left">单位</th>
+<th align="left">相对于</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>em</code></td>
+<td align="left">在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</td>
+</tr>
+<tr>
+<td align="left"><code>ex</code></td>
+<td align="left">字符“x”的高度</td>
+</tr>
+<tr>
+<td align="left"><code>ch</code></td>
+<td align="left">数字“0”的宽度</td>
+</tr>
+<tr>
+<td align="left"><code>rem</code></td>
+<td align="left">根元素的字体大小</td>
+</tr>
+<tr>
+<td align="left"><code>lh</code></td>
+<td align="left">元素的line-height</td>
+</tr>
+<tr>
+<td align="left"><code>vw</code></td>
+<td align="left">视窗宽度的1%</td>
+</tr>
+<tr>
+<td align="left"><code>vh</code></td>
+<td align="left">视窗高度的1%</td>
+</tr>
+<tr>
+<td align="left"><code>vmin</code></td>
+<td align="left">视窗较小尺寸的1%</td>
+</tr>
+<tr>
+<td align="left"><code>vmax</code></td>
+<td align="left">视图大尺寸的1%</td>
+</tr>
+</tbody></table>
+<h4 id="em与rem"><a href="#em与rem" class="headerlink" title="em与rem"></a>em与rem</h4><p>em和百分比类似，且可以被继承，通常用于文字的缩放</p>
+<p>rem是css3新增的相对单位，相对于根元素的字体大小</p>
+<h4 id="原始尺寸"><a href="#原始尺寸" class="headerlink" title="原始尺寸"></a>原始尺寸</h4><p>在受CSS设置影响之前，HTML元素有其原始的尺寸。一个直观的例子就是图像。一副图像的长和宽由这个图像文件自身确定。这个尺寸就是固有尺寸。</p>
+<h4 id="min-和max-尺寸"><a href="#min-和max-尺寸" class="headerlink" title="min-和max-尺寸"></a>min-和max-尺寸</h4><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/max-width"><code>max-width</code></a>的常见用法为，在没有足够空间以原有宽度展示图像时，让图像缩小，同时确保它们不会比这一宽度大。如果你使用了<code>max-width: 100%</code>，那么图像可以变得比原始尺寸更小，但是不会大于原始尺寸的100%。</p>
+<p>例子：第一次使用，属性值已设为<code>width: 100%</code>，位于比图片大的容器里，因此图片拉伸到了与容器相同的宽度；第二次的属性值则设为<code>max-width: 100%</code>，因此它并没有拉伸到充满容器；第三个盒子再一次包含了相同的图片，同时设定了<code>max-width: 100%</code>属性，这时你能看到它是怎样缩小来和盒子大小相适应的。</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210717211548506.png" alt="image-20210717211548506"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.minibox</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.width</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.max</span> &#123;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"star.png"</span> <span class="attr">alt</span>=<span class="string">"star"</span> <span class="attr">class</span>=<span class="string">"width"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"star.png"</span> <span class="attr">alt</span>=<span class="string">"star"</span> <span class="attr">class</span>=<span class="string">"max"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"minibox"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"star.png"</span> <span class="attr">alt</span>=<span class="string">"star"</span> <span class="attr">class</span>=<span class="string">"max"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个技术是用来让图片<strong>可响应</strong>的，所以在更小的设备上浏览的时候，它们会合适地缩放。你无论怎样都不应该用这个技术先载入大原始尺寸的图片，再对它们在浏览器中进行缩放。</p>
+<h3 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object-fit: cover/fill/contain</span><br></pre></td></tr></table></figure>
+
+<p>分别代表：按小边充满/拉伸充满/按长边充满</p>
+<h3 id="通用表单"><a href="#通用表单" class="headerlink" title="通用表单"></a>通用表单</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span>,</span><br><span class="line"><span class="selector-tag">input</span>,</span><br><span class="line"><span class="selector-tag">select</span>,</span><br><span class="line"><span class="selector-tag">textarea</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: inherit;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>; <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">textarea</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>防止跨浏览器的form元素对于不同的挂件使用不同的盒子约束规则；</p>
+<p>在<code>&lt;textarea&gt;</code>上设置<code>overflow: auto</code> 以避免IE在不需要滚动条的时候显示滚动条；</p>
+<h3 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h3><p><strong>自定义属性</strong>（有时候也被称作<strong>CSS变量</strong>或者<strong>级联变量</strong>）是由CSS作者定义的，它包含的值可以在整个文档中重复使用。由自定义属性标记设定值（比如： <strong><code>--main-color: black;</code></strong>），由<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/var()">var() </a>函数来获取值（比如： <code>color: var(--main-color);</code>）自定义属性受级联的约束，并从其父级继承其值。</p>
+<p>通常的最佳实践是定义在根伪类 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/:root"><code>:root</code></a> 下，这样就可以在HTML文档的任何地方访问到它了：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attribute">--main-bg-color</span>: brown;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如前所述，使用一个局部变量时用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/var()"><code>var()</code></a> 函数包裹以表示一个合法的属性值：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">element</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">var</span>(--main-bg-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中var可以提供第二个参数（备用值）且可以嵌套</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.three</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">var</span>(--my-var, var(--my-background, pink)); <span class="comment">/* pink if --my-var and --my-background are not defined */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><p>终于到布局啦</p>
+<h3 id="正常布局流-normal-flow"><a href="#正常布局流-normal-flow" class="headerlink" title="正常布局流(normal flow)"></a>正常布局流(normal flow)</h3><p>是指在不对页面进行任何布局控制时，浏览器默认的HTML布局方式。</p>
+<p>出现在另一个元素下面的元素被描述为<strong>块</strong>元素，与出现在另一个元素旁边的<strong>内联元素</strong>不同，内联元素就像段落中的单个单词一样。</p>
+<blockquote>
+<p>注意：块元素内容的布局方向被描述为<strong>块方向</strong>。块方向在英语等具有水平<strong>书写模式</strong>(<code>writing mode</code>)的语言中垂直运行。它可以在任何垂直书写模式的语言中水平运行。对应的<strong>内联方向</strong>是内联内容（如句子）的运行方向。</p>
+</blockquote>
+<p>下列布局技术会覆盖默认的布局行为：</p>
+<ul>
+<li><strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a></strong> 属性 — 标准的value,比如<code>block</code>, <code>inline</code> 或者 <code>inline-block</code> 元素在正常布局流中的表现形式 (见 <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Box_model#Types_of_CSS_boxes">Types of CSS boxes</a>). 接着是全新的布局方式，通过设置<code>display</code>的值, 比如 <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids">CSS Grid</a> 和 <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox">Flexbox</a>.</li>
+<li><strong>浮动</strong>——应用 <strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float"><code>float</code></a></strong> 值，诸如 <code>left</code> 能够让块级元素互相并排成一行，而不是一个堆叠在另一个上面。</li>
+<li><strong><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/position"><code>position</code></a></strong> 属性 — 允许你精准设置盒子中的盒子的位置，正常布局流中，默认为 <code>static</code> ，使用其它值会引起元素不同的布局方式，例如将元素固定到浏览器视口的左上角。</li>
+<li><strong>表格布局</strong>— 表格的布局方式可以用在非表格内容上，可以使用<code>display: table</code>和相关属性在非表元素上使用。</li>
+<li><strong>多列布局</strong>— 这个 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Columns">Multi-column layout</a> 属性 可以让块按列布局，比如报纸的内容就是一列一列排布的。</li>
+</ul>
 <h2 id="布局练习："><a href="#布局练习：" class="headerlink" title="布局练习："></a>布局练习：</h2><p><a href="https://github.com/byr-gdp/40LayoutExercise">40LayoutExercise</a></p>
 <h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><h3 id="负值margin："><a href="#负值margin：" class="headerlink" title="负值margin："></a>负值margin：</h3><p><img src="https://pic4.zhimg.com/v2-a7d813afe7ab2c6c4233146609d00dfa_1440w.jpg?source=172ae18b" alt="浅谈margin负值"></p>
 <p>margin参考线的定义如上，显然负值时相当于<strong>向参考线的反方向移动</strong></p>
-<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><p>flex的strench属性不行？</p>
 
         </div>
         
@@ -548,23 +714,63 @@
         <a class="is-flex" href="#块级格式上下文BFC">
         <span class="has-mr-6">1.5</span>
         <span>块级格式上下文BFC</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#创建BFC">
+        <span class="has-mr-6">1.5.1</span>
+        <span>创建BFC</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#文字">
+        <span class="has-mr-6">1.6</span>
+        <span>文字</span>
+        </a></li><li>
+        <a class="is-flex" href="#长度">
+        <span class="has-mr-6">1.7</span>
+        <span>长度</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#em与rem">
+        <span class="has-mr-6">1.7.1</span>
+        <span>em与rem</span>
+        </a></li><li>
+        <a class="is-flex" href="#原始尺寸">
+        <span class="has-mr-6">1.7.2</span>
+        <span>原始尺寸</span>
+        </a></li><li>
+        <a class="is-flex" href="#min-和max-尺寸">
+        <span class="has-mr-6">1.7.3</span>
+        <span>min-和max-尺寸</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#大小">
+        <span class="has-mr-6">1.8</span>
+        <span>大小</span>
+        </a></li><li>
+        <a class="is-flex" href="#通用表单">
+        <span class="has-mr-6">1.9</span>
+        <span>通用表单</span>
+        </a></li><li>
+        <a class="is-flex" href="#自定义属性">
+        <span class="has-mr-6">1.10</span>
+        <span>自定义属性</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#布局">
+        <span class="has-mr-6">2</span>
+        <span>布局</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#正常布局流-normal-flow">
+        <span class="has-mr-6">2.1</span>
+        <span>正常布局流(normal flow)</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#布局练习：">
-        <span class="has-mr-6">2</span>
+        <span class="has-mr-6">3</span>
         <span>布局练习：</span>
         </a></li><li>
         <a class="is-flex" href="#T1">
-        <span class="has-mr-6">3</span>
+        <span class="has-mr-6">4</span>
         <span>T1</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#负值margin：">
-        <span class="has-mr-6">3.1</span>
+        <span class="has-mr-6">4.1</span>
         <span>负值margin：</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#flex">
-        <span class="has-mr-6">3.1.1</span>
-        <span>flex</span>
-        </a></li></ul></li></ul></li></ul>
+        </a></li></ul></li></ul>
             </div>
         </div>
     </div>
