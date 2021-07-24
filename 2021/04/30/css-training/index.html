@@ -19,7 +19,7 @@
 <meta property="og:description" content="只 能 多 写！ 冲了朋友们！">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-23T15:21:11.843Z">
+<meta property="og:updated_time" content="2021-07-24T03:57:58.358Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css training">
 <meta name="twitter:description" content="只 能 多 写！ 冲了朋友们！">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    31 minutes read (About 4673 words)
+                    37 minutes read (About 5479 words)
                 </span>
                 
                 
@@ -495,8 +495,47 @@
 <li><strong>表格布局</strong>— 表格的布局方式可以用在非表格内容上，可以使用<code>display: table</code>和相关属性在非表元素上使用。</li>
 <li><strong>多列布局</strong>— 这个 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Columns">Multi-column layout</a> 属性 可以让块按列布局，比如报纸的内容就是一列一列排布的。</li>
 </ul>
+<h3 id="弹性盒子-flex"><a href="#弹性盒子-flex" class="headerlink" title="弹性盒子 flex"></a>弹性盒子 flex</h3><p>使用场景：<code>float</code>和<code>position</code>难以完成的任务，例如：</p>
+<ul>
+<li>父内容里垂直居中一个块内容</li>
+<li>无论剩多少可用宽度，容器中所有子项占用等量的可用宽度/高度</li>
+<li>无论内容有多少，让多列布局中所有列采用相同的高度</li>
+</ul>
+<p><strong>设置</strong>：</p>
+<p><code>display:flex/inline-flex</code></p>
+<p>默认子项宽度均分，高度相等。</p>
+<p>主轴：沿<strong>flex元素</strong>放置方向延申的轴<code>main start</code>/<code>main end</code></p>
+<p>交叉轴：垂直于主轴的轴<code>cross start</code>/<code>cross end</code></p>
+<p><code>flex-direction: row/column</code> 默认为<code>row</code>，行布局/列布局</p>
+<p><code>flex-wrap: wrap</code> 可以自动换行以防止太多子代超出容器</p>
+<p>上两项可以合并成<code>flex-flow: row wrap</code> <strong>用于容器</strong></p>
+<p>对于容器中的每个元素可以设置<code>flex</code>属性来控制宽度</p>
+<p><code>flex: 200px</code>：和<code>wrap</code>一起设置可以保证最小宽度</p>
+<p><code>flex: 2</code> 无单位，按比例划分</p>
+<p><code>flex: 2 200px</code> 每个flex项<strong>先给出</strong>200px的可用空间，<strong>剩余空间</strong>按比例划分</p>
+<p>事实上，<code>flex</code>属性是三个不同全写属性的缩写形式：</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex"><code>flex</code></a> 是一个可以指定最多三个不同值的缩写属性：</p>
+<ul>
+<li>第一个就是上面所讨论过的无单位比例。用于分配<strong>剩余空间</strong>，可以单独指定全写 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-grow"><code>flex-grow</code></a> 属性的值。</li>
+<li>第二个无单位比例 — <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-shrink"><code>flex-shrink</code></a> — 一般用于<strong>溢出容器</strong>的 flex 项。这指定了<strong>从每个 flex 项中取出多少溢出量</strong>，以阻止它们溢出它们的容器。 </li>
+<li>第三个是上面讨论的<strong>最小值</strong>。可以单独指定全写 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-basis"><code>flex-basis</code></a> 属性的值。</li>
+</ul>
+<p><strong>水平和垂直对齐</strong>：</p>
+<p>垂直对齐（交叉轴）：<code>align-items: stretch/center/start/end</code></p>
+<p><code>align-self</code> 可以在子元素中单独控制本元素的行为</p>
+<p>水平对齐（主轴）：<code>justify-content: center/start/end/space-between/space-around/space-evenly</code> 区别：<code>between</code> 是左右两端对齐，即左右两侧项目都紧贴容器，且元素之间间距相等；<code>around</code> 是项目之间间距为左右两侧项目到容器间距的<strong>2倍</strong>，比较特别的布局，日常使用不太多；<code>evenly</code> 是项目之间间距与项目与容器间距相等；</p>
+<p><strong>排序</strong>：</p>
+<p>弹性盒子也有可以改变 flex 项的布局位置的功能，而不会影响到源顺序（即 dom 树里元素的顺序）。这也是传统布局方式很难做到的一点。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>所有 flex 项默认的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/order"><code>order</code></a> 值是 0。</li>
+<li>order 值大的 flex 项比 order 值小的在显示顺序中更靠后。</li>
+<li>相同 order 值的 flex 项按原顺序显示。所以假如你有四个元素，其 order 值分别是2，1，1和0，那么它们的显示顺序就分别是第四，第二，第三，和第一。</li>
+</ul>
 <h2 id="布局练习："><a href="#布局练习：" class="headerlink" title="布局练习："></a>布局练习：</h2><p><a href="https://github.com/byr-gdp/40LayoutExercise">40LayoutExercise</a></p>
-<h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><h3 id="负值margin："><a href="#负值margin：" class="headerlink" title="负值margin："></a>负值margin：</h3><p><img src="https://pic4.zhimg.com/v2-a7d813afe7ab2c6c4233146609d00dfa_1440w.jpg?source=172ae18b" alt="浅谈margin负值"></p>
+<h4 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h4><p>负值margin：</p>
+<p><img src="https://pic4.zhimg.com/v2-a7d813afe7ab2c6c4233146609d00dfa_1440w.jpg?source=172ae18b" alt="浅谈margin负值"></p>
 <p>margin参考线的定义如上，显然负值时相当于<strong>向参考线的反方向移动</strong></p>
 
         </div>
@@ -598,7 +637,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            9
+                            10
                         </p>
                     </a>
                 </div>
@@ -758,19 +797,19 @@
         <a class="is-flex" href="#正常布局流-normal-flow">
         <span class="has-mr-6">2.1</span>
         <span>正常布局流(normal flow)</span>
+        </a></li><li>
+        <a class="is-flex" href="#弹性盒子-flex">
+        <span class="has-mr-6">2.2</span>
+        <span>弹性盒子 flex</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#布局练习：">
         <span class="has-mr-6">3</span>
         <span>布局练习：</span>
-        </a></li><li>
+        </a><ul class="menu-list"><ul class="menu-list"><li>
         <a class="is-flex" href="#T1">
-        <span class="has-mr-6">4</span>
+        <span class="has-mr-6">3.1.1</span>
         <span>T1</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#负值margin：">
-        <span class="has-mr-6">4.1</span>
-        <span>负值margin：</span>
-        </a></li></ul></li></ul>
+        </a></li></ul></ul></li></ul>
             </div>
         </div>
     </div>

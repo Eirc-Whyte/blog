@@ -10,16 +10,19 @@
 <title>Effective Cpp 学习笔记 - Eric&#39;s Blog</title>
 
 
-    <meta name="keywords" content="c++">
+    <meta name="description" content="学习程序语言根本大法是一回事，学习如何以某种语言设计并实现高效程序则是另一回事。这种说法对C++尤其适用。">
+<meta name="keywords" content="c++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Effective Cpp 学习笔记">
 <meta property="og:url" content="http://yoursite.com/2021/07/24/c-学习笔记/index.html">
 <meta property="og:site_name" content="Eric&#39;s Blog">
+<meta property="og:description" content="学习程序语言根本大法是一回事，学习如何以某种语言设计并实现高效程序则是另一回事。这种说法对C++尤其适用。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-23T15:19:45.485Z">
+<meta property="og:updated_time" content="2021-07-23T16:40:57.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective Cpp 学习笔记">
+<meta name="twitter:description" content="学习程序语言根本大法是一回事，学习如何以某种语言设计并实现高效程序则是另一回事。这种说法对C++尤其适用。">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -148,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 0 words)
+                    4 minutes read (About 547 words)
                 </span>
                 
                 
@@ -161,7 +164,35 @@
             
         </h1>
         <div class="content">
-            
+            <blockquote>
+<p>学习程序语言根本大法是一回事，学习如何以某种语言设计并实现高效程序则是另一回事。这种说法对C++尤其适用。</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="Chapter-0-术语"><a href="#Chapter-0-术语" class="headerlink" title="Chapter 0 术语"></a>Chapter 0 术语</h2><p><strong>声明式</strong>：告诉编译器某个东西的名称和类型，但略去细节。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> x; <span class="comment">// 对象声明</span></span><br><span class="line"><span class="built_in">std</span>::<span class="keyword">size_t</span> numDigits(<span class="keyword">int</span> number); <span class="comment">// 函数声明</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Widget</span>;</span> <span class="comment">// 类声明</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GraphNode</span>;</span> <span class="comment">// 模板声明</span></span><br></pre></td></tr></table></figure>
+
+<p>每个函数的声明揭示其签名式(signature)，也是<strong>参数</strong>和<strong>返回类型</strong></p>
+<p><strong>定义式</strong>：提供给编译器声明式遗漏的细节；</p>
+<ul>
+<li>for object：编译器为此对象分配内存的位置；</li>
+<li>for function | template：提供代码本体；</li>
+<li>for class | template：列出成员；</li>
+</ul>
+<p>初始化：“给予对象初值”的过程。关键字<code>explicit</code>可以被用在自定义类型的构造函数前，可以阻止构造函数被用来执行隐式类型转换（但仍可进行显示类型转换）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class B&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">explicit</span> <span class="title">B</span><span class="params">(<span class="keyword">int</span> x = <span class="number">0</span>, <span class="keyword">bool</span> b = <span class="literal">true</span>)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// --------</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(B object)</span></span>;</span><br><span class="line"></span><br><span class="line">doSomething(<span class="number">28</span>); <span class="comment">// ❌ 不可以进行隐式类型转换</span></span><br><span class="line">doSomething(B(<span class="number">28</span>)); <span class="comment">// ✔ 可以显式类型转换</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Chapter-1-View-C-as-a-federation-of-languages"><a href="#Chapter-1-View-C-as-a-federation-of-languages" class="headerlink" title="Chapter 1 View C++ as a federation of languages"></a>Chapter 1 View C++ as a federation of languages</h2><p>一开始，c++只是c加上一些面向对象的特征，所以最初叫”C with Classes”</p>
+<p>今天的C++已经是个多重泛型编程语言<em>(multiparadigm programming language)</em></p>
+<p>最简单的方法是将C++视为一个由相关语言组成的<strong><em>Federation</em>而非单一语言</strong>，在每个次语言中，各种守则都倾向于简单、直观易懂。</p>
+<p>一共四个：</p>
+<ol>
+<li><strong>C</strong>：说到底C++仍是以C为基础的语言，但也反映出C语言的局限性：没有模板、异常、重载等，<strong>面向过程</strong>。</li>
+<li><strong>Object-Oriented C++</strong>：这部分是C with Class追求的。引入了类的概念、封装、继承、多态、虚函数（动态绑定）等。</li>
+<li><strong>Template C++</strong>：这部分是C++的泛型编程部分。由于templates威力强大，他们带来崭新的编程范型“模板元编程”</li>
+<li><strong>STL</strong>：</li>
+</ol>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -254,7 +285,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            9
+                            10
                         </p>
                     </a>
                 </div>
@@ -319,6 +350,25 @@
 </div>
     
         
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#Chapter-0-术语">
+        <span class="has-mr-6">1</span>
+        <span>Chapter 0 术语</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-1-View-C-as-a-federation-of-languages">
+        <span class="has-mr-6">2</span>
+        <span>Chapter 1 View C++ as a federation of languages</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
 
     
     
