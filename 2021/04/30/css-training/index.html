@@ -19,7 +19,7 @@
 <meta property="og:description" content="只 能 多 写！ 冲了朋友们！">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-24T14:06:19.346Z">
+<meta property="og:updated_time" content="2021-07-25T06:53:54.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Eric&#39;s Blog">
 <meta name="twitter:description" content="只 能 多 写！ 冲了朋友们！">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour read (About 6688 words)
+                    an hour read (About 6903 words)
                 </span>
                 
                 
@@ -544,25 +544,12 @@
 <p>可以使用fr调整每列的比例</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">2</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>使用<code>grid-column-gap</code>调整列间隙</p>
+<h4 id="间隙"><a href="#间隙" class="headerlink" title="间隙"></a>间隙</h4><p>使用<code>grid-column-gap</code>调整列间隙</p>
 <p>使用<code>grid-row-gap</code>调整行间隙</p>
 <p>使用<code>grid-gap</code>同时设定二者</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">2</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">    <span class="attribute">grid-gap</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>可以使用<code>repeat</code>重复构建行和列：<code>repeat(repeatNumber,value)</code></li>
-</ul>
-<p><code>repeatNumber</code>可以使用<code>auto-fill</code>和<code>auto-fit</code>关键词来代替固定的重复次数</p>
-<ul>
-<li><p>可以使用<code>minmax()</code> 函数设置最小值，例如<code>minmax(100, auto)</code>代表尺寸至少为100像素，并且如果内容尺寸大于100像素则会根据内容自动调整</p>
-</li>
-<li><p>可以使用<code>grid-template-area(s)</code> 设置网格区域</p>
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">grid-template-areas</span>: </span><br><span class="line">            "<span class="selector-tag">a</span> <span class="selector-tag">a</span> ."</span><br><span class="line">            "<span class="selector-tag">a</span> <span class="selector-tag">a</span> ."</span><br><span class="line">            ". <span class="selector-tag">b</span> <span class="selector-tag">c</span>";</span><br></pre></td></tr></table></figure>
-
-<p>​    <img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210724173716918.png" alt="image-20210724173716918" style="zoom:33%;" /></p>
-<ul>
+<h4 id="显式网格"><a href="#显式网格" class="headerlink" title="显式网格"></a>显式网格</h4><ul>
 <li>使用<code>grid-row</code>/<code>grid-column</code>根据网格线设置区域</li>
 </ul>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">100px</span> <span class="number">100px</span> <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">gap</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">  <span class="attribute">grid-column</span>: <span class="number">1</span>/<span class="number">3</span>;</span><br><span class="line">  <span class="attribute">grid-row</span>: <span class="number">1</span>/<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item2</span> &#123;</span><br><span class="line">  <span class="attribute">grid-row</span>: <span class="number">2</span>/<span class="number">4</span>;</span><br><span class="line">  <span class="attribute">grid-column</span>: <span class="number">2</span>/<span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -571,8 +558,27 @@
 
 <p><code>grid-row: span 2/ 3</code> 距离3号基线向上两条线</p>
 <ul>
-<li>隐式网格：溢出时的网格；可以通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-rows"><code>grid-auto-rows</code></a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-columns"><code>grid-auto-columns</code></a>属性手动设定隐式网格的大小</li>
+<li>可以使用<code>repeat</code>重复构建行和列：<code>repeat(repeatNumber,value)</code></li>
 </ul>
+<p><code>repeatNumber</code>可以使用<code>auto-fill</code>和<code>auto-fit</code>关键词来代替固定的重复次数</p>
+<p><code>auto-fill</code> 关键词<strong>直接创</strong>建若干个大小为<code>value</code>的轨道，直至填满网格</p>
+<p><code>auto-fit</code> 关键词<strong>按需创建</strong>若干个大小为<code>value</code>的轨道</p>
+<ul>
+<li>可以使用<code>minmax()</code> 函数设置最小值，例如<code>minmax(100, auto)</code>代表尺寸至少为100像素，并且如果内容尺寸大于100像素则会根据内容自动调整</li>
+<li>还可以使用<code>grid-template-area(s)</code> 设置网格区域</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">grid-template-areas</span>: </span><br><span class="line">            "<span class="selector-tag">a</span> <span class="selector-tag">a</span> ."</span><br><span class="line">            "<span class="selector-tag">a</span> <span class="selector-tag">a</span> ."</span><br><span class="line">            ". <span class="selector-tag">b</span> <span class="selector-tag">c</span>";</span><br></pre></td></tr></table></figure>
+
+<p>​    <img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210724173716918.png" alt="image-20210724173716918" style="zoom:33%;" /></p>
+<h4 id="隐式网格"><a href="#隐式网格" class="headerlink" title="隐式网格"></a>隐式网格</h4><p>溢出时的网格；可以通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-rows"><code>grid-auto-rows</code></a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-columns"><code>grid-auto-columns</code></a>属性手动设定隐式网格的大小</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210725144729166.png" alt="image-20210725144729166"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(4, 1fr);</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">100px</span> <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">800px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">  <span class="attribute">grid-column-start</span>: -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span><span class="selector-pseudo">:nth-child(2)</span> &#123;</span><br><span class="line">  <span class="attribute">grid-row-start</span>: <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>隐式轨道不只是可以添加到显式网格的末尾，也有可能发生在显式网格开始。</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210725144900569.png" alt="image-20210725144900569"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(4, 1fr);</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">100px</span> <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">grid-auto-columns</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">grid-auto-rows</span>: <span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">800px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">  <span class="attribute">grid-row</span>: span <span class="number">2</span> / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item</span><span class="selector-pseudo">:nth-child(2)</span> &#123;</span><br><span class="line">  <span class="attribute">grid-column</span>: span <span class="number">2</span> / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>grid-auto-rows</code>和<code>grid-auto-columns</code>可以自动地调整单元格大小，因此甚至不需要定义显式网格。</p>
 <h3 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h3><blockquote>
 <p>最初，引入 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float"><code>float</code></a> 属性是为了能让 web 开发人员实现简单的布局，包括在一列文本中浮动的图像，文字环绕在它的左边或右边。你可能在报纸版面上看到过。浮动曾被用来实现整个网站页面的布局，它使信息列得以横向排列（默认的设定则是按照这些列在源代码中出现的顺序纵向排列）。目前出现了更新更好的页面布局技术，所以使用浮动来进行页面布局应被看作<a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Legacy_Layout_Methods">传统的布局方法。</a></p>
 </blockquote>
@@ -888,7 +894,19 @@
         <a class="is-flex" href="#网格布局">
         <span class="has-mr-6">2.3</span>
         <span>网格布局</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#间隙">
+        <span class="has-mr-6">2.3.1</span>
+        <span>间隙</span>
         </a></li><li>
+        <a class="is-flex" href="#显式网格">
+        <span class="has-mr-6">2.3.2</span>
+        <span>显式网格</span>
+        </a></li><li>
+        <a class="is-flex" href="#隐式网格">
+        <span class="has-mr-6">2.3.3</span>
+        <span>隐式网格</span>
+        </a></li></ul></li><li>
         <a class="is-flex" href="#浮动">
         <span class="has-mr-6">2.4</span>
         <span>浮动</span>
