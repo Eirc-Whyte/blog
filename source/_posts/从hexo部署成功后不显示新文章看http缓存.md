@@ -4,7 +4,7 @@ date: 2020-03-30 17:42:04
 tags:
 - http缓存
 categories:
-- 前端学习
+- 工程开发
 thumbnail: /gallery/HTTPCachtType.png
 ---
 

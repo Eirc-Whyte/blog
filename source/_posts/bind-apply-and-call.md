@@ -3,8 +3,9 @@ title: 'bind,apply and call'
 date: 2021-03-09 19:54:24
 tags: 
 - Javascript
+- ES6
 categories:
-- 前端学习
+- 工程开发
 ---
 
 Apply与Call的用途几乎相同，用于明确this指向以及方法借用等场景；Bind用来指定this指向或Currying functions。

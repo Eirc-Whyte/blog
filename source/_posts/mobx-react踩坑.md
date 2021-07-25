@@ -4,8 +4,9 @@ date: 2020-02-24 20:13:34
 tags: 
 - react
 - mobx
+- 前端
 categories: 
-- 前端学习
+- 工程开发
 thumbnail: /gallery/image-20200229214823165.png
 ---
 
