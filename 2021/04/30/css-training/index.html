@@ -7,21 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>css training - Eric&#39;s Blog</title>
+<title>Eric&#39;s Blog</title>
 
 
     <meta name="description" content="只 能 多 写！ 冲了朋友们！">
 <meta name="keywords" content="前端,css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css training">
+<meta property="og:title" content="Eric&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2021/04/30/css-training/index.html">
 <meta property="og:site_name" content="Eric&#39;s Blog">
 <meta property="og:description" content="只 能 多 写！ 冲了朋友们！">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-24T03:57:58.358Z">
+<meta property="og:updated_time" content="2021-07-24T14:06:19.346Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="css training">
+<meta name="twitter:title" content="Eric&#39;s Blog">
 <meta name="twitter:description" content="只 能 多 写！ 冲了朋友们！">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
@@ -89,7 +89,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/thumbnail.svg" alt="css training" height="28">
+                <img src="/images/thumbnail.svg" alt="" height="28">
             
             </a>
         </div>
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    37 minutes read (About 5479 words)
+                    an hour read (About 6688 words)
                 </span>
                 
                 
@@ -160,7 +160,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                css training
+                
             
         </h1>
         <div class="content">
@@ -520,19 +520,94 @@
 <li>第二个无单位比例 — <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-shrink"><code>flex-shrink</code></a> — 一般用于<strong>溢出容器</strong>的 flex 项。这指定了<strong>从每个 flex 项中取出多少溢出量</strong>，以阻止它们溢出它们的容器。 </li>
 <li>第三个是上面讨论的<strong>最小值</strong>。可以单独指定全写 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-basis"><code>flex-basis</code></a> 属性的值。</li>
 </ul>
-<p><strong>水平和垂直对齐</strong>：</p>
-<p>垂直对齐（交叉轴）：<code>align-items: stretch/center/start/end</code></p>
+<h4 id="水平和垂直对齐"><a href="#水平和垂直对齐" class="headerlink" title="水平和垂直对齐"></a>水平和垂直对齐</h4><p>垂直对齐（交叉轴）：<code>align-items: stretch/center/start/end</code></p>
 <p><code>align-self</code> 可以在子元素中单独控制本元素的行为</p>
 <p>水平对齐（主轴）：<code>justify-content: center/start/end/space-between/space-around/space-evenly</code> 区别：<code>between</code> 是左右两端对齐，即左右两侧项目都紧贴容器，且元素之间间距相等；<code>around</code> 是项目之间间距为左右两侧项目到容器间距的<strong>2倍</strong>，比较特别的布局，日常使用不太多；<code>evenly</code> 是项目之间间距与项目与容器间距相等；</p>
-<p><strong>排序</strong>：</p>
-<p>弹性盒子也有可以改变 flex 项的布局位置的功能，而不会影响到源顺序（即 dom 树里元素的顺序）。这也是传统布局方式很难做到的一点。</p>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><p>弹性盒子也有可以改变 flex 项的布局位置的功能，而不会影响到源顺序（即 dom 树里元素的顺序）。这也是传统布局方式很难做到的一点。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>所有 flex 项默认的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/order"><code>order</code></a> 值是 0。</li>
 <li>order 值大的 flex 项比 order 值小的在显示顺序中更靠后。</li>
-<li>相同 order 值的 flex 项按原顺序显示。所以假如你有四个元素，其 order 值分别是2，1，1和0，那么它们的显示顺序就分别是第四，第二，第三，和第一。</li>
+<li>相同 order 值的 flex 项按原顺序显示。所以假如你有四个元素，其 order 值分别是2，1，1和0，那么它们的显示顺序就分别是第四，第二，第三，和第一</li>
 </ul>
+<h3 id="网格布局"><a href="#网格布局" class="headerlink" title="网格布局"></a>网格布局</h3><blockquote>
+<p>网格是由一系列水平及垂直的线构成的以一种布局模式。根据网格，我们能够将设计元素进行排列，帮助我们设计一系列具有固定位置以及宽度的元素的页面，使我们的网站页面更加统一。</p>
+<p>一个网格通常具有许多的<strong>列（column）</strong>与<strong>行（row）</strong>，以及行与行、列与列之间的间隙，这个间隙一般被称为<strong>沟槽（gutter）</strong>。</p>
+</blockquote>
+<p><strong>设置</strong>：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样只创建了一个只有一列的网格为了让我们的容器看起来更像一个网格，我们要给刚定义的网格加一些列。那就让我们加三个宽度为<code>200px</code>的列。当然，这里可以用任何长度单位，包括百分比。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">200px</span> <span class="number">200px</span> <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以使用fr调整每列的比例</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">2</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>grid-column-gap</code>调整列间隙</p>
+<p>使用<code>grid-row-gap</code>调整行间隙</p>
+<p>使用<code>grid-gap</code>同时设定二者</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">2</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">    <span class="attribute">grid-gap</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以使用<code>repeat</code>重复构建行和列：<code>repeat(repeatNumber,value)</code></li>
+</ul>
+<p><code>repeatNumber</code>可以使用<code>auto-fill</code>和<code>auto-fit</code>关键词来代替固定的重复次数</p>
+<ul>
+<li><p>可以使用<code>minmax()</code> 函数设置最小值，例如<code>minmax(100, auto)</code>代表尺寸至少为100像素，并且如果内容尺寸大于100像素则会根据内容自动调整</p>
+</li>
+<li><p>可以使用<code>grid-template-area(s)</code> 设置网格区域</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">grid-template-areas</span>: </span><br><span class="line">            "<span class="selector-tag">a</span> <span class="selector-tag">a</span> ."</span><br><span class="line">            "<span class="selector-tag">a</span> <span class="selector-tag">a</span> ."</span><br><span class="line">            ". <span class="selector-tag">b</span> <span class="selector-tag">c</span>";</span><br></pre></td></tr></table></figure>
+
+<p>​    <img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210724173716918.png" alt="image-20210724173716918" style="zoom:33%;" /></p>
+<ul>
+<li>使用<code>grid-row</code>/<code>grid-column</code>根据网格线设置区域</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">100px</span> <span class="number">100px</span> <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">gap</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">  <span class="attribute">grid-column</span>: <span class="number">1</span>/<span class="number">3</span>;</span><br><span class="line">  <span class="attribute">grid-row</span>: <span class="number">1</span>/<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item2</span> &#123;</span><br><span class="line">  <span class="attribute">grid-row</span>: <span class="number">2</span>/<span class="number">4</span>;</span><br><span class="line">  <span class="attribute">grid-column</span>: <span class="number">2</span>/<span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210724173818355.png" alt="image-20210724173818355" style="zoom:33%;" />
+
+<p><code>grid-row: span 2/ 3</code> 距离3号基线向上两条线</p>
+<ul>
+<li>隐式网格：溢出时的网格；可以通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-rows"><code>grid-auto-rows</code></a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-columns"><code>grid-auto-columns</code></a>属性手动设定隐式网格的大小</li>
+</ul>
+<h3 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h3><blockquote>
+<p>最初，引入 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float"><code>float</code></a> 属性是为了能让 web 开发人员实现简单的布局，包括在一列文本中浮动的图像，文字环绕在它的左边或右边。你可能在报纸版面上看到过。浮动曾被用来实现整个网站页面的布局，它使信息列得以横向排列（默认的设定则是按照这些列在源代码中出现的顺序纵向排列）。目前出现了更新更好的页面布局技术，所以使用浮动来进行页面布局应被看作<a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/CSS_layout/Legacy_Layout_Methods">传统的布局方法。</a></p>
+</blockquote>
+<p>用浮动做的首字下沉：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::first-line</span> &#123;</span><br><span class="line">  <span class="attribute">text-transform</span>: uppercase;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">::first-letter</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">3em</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">  <span class="attribute">background</span>: red;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2px</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">4px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210724205115574.png" alt="image-20210724205115574"></p>
+<h4 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h4><p>对于以下的html：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>2 column layout example<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>First column<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span> ...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Second column<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>...<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们给出对应的两列布局css</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">900px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type(1)</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">48%</span>;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type(2)</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">48%</span>;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210724205612586.png" alt="image-20210724205612586"></p>
+<p>增加一列，css改为：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">90%</span>;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">900px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type(1)</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">36%</span>;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type(2)</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">30%</span>;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">4%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:nth-of-type(3)</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">26%</span>;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h4><p>目的：解决所有在浮动下面的自身不浮动的内容都将围绕浮动元素进行包装的问题</p>
+<p>使用clear属性：它主要意味着”此处停止浮动”——这个元素和源码中后面的元素将不浮动，除非您稍后将一个新的<code>float</code>声明应用到此后的另一个元素。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">footer</span> &#123;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear"><code>clear</code></a> 可以取三个值：</p>
+<ul>
+<li><code>left</code>：停止任何活动的左浮动</li>
+<li><code>right</code>：停止任何活动的右浮动</li>
+<li><code>both</code>：停止任何活动的左右浮动</li>
+</ul>
+<p>浮动的元素存在于正常的文档布局流之外，在某些方面的行为相当奇怪：</p>
+<ul>
+<li>首先，他们在父元素中所占的面积的有效高度为0 </li>
+<li>其次，非浮动元素的外边距不能用于它们和浮动元素之间来创建空间</li>
+</ul>
+<p>问题：给一个浮动元素与正常文档流中间加上margin时不起作用</p>
+<p>解决方法：添加一个新的<code>clearfix</code>的<code>div</code> ，加上<code>clear:both</code> 后相当于在正常文档流和浮动元素之间加了个“隔板”，再给浮动元素加<code>margin</code>就可以了</p>
 <h2 id="布局练习："><a href="#布局练习：" class="headerlink" title="布局练习："></a>布局练习：</h2><p><a href="https://github.com/byr-gdp/40LayoutExercise">40LayoutExercise</a></p>
 <h4 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h4><p>负值margin：</p>
 <p><img src="https://pic4.zhimg.com/v2-a7d813afe7ab2c6c4233146609d00dfa_1440w.jpg?source=172ae18b" alt="浅谈margin负值"></p>
@@ -801,7 +876,31 @@
         <a class="is-flex" href="#弹性盒子-flex">
         <span class="has-mr-6">2.2</span>
         <span>弹性盒子 flex</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#水平和垂直对齐">
+        <span class="has-mr-6">2.2.1</span>
+        <span>水平和垂直对齐</span>
+        </a></li><li>
+        <a class="is-flex" href="#排序">
+        <span class="has-mr-6">2.2.2</span>
+        <span>排序</span>
         </a></li></ul></li><li>
+        <a class="is-flex" href="#网格布局">
+        <span class="has-mr-6">2.3</span>
+        <span>网格布局</span>
+        </a></li><li>
+        <a class="is-flex" href="#浮动">
+        <span class="has-mr-6">2.4</span>
+        <span>浮动</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#多列布局">
+        <span class="has-mr-6">2.4.1</span>
+        <span>多列布局</span>
+        </a></li><li>
+        <a class="is-flex" href="#清除浮动">
+        <span class="has-mr-6">2.4.2</span>
+        <span>清除浮动</span>
+        </a></li></ul></li></ul></li><li>
         <a class="is-flex" href="#布局练习：">
         <span class="has-mr-6">3</span>
         <span>布局练习：</span>
@@ -832,7 +931,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/thumbnail.svg" alt="css training" height="28">
+                    <img src="/images/thumbnail.svg" alt="" height="28">
                 
                 </a>
                 <p class="is-size-7">
