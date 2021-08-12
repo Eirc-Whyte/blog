@@ -19,7 +19,7 @@
 <meta property="og:description" content="参考阮一峰老师 《ES6标准入门》">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-23T15:36:30.874Z">
+<meta property="og:updated_time" content="2021-07-25T15:35:42.802Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6学习笔记">
 <meta name="twitter:description" content="参考阮一峰老师 《ES6标准入门》">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 minutes read (About 1572 words)
+                    17 minutes read (About 2553 words)
                 </span>
                 
                 
@@ -212,6 +212,41 @@
 
 <p>注意，当且仅当右边变量<strong>严格等于undefined</strong>，默认值才生效。null不是undefined。</p>
 <p>对象解构赋值时要求<strong>属性名严格相等</strong></p>
+<h2 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h2><p>ES5的<strong>对象属性名</strong>是字符串，容易造成属性名的冲突。例如，想为其他人的对象添加新的方法时，新方法的名字可能与现有方法冲突。</p>
+<p>Symbol的引入是为了解决这个问题，它是第七种数据类型，前六种是<code>undefined</code>,<code>null</code>,<code>Bollean</code>,<code>String</code>,<code>Number</code>,<code>Object</code></p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>Symbol值通过<code>Symbol</code>函数生成。</p>
+<p><code>Symbol</code> 函数可以接受一个字符串或者一个对象（此时调用该对象的toString函数）作为参数，或者空，作为描述（<code>Symbol.prototype.description</code>），用以<strong>区分</strong>Symbol的值。但是同参数的Symbol仍然是不相等的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 没有参数的情况</span></span><br><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line">s1 === s2 <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 有参数的情况</span></span><br><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line">s1 === s2 <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>可以通过ES2019提供的属性<code>desription</code>返回描述字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sym = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line">sym.description <span class="comment">// "foo"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol>
+<li>由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为<strong>标识符</strong>，用于对象的属性名，就能保证不会出现同名的属性。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySymbol = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一种写法</span></span><br><span class="line"><span class="keyword">let</span> a = &#123;&#125;;</span><br><span class="line">a[mySymbol] = <span class="string">'Hello!'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种写法</span></span><br><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">  [mySymbol]: <span class="string">'Hello!'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第三种写法</span></span><br><span class="line"><span class="keyword">let</span> a = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, mySymbol, &#123; <span class="attr">value</span>: <span class="string">'Hello!'</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>注意，Symbol 值作为对象属性名时，<strong>不能用点运算符</strong>。因为点运算符后面总是字符串，所以不会读取<code>mySymbol</code>作为标识名所指代的那个值，导致<code>a</code>的属性名实际上是一个字符串，而不是一个 Symbol 值。</p>
+<ol start="2">
+<li>Symbol 类型还可以用于定义一组常量，保证这组常量的值都是不相等的。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> COLOR_RED    = <span class="built_in">Symbol</span>();</span><br><span class="line"><span class="keyword">const</span> COLOR_GREEN  = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getComplement</span>(<span class="params">color</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (color) &#123;</span><br><span class="line">    <span class="keyword">case</span> COLOR_RED:</span><br><span class="line">      <span class="keyword">return</span> COLOR_GREEN;</span><br><span class="line">    <span class="keyword">case</span> COLOR_GREEN:</span><br><span class="line">      <span class="keyword">return</span> COLOR_RED;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Undefined color'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><p>Symbol 作为属性名，遍历对象的时候，该属性不会出现在<code>for...in</code>、<code>for...of</code>循环中，也不会被<code>Object.keys()</code>、<code>Object.getOwnPropertyNames()</code>、<code>JSON.stringify()</code>返回。</p>
+<p>但它不是私有属性，可以通过专门的<code>Object.getOwnPropertySymbols()</code>方法，返回一个数组，成员是当前对象的所有用作属性名的 Symbol 值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> foo = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line">obj[foo] = <span class="string">'bar'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">// 无输出</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj) <span class="comment">// []</span></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertySymbols(obj) <span class="comment">// [Symbol(foo)]</span></span><br></pre></td></tr></table></figure>
+
+<p>另一个新的 API，<code>Reflect.ownKeys()</code>方法可以返回所有类型的键名，包括常规键名和 Symbol 键名。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>(<span class="string">'my_key'</span>)]: <span class="number">1</span>,</span><br><span class="line">  enum: <span class="number">2</span>,</span><br><span class="line">  nonEnum: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Reflect</span>.ownKeys(obj)</span><br><span class="line"><span class="comment">//  ["enum", "nonEnum", Symbol(my_key)]</span></span><br></pre></td></tr></table></figure>
+
+<p>由于以 Symbol 值作为键名，不会被常规方法遍历得到。我们可以利用这个特性，为对象定义一些非私有的、但又希望只用于内部的方法。</p>
+<h3 id="重复使用"><a href="#重复使用" class="headerlink" title="重复使用"></a>重复使用</h3><p>有时，我们希望重新使用同一个 Symbol 值，<code>Symbol.for()</code>方法可以做到这一点。它接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建一个以该字符串为名称的 Symbol 值，并将其注册到<strong>全局</strong>。</p>
+<p>比如，如果你调用<code>Symbol.for(&quot;cat&quot;)</code>30 次，每次都会返回同一个 Symbol 值，但是调用<code>Symbol(&quot;cat&quot;)</code>30 次，会返回 30 个不同的 Symbol 值。</p>
+<p><code>Symbol.keyFor()</code>方法返回一个已登记的 Symbol 类型值的<code>key</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s1 = <span class="built_in">Symbol</span>.for(<span class="string">"foo"</span>);</span><br><span class="line"><span class="built_in">Symbol</span>.keyFor(s1) <span class="comment">// "foo"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> s2 = <span class="built_in">Symbol</span>(<span class="string">"foo"</span>);</span><br><span class="line"><span class="built_in">Symbol</span>.keyFor(s2) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Symbol.for()</code>与<code>Symbol()</code>这两种写法，都会生成新的 Symbol。它们的区别是，前者会被登记在全局环境中供搜索，后者不会。所以上例第二个返回<code>undefined</code></p>
+<p>除了定义自己使用的 Symbol 值以外，ES6还有<a href="https://es6.ruanyifeng.com/#docs/symbol#%E5%86%85%E7%BD%AE%E7%9A%84-Symbol-%E5%80%BC">11 个内置的 Symbol 值</a></p>
 <h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><blockquote>
 <ol>
 <li><p>对象的状态不受外界影响。<code>Promise</code>对象代表一个异步操作，有三种状态：<code>pending</code>（进行中）、<code>fulfilled</code>（已成功）和<code>rejected</code>（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是<code>Promise</code>这个名字的由来，它的英语意思就是“承诺”，表示其他手段无法改变。</p>
@@ -313,7 +348,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            50
+                            51
                         </p>
                     </a>
                 </div>
@@ -325,7 +360,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            9
+                            8
                         </p>
                     </a>
                 </div>
@@ -337,7 +372,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            71
+                            72
                         </p>
                     </a>
                 </div>
@@ -405,33 +440,53 @@
         <a class="is-flex" href="#let-amp-const">
         <span class="has-mr-6">2</span>
         <span>let &amp; const</span>
-        </a><ul class="menu-list"><li>
+        </a><ul class="menu-list"><ul class="menu-list"><li>
         <a class="is-flex" href="#暂时性死区">
-        <span class="has-mr-6">2.1</span>
+        <span class="has-mr-6">2.1.1</span>
         <span>暂时性死区</span>
         </a></li><li>
         <a class="is-flex" href="#不允许重复声明">
-        <span class="has-mr-6">2.2</span>
+        <span class="has-mr-6">2.1.2</span>
         <span>不允许重复声明</span>
         </a></li><li>
         <a class="is-flex" href="#块级作用域">
-        <span class="has-mr-6">2.3</span>
+        <span class="has-mr-6">2.1.3</span>
         <span>块级作用域</span>
         </a></li><li>
         <a class="is-flex" href="#const">
-        <span class="has-mr-6">2.4</span>
+        <span class="has-mr-6">2.1.4</span>
         <span>const</span>
-        </a></li></ul></li><li>
+        </a></li></ul></ul></li><li>
         <a class="is-flex" href="#变量解构赋值">
         <span class="has-mr-6">3</span>
         <span>变量解构赋值</span>
         </a></li><li>
-        <a class="is-flex" href="#Promise">
+        <a class="is-flex" href="#Symbol">
         <span class="has-mr-6">4</span>
+        <span>Symbol</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#定义">
+        <span class="has-mr-6">4.1</span>
+        <span>定义</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用">
+        <span class="has-mr-6">4.2</span>
+        <span>使用</span>
+        </a></li><li>
+        <a class="is-flex" href="#遍历">
+        <span class="has-mr-6">4.3</span>
+        <span>遍历</span>
+        </a></li><li>
+        <a class="is-flex" href="#重复使用">
+        <span class="has-mr-6">4.4</span>
+        <span>重复使用</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Promise">
+        <span class="has-mr-6">5</span>
         <span>Promise</span>
         </a></li><li>
         <a class="is-flex" href="#async-amp-await">
-        <span class="has-mr-6">5</span>
+        <span class="has-mr-6">6</span>
         <span>async &amp; await</span>
         </a></li></ul>
             </div>
