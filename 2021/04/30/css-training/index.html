@@ -19,7 +19,7 @@
 <meta property="og:description" content="只 能 多 写！ 冲了朋友们！">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-25T14:44:46.154Z">
+<meta property="og:updated_time" content="2021-07-26T08:29:03.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css-training">
 <meta name="twitter:description" content="只 能 多 写！ 冲了朋友们！">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    an hour read (About 6903 words)
+                    an hour read (About 6904 words)
                 </span>
                 
                 
@@ -262,11 +262,9 @@
 <ul>
 <li><code>inherit</code>：默认属性，（当前元素）继承父元素属性</li>
 <li><code>initial</code>：设置属性值为浏览器默认样式</li>
-<li><code>unset</code>：如果CSS关键字 <strong><code>unset</code></strong> 从其父级继承，则将该属性重新设置为继承的值，如果没有继承父级样式，则将该属性重新设置为初始值。（相当于重置继承）</li>
-<li><code>revert</code>：</li>
+<li><code>unset</code>：如果CSS关键字 <strong><code>unset</code></strong> 从其父级继承，则将该属性重新设置为继承的值，如果没有继承父级样式，则将该属性重新设置为初始值。（相当于重置继承）撤销对所有样式继承属性的修改：<code>all:unset</code></li>
+<li><code>revert</code></li>
 </ul>
-<p>撤销对所有样式继承属性的修改：</p>
-<p><code>all:unset</code></p>
 <h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><ul>
 <li>类型、类、ID选择器</li>
 </ul>
@@ -317,7 +315,7 @@
 <p>还可以有内部显示类型，使用<code>display</code>控制，它决定了盒子<strong>内部元素</strong>是如何布局的，例如<code>display:flex/grid</code>，说明这个盒子所有的<strong>子元素</strong>都将成为<code>flex</code>元素，但默认的外部显示类型仍然是<code>block</code>，<code>inline-flex</code>则可以把子元素的显示类型都设成<code>inline</code></p>
 <p>display有一个特殊的值<code>inline-block</code>，它在内联和块之间提供了一个中间状态。当<strong>不希望一个项切换到新行，但希望它可以设定宽度和高度</strong>。</p>
 <h4 id="两种盒模型"><a href="#两种盒模型" class="headerlink" title="两种盒模型"></a>两种盒模型</h4><p>标准盒模型：width、height不包含padding和border</p>
-<p>IE和模型：包含padding和border</p>
+<p>IE盒模型(border-box)：包含padding和border</p>
 <h4 id="margin-collapsing的三种情况："><a href="#margin-collapsing的三种情况：" class="headerlink" title="margin collapsing的三种情况："></a>margin collapsing的三种情况：</h4><p><strong>同一层相邻元素之间</strong>（兄弟块）</p>
 <p>相邻的两个元素之间的外边距重叠，除非后一个元素加上<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear">clear-fix清除浮动</a>。</p>
 <p><strong>没有内容将父元素和后代元素分开</strong>（父子块）</p>
@@ -335,13 +333,13 @@
 <li>行内块元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>inline-block</code>）</li>
 <li>表格单元格（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>table-cell</code>，HTML表格单元格默认为该值）</li>
 <li>表格标题（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>table-caption</code>，HTML表格标题默认为该值）</li>
-<li>匿名表格单元格元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>table、``table-row</code>、 <code>table-row-group、``table-header-group、``table-footer-group</code>（分别是HTML table、row、tbody、thead、tfoot 的默认属性）或 <code>inline-table</code>）</li>
+<li>匿名表格单元格元素（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>table</code>、<code>table-row</code>、 <code>table-row-group</code>、<code>table-header-group</code>、<code>table-footer-group</code>（分别是HTML table、row、tbody、thead、tfoot 的默认属性）或 <code>inline-table</code>）</li>
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow"><code>overflow</code></a> 计算值(Computed)不为 <code>visible</code> 的块元素</li>
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 值为 <code>flow-root</code> 的元素（可以创建无副作用的BFC）</li>
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/contain"><code>contain</code></a> 值为 <code>layout</code>、<code>content</code>或 paint 的元素</li>
 <li>弹性元素（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>flex</code> 或 <code>inline-flex</code>元素的直接子元素）</li>
 <li>网格元素（<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/display"><code>display</code></a> 为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素）</li>
-<li>多列容器（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/column-count"><code>column-count</code></a> 或 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/column-width"><code>column-width</code> (en-US)</a> 不为 <code>auto，包括 ``column-count</code> 为 <code>1</code>）</li>
+<li>多列容器（元素的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/column-count"><code>column-count</code></a> 或 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/column-width"><code>column-width</code> (en-US)</a> 不为 <code>auto</code>，包括 <code>column-count</code> 为 <code>1</code>）</li>
 <li><code>column-span</code> 为 <code>all</code> 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（<a href="https://github.com/w3c/csswg-drafts/commit/a8634b96900279916bd6c505fda88dda71d8ec51">标准变更</a>，<a href="https://bugs.chromium.org/p/chromium/issues/detail?id=709362">Chrome bug</a>）。</li>
 </ul>
 <p>块格式化上下文对浮动定位（参见 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/float"><code>float</code></a>）与清除浮动（参见 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear"><code>clear</code></a>）都很重要。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其它BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing">Margin collapsing</a>）也只会发生在属于同一BFC的块级元素之间</p>
@@ -706,7 +704,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            51
+                            52
                         </p>
                     </a>
                 </div>
@@ -718,7 +716,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            9
                         </p>
                     </a>
                 </div>
@@ -730,7 +728,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            72
+                            73
                         </p>
                     </a>
                 </div>

@@ -19,7 +19,7 @@
 <meta property="og:description" content="参考阮一峰老师 《ES6标准入门》">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-25T15:35:42.802Z">
+<meta property="og:updated_time" content="2021-07-30T13:53:36.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6学习笔记">
 <meta name="twitter:description" content="参考阮一峰老师 《ES6标准入门》">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    17 minutes read (About 2553 words)
+                    30 minutes read (About 4564 words)
                 </span>
                 
                 
@@ -260,6 +260,99 @@
 <h2 id="async-amp-await"><a href="#async-amp-await" class="headerlink" title="async &amp; await"></a>async &amp; await</h2><p><code>async</code>函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而<code>await</code>命令就是内部<code>then</code>命令的语法糖。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> gen = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> f1 = <span class="keyword">yield</span> readFile(<span class="string">'/etc/fstab'</span>);</span><br><span class="line">  <span class="keyword">const</span> f2 = <span class="keyword">yield</span> readFile(<span class="string">'/etc/shells'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(f1.toString());</span><br><span class="line">  <span class="built_in">console</span>.log(f2.toString());</span><br><span class="line">&#125;;</span><br><span class="line">&lt;==&gt;</span><br><span class="line"><span class="keyword">const</span> asyncReadFile = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> f1 = <span class="keyword">await</span> readFile(<span class="string">'/etc/fstab'</span>);</span><br><span class="line">  <span class="keyword">const</span> f2 = <span class="keyword">await</span> readFile(<span class="string">'/etc/shells'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(f1.toString());</span><br><span class="line">  <span class="built_in">console</span>.log(f2.toString());</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
+<h2 id="Set-amp-Map"><a href="#Set-amp-Map" class="headerlink" title="Set &amp; Map"></a>Set &amp; Map</h2><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>ES6提供了<strong>新的</strong>数据结构Set</p>
+<p>构造函数<code>Set()</code>可以接受空的参数列表，也可以接受一个数组作为参数。可用于数组去重</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组去重</span></span><br><span class="line">[...new <span class="built_in">Set</span>(array)]</span><br><span class="line"><span class="comment">// 字符串去重</span></span><br><span class="line">[...new <span class="built_in">Set</span>(<span class="string">'ababbc'</span>)].join(<span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+
+<p><code>Set</code>转成数组：<code>Array.from(new Set())</code></p>
+<p><strong>遍历</strong></p>
+<p>Set 结构的实例有四个遍历方法，可以用于遍历成员。</p>
+<ul>
+<li><code>Set.prototype.keys()</code>：返回键名的遍历器</li>
+<li><code>Set.prototype.values()</code>：返回键值的遍历器</li>
+<li><code>Set.prototype.entries()</code>：返回键值对的遍历器</li>
+<li><code>Set.prototype.forEach()</code>：使用回调函数遍历每个成员</li>
+</ul>
+<p>前三者返回遍历器对象，可以用<code>for-of</code>遍历</p>
+<p><code>...</code>的内部实现是<code>for-of</code> 因此可以用于<code>Set</code></p>
+<p>取交并</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 并集</span></span><br><span class="line"><span class="keyword">let</span> union = <span class="keyword">new</span> <span class="built_in">Set</span>([...a, ...b]);</span><br><span class="line"><span class="comment">// Set &#123;1, 2, 3, 4&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 交集</span></span><br><span class="line"><span class="keyword">let</span> intersect = <span class="keyword">new</span> <span class="built_in">Set</span>([...a].filter(<span class="function"><span class="params">x</span> =&gt;</span> b.has(x)));</span><br><span class="line"><span class="comment">// set &#123;2, 3&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// （a 相对于 b 的）差集</span></span><br><span class="line"><span class="keyword">let</span> difference = <span class="keyword">new</span> <span class="built_in">Set</span>([...a].filter(<span class="function"><span class="params">x</span> =&gt;</span> !b.has(x)));</span><br><span class="line"><span class="comment">// Set &#123;1&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h3><p>与weakset的区别：</p>
+<ul>
+<li>成员只能是对象，而不是其他值</li>
+<li>对象只能是弱引用，即垃圾回收机制不考虑weakset对该对象的引用</li>
+</ul>
+<p>因此，WeakSet 适合临时存放一组对象，以及存放跟对象绑定的信息。只要这些对象在外部消失，它在 WeakSet 里面的引用就会自动消失。</p>
+<p>由于上面这个特点，WeakSet 的成员是不适合引用的，因为它会随时消失。另外，由于 WeakSet 内部有多少个成员，取决于垃圾回收机制有没有运行，运行前后很可能成员个数是不一样的，而垃圾回收机制何时运行是不可预测的，因此 ES6 规定 WeakSet 不可遍历。</p>
+<p>这些特点同样适用于本章后面要介绍的 WeakMap 结构。</p>
+<p>WeakSet <strong>不能遍历</strong>，是因为成员都是弱引用，随时可能消失，遍历机制无法保证成员的存在，很可能刚刚遍历结束，成员就取不到了。WeakSet 的一个用处，是储存 DOM 节点，而不用担心这些节点从文档移除时，会引发内存泄漏。</p>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>js对象本质上是键值对的集合（hash结构），但只能用<strong>字符串</strong>当键，这给它的使用带来 了很大的限制。</p>
+<p>为了解决这个问题，ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。是一种更完善的hash结构实现。</p>
+<p><strong>构造函数</strong></p>
+<p>构造函数接受任何<strong>具有Iterator</strong>、且成员为<strong>双元素的数组</strong>的数据结构作为参数。</p>
+<p>也就是说，<code>set</code>和<code>map</code>都可以用来生成新的<code>map</code></p>
+<p>构造函数实际执行的是下面的操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> items = [</span><br><span class="line">  [<span class="string">'name'</span>, <span class="string">'张三'</span>],</span><br><span class="line">  [<span class="string">'title'</span>, <span class="string">'Author'</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line">items.forEach(</span><br><span class="line">  ([key, value]) =&gt; map.set(key, value)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>如果对一个键重复赋值，后面的值将覆盖前面的；</p>
+<p>如果读取一个未知的键，则返回<code>undefined</code></p>
+<p>注意，只有对<strong>同一个对象</strong>的引用，Map 结构才将其视为同一个键。这一点要非常小心。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line">map.set([<span class="string">'a'</span>], <span class="number">555</span>);</span><br><span class="line">map.get([<span class="string">'a'</span>]) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>两个<code>[&#39;a&#39;]</code>是不同的数组实例，地址不一样。</p>
+<p>由此可见，Map的键实际上跟<strong>内存地址</strong>是绑定的，这样解决了同名属性碰撞问题。</p>
+<p><strong>遍历</strong></p>
+<ul>
+<li><code>Map.prototype.keys()</code>：返回键名的遍历器。</li>
+<li><code>Map.prototype.values()</code>：返回键值的遍历器。</li>
+<li><code>Map.prototype.entries()</code>：返回所有成员的遍历器。</li>
+<li><code>Map.prototype.forEach()</code>：遍历 Map 的所有成员。</li>
+</ul>
+<p>需要特别注意的是，Map 的遍历顺序就是<strong>插入顺序</strong></p>
+<p>结合数组的<code>map</code>方法、<code>filter</code>方法，可以实现 Map 的遍历和过滤（Map 本身没有<code>map</code>和<code>filter</code>方法）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map0 = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">  .set(<span class="number">1</span>, <span class="string">'a'</span>)</span><br><span class="line">  .set(<span class="number">2</span>, <span class="string">'b'</span>)</span><br><span class="line">  .set(<span class="number">3</span>, <span class="string">'c'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> map1 = <span class="keyword">new</span> <span class="built_in">Map</span>(</span><br><span class="line">  [...map0].filter(<span class="function">(<span class="params">[k, v]</span>) =&gt;</span> k &lt; <span class="number">3</span>)</span><br><span class="line">);</span><br><span class="line"><span class="comment">// 产生 Map 结构 &#123;1 =&gt; 'a', 2 =&gt; 'b'&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> map2 = <span class="keyword">new</span> <span class="built_in">Map</span>(</span><br><span class="line">  [...map0].map(<span class="function">(<span class="params">[k, v]</span>) =&gt;</span> [k * <span class="number">2</span>, <span class="string">'_'</span> + v])</span><br><span class="line">    );</span><br><span class="line"><span class="comment">// 产生 Map 结构 &#123;2 =&gt; '_a', 4 =&gt; '_b', 6 =&gt; '_c'&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>此外，Map 还有一个<code>forEach</code>方法，与数组的<code>forEach</code>方法类似，也可以实现遍历。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value, key, map</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Key: %s, Value: %s"</span>, key, value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>forEach</code>方法还可以接受第二个参数，用来绑定<code>this</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reporter = &#123;</span><br><span class="line">  report: <span class="function"><span class="keyword">function</span>(<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Key: %s, Value: %s"</span>, key, value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">map.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value, key, map</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.report(key, value);</span><br><span class="line">&#125;, reporter);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>forEach</code>方法的回调函数的<code>this</code>，就指向<code>reporter</code>。</p>
+<p><strong>map转换为对象</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strMapToObj</span>(<span class="params">strMap</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> obj = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> [k,v] <span class="keyword">of</span> strMap) &#123;</span><br><span class="line">    obj[k] = v;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>对象转换为map</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="string">"a"</span>:<span class="number">1</span>, <span class="string">"b"</span>:<span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>(<span class="built_in">Object</span>.entries(obj));</span><br></pre></td></tr></table></figure>
+
+<p><strong>map转换为json</strong></p>
+<p>如果map的键名都是字符串：转换成对象json</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strMapToJson</span>(<span class="params">strMap</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify(strMapToObj(strMap));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myMap = <span class="keyword">new</span> <span class="built_in">Map</span>().set(<span class="string">'yes'</span>, <span class="literal">true</span>).set(<span class="string">'no'</span>, <span class="literal">false</span>);</span><br><span class="line">strMapToJson(myMap)</span><br><span class="line"><span class="comment">// '&#123;"yes":true,"no":false&#125;'</span></span><br></pre></td></tr></table></figure>
+
+<p>如果map的键名有非字符串：转换为数组json</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapToArrayJson</span>(<span class="params">map</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">JSON</span>.stringify([...map]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myMap = <span class="keyword">new</span> <span class="built_in">Map</span>().set(<span class="literal">true</span>, <span class="number">7</span>).set(&#123;<span class="attr">foo</span>: <span class="number">3</span>&#125;, [<span class="string">'abc'</span>]);</span><br><span class="line">mapToArrayJson(myMap)</span><br><span class="line"><span class="comment">// '[[true,7],[&#123;"foo":3&#125;,["abc"]]]'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h3><p>与WeakSet类似：</p>
+<p>首先，<code>WeakMap</code>只接受对象作为键名（<code>null</code>除外），不接受其他类型的值作为键名。</p>
+<p>其次，<code>WeakMap</code>的键名所指向的对象，不计入垃圾回收机制。</p>
+<p><code>WeakMap</code>的设计目的在于，有时我们想在某个对象上面存放一些数据，但是这会形成对于这个对象的引用。请看下面的例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> e1 = <span class="built_in">document</span>.getElementById(<span class="string">'foo'</span>);</span><br><span class="line"><span class="keyword">const</span> e2 = <span class="built_in">document</span>.getElementById(<span class="string">'bar'</span>);</span><br><span class="line"><span class="keyword">const</span> arr = [</span><br><span class="line">  [e1, <span class="string">'foo 元素'</span>],</span><br><span class="line">  [e2, <span class="string">'bar 元素'</span>],</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>e1</code>和<code>e2</code>是两个对象，我们通过<code>arr</code>数组对这两个对象添加一些文字说明。这就形成了<code>arr</code>对<code>e1</code>和<code>e2</code>的引用。</p>
+<p>一旦不再需要这两个对象，我们就必须手动删除这个引用，否则垃圾回收机制就不会释放<code>e1</code>和<code>e2</code>占用的内存。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不需要 e1 和 e2 的时候</span></span><br><span class="line"><span class="comment">// 必须手动删除引用</span></span><br><span class="line">arr [<span class="number">0</span>] = <span class="literal">null</span>;</span><br><span class="line">arr [<span class="number">1</span>] = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上面这样的写法显然很不方便。一旦忘了写，就会造成内存泄露。</p>
+<p>基本上，如果你要往对象上添加数据，又不想干扰垃圾回收机制，就可以使用 WeakMap。一个典型应用场景就是上面的这个：在网页的 DOM 元素上添加数据，就可以使用<code>WeakMap</code>结构。当该 DOM 元素被清除，其所对应的<code>WeakMap</code>记录就会自动被移除。</p>
+<p>与WeakSet相同，只用四个方法可用：<code>get()</code>、<code>set()</code>、<code>has()</code>、<code>delete()</code></p>
+<h3 id="WeakRef"><a href="#WeakRef" class="headerlink" title="WeakRef"></a>WeakRef</h3><p>上述WeakSet和WeakMap都是基于弱引用的数据结构，ES2021更进一步，提供了WeakRef对象，用于直接创建对象的弱引用。</p>
+<p>WeakRef 实例对象有一个<code>deref()</code>方法，如果原始对象存在，该方法返回原始对象；如果原始对象已经被垃圾回收机制清除，该方法返回<code>undefined</code>。</p>
+<p>弱引用对象的一大用处，就是作为缓存，未被清除时可以从缓存取值，一旦清除缓存就自动失效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeWeakCached</span>(<span class="params">f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> cache = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> ref = cache.get(key);</span><br><span class="line">    <span class="keyword">if</span> (ref) &#123;</span><br><span class="line">      <span class="keyword">const</span> cached = ref.deref();</span><br><span class="line">      <span class="keyword">if</span> (cached !== <span class="literal">undefined</span>) <span class="keyword">return</span> cached;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> fresh = f(key);</span><br><span class="line">    cache.set(key, <span class="keyword">new</span> WeakRef(fresh));</span><br><span class="line">    <span class="keyword">return</span> fresh;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getImageCached = makeWeakCached(getImage);</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，<code>makeWeakCached()</code>用于建立一个缓存，缓存里面保存对原始文件的弱引用。</p>
+<p>一旦使用<code>WeakRef()</code>创建了原始对象的弱引用，那么在本轮事件循环（event loop），原始对象肯定不会被清除，只会在后面的事件循环才会被清除。</p>
 
         </div>
         
@@ -348,7 +441,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            51
+                            52
                         </p>
                     </a>
                 </div>
@@ -360,7 +453,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            9
                         </p>
                     </a>
                 </div>
@@ -372,7 +465,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            72
+                            73
                         </p>
                     </a>
                 </div>
@@ -488,7 +581,31 @@
         <a class="is-flex" href="#async-amp-await">
         <span class="has-mr-6">6</span>
         <span>async &amp; await</span>
-        </a></li></ul>
+        </a></li><li>
+        <a class="is-flex" href="#Set-amp-Map">
+        <span class="has-mr-6">7</span>
+        <span>Set &amp; Map</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Set">
+        <span class="has-mr-6">7.1</span>
+        <span>Set</span>
+        </a></li><li>
+        <a class="is-flex" href="#WeakSet">
+        <span class="has-mr-6">7.2</span>
+        <span>WeakSet</span>
+        </a></li><li>
+        <a class="is-flex" href="#Map">
+        <span class="has-mr-6">7.3</span>
+        <span>Map</span>
+        </a></li><li>
+        <a class="is-flex" href="#WeakMap">
+        <span class="has-mr-6">7.4</span>
+        <span>WeakMap</span>
+        </a></li><li>
+        <a class="is-flex" href="#WeakRef">
+        <span class="has-mr-6">7.5</span>
+        <span>WeakRef</span>
+        </a></li></ul></li></ul>
             </div>
         </div>
     </div>

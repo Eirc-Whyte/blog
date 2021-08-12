@@ -19,7 +19,7 @@
 <meta property="og:description" content="学习程序语言根本大法是一回事，学习如何以某种语言设计并实现高效程序则是另一回事。这种说法对C++尤其适用。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-23T16:40:57.715Z">
+<meta property="og:updated_time" content="2021-07-30T14:27:10.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective Cpp 学习笔记">
 <meta name="twitter:description" content="学习程序语言根本大法是一回事，学习如何以某种语言设计并实现高效程序则是另一回事。这种说法对C++尤其适用。">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 547 words)
+                    8 minutes read (About 1238 words)
                 </span>
                 
                 
@@ -179,7 +179,8 @@
 <li>for function | template：提供代码本体；</li>
 <li>for class | template：列出成员；</li>
 </ul>
-<p>初始化：“给予对象初值”的过程。关键字<code>explicit</code>可以被用在自定义类型的构造函数前，可以阻止构造函数被用来执行隐式类型转换（但仍可进行显示类型转换）</p>
+<p><strong>初始化</strong>：“给予对象初值”的过程。</p>
+<p>关键字<code>explicit</code>可以被用在自定义类型的构造函数前，可以阻止构造函数被用来执行隐式类型转换（但仍可进行显示类型转换）</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class B&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">explicit</span> <span class="title">B</span><span class="params">(<span class="keyword">int</span> x = <span class="number">0</span>, <span class="keyword">bool</span> b = <span class="literal">true</span>)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// --------</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(B object)</span></span>;</span><br><span class="line"></span><br><span class="line">doSomething(<span class="number">28</span>); <span class="comment">// ❌ 不可以进行隐式类型转换</span></span><br><span class="line">doSomething(B(<span class="number">28</span>)); <span class="comment">// ✔ 可以显式类型转换</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Chapter-1-View-C-as-a-federation-of-languages"><a href="#Chapter-1-View-C-as-a-federation-of-languages" class="headerlink" title="Chapter 1 View C++ as a federation of languages"></a>Chapter 1 View C++ as a federation of languages</h2><p>一开始，c++只是c加上一些面向对象的特征，所以最初叫”C with Classes”</p>
@@ -190,8 +191,44 @@
 <li><strong>C</strong>：说到底C++仍是以C为基础的语言，但也反映出C语言的局限性：没有模板、异常、重载等，<strong>面向过程</strong>。</li>
 <li><strong>Object-Oriented C++</strong>：这部分是C with Class追求的。引入了类的概念、封装、继承、多态、虚函数（动态绑定）等。</li>
 <li><strong>Template C++</strong>：这部分是C++的泛型编程部分。由于templates威力强大，他们带来崭新的编程范型“模板元编程”</li>
-<li><strong>STL</strong>：</li>
+<li><strong>STL</strong>：template程序库</li>
 </ol>
+<h2 id="Chapter-2-Prefer-consts-enums-and-inline-to-defines"><a href="#Chapter-2-Prefer-consts-enums-and-inline-to-defines" class="headerlink" title="Chapter 2 Prefer consts, enums, and inline to #defines"></a>Chapter 2 Prefer consts, enums, and inline to #defines</h2><p>原则：以编译器替换预处理器，因为<code>#define</code>不被视为语言的一部分，因此它定义的内容不会进入符号表，因此错误信息中也不会有记录。</p>
+<p>const/enums替换define中两种值得提及的情况：</p>
+<ol>
+<li><p><strong>定义常量指针</strong></p>
+<p><code>const char* const authorName = &quot;Scott Meyers&quot;;</code></p>
+<p>因为常量定义通常被放在头文件里，因此可能会被多个文件访问到，所以有必要将指针（而不是指向的内容）声明为const；若还要将指向的内容也定义为<code>const</code>，那么需要写两次<code>const</code>。</p>
+</li>
+<li><p><strong>定义<code>class</code>专属常量</strong></p>
+<p>为了将常量作用域限制于<code>class</code>内部，必须让他作为一个成员；</p>
+<p>而为了保证此常量最多只有一份<strong>实体</strong>，必须让成为一个<code>static</code>成员</p>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GamePlayer</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> NumTurns = <span class="number">5</span>; <span class="comment">// 常量声明</span></span><br><span class="line">	<span class="keyword">int</span> scores[NumTurns]; <span class="comment">// 使用常量</span></span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>​        在这里<code>NumTurns</code> 是一个声明而非定义式。有可能不被旧编译器支持，他们不允许static成员在其声明式上获得初值，<code>in-class</code> 初值设定只允许对整数常量进行（包括int、char、bool），那么可以：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CostEstimate</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">double</span> FudgeFactor; <span class="comment">// 声明位于头文件内</span></span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span></span><br><span class="line">	CostEstimate::FudgeFator = <span class="number">1.35</span>; <span class="comment">// 定义位于实现文件内</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>enum hack</strong></p>
+<p>如果你在class编译期间一定需要一个class常量值， 例如<code>GamePlayer</code>中编译器一定坚持必须在编译期间就知道数组的大小，可以采用<strong>enum hack</strong>方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GamePlayer</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">enum</span>&#123; NumTurns = <span class="number">5</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> scores[NumTurns]; <span class="comment">// 使用常量</span></span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>enum hack</code>的行为某些方面比较像<code>#define</code>而不是<code>const</code>，例如取一个const的地址是合法的，但是取一个<code>enum</code>/<code>#define</code>的地址通常不合法</li>
+<li><code>enum hack</code>是模板元编程的基础技术（见C48）</li>
+</ol>
+<p>inline替换define：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CALL_WITH_MAX(a,b) f((a) &gt; (b) ? (a) : (b))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">5</span>, b = <span class="number">0</span>;</span><br><span class="line">CALL_WITH_MAX(++a, b); <span class="comment">// a = ?</span></span><br><span class="line">CALL_WITH_MAX(++a, b+<span class="number">10</span>); <span class="comment">// a = ?</span></span><br></pre></td></tr></table></figure>
+
+<p>改成具有可预测行为和类型安全的<code>template inline</code>函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">callWithMax</span><span class="params">(<span class="keyword">const</span> &amp;T a, <span class="keyword">const</span> &amp;T b)</span></span>&#123;</span><br><span class="line">	f(a &gt; b ? a : b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Chapter-3-Use-const-whenever-possible"><a href="#Chapter-3-Use-const-whenever-possible" class="headerlink" title="Chapter 3 Use const whenever possible"></a>Chapter 3 Use const whenever possible</h2><p><code>const</code> 出现在星号<code>*</code>左边时，表示被<strong>指向的对象</strong>是常量，如果出现在<code>*</code>右边，则说明<strong>指针自身</strong>是常量，如果出现在两边，则表示被指对象和指针都是常量；</p>
+<p>所以下面两种写法是一样的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">(<span class="keyword">const</span> Widget* pw)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f2</span><span class="params">(Widget <span class="keyword">const</span> * pw)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>让函数返回一个常量值，可以有效避免诸如<code>if( (a*b) = c )</code> 这种错误（编译器报错）</p>
 
         </div>
         
@@ -215,6 +252,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2021/08/12/Ubuntu-18-04-手动编译Clang-环境配置/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Ubuntu 18.04 手动编译Clang 环境配置</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -273,7 +317,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            51
+                            52
                         </p>
                     </a>
                 </div>
@@ -285,7 +329,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            8
+                            9
                         </p>
                     </a>
                 </div>
@@ -297,7 +341,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            72
+                            73
                         </p>
                     </a>
                 </div>
@@ -365,6 +409,14 @@
         <a class="is-flex" href="#Chapter-1-View-C-as-a-federation-of-languages">
         <span class="has-mr-6">2</span>
         <span>Chapter 1 View C++ as a federation of languages</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-2-Prefer-consts-enums-and-inline-to-defines">
+        <span class="has-mr-6">3</span>
+        <span>Chapter 2 Prefer consts, enums, and inline to #defines</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-3-Use-const-whenever-possible">
+        <span class="has-mr-6">4</span>
+        <span>Chapter 3 Use const whenever possible</span>
         </a></li></ul>
             </div>
         </div>
