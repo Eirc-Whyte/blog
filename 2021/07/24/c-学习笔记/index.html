@@ -19,7 +19,7 @@
 <meta property="og:description" content="学习程序语言根本大法是一回事，学习如何以某种语言设计并实现高效程序则是另一回事。这种说法对C++尤其适用。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-30T14:27:10.393Z">
+<meta property="og:updated_time" content="2021-08-29T04:16:42.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective Cpp 学习笔记">
 <meta name="twitter:description" content="学习程序语言根本大法是一回事，学习如何以某种语言设计并实现高效程序则是另一回事。这种说法对C++尤其适用。">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1238 words)
+                    19 minutes read (About 2856 words)
                 </span>
                 
                 
@@ -224,11 +224,105 @@
 <p>改成具有可预测行为和类型安全的<code>template inline</code>函数：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">callWithMax</span><span class="params">(<span class="keyword">const</span> &amp;T a, <span class="keyword">const</span> &amp;T b)</span></span>&#123;</span><br><span class="line">	f(a &gt; b ? a : b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Chapter-3-Use-const-whenever-possible"><a href="#Chapter-3-Use-const-whenever-possible" class="headerlink" title="Chapter 3 Use const whenever possible"></a>Chapter 3 Use const whenever possible</h2><p><code>const</code> 出现在星号<code>*</code>左边时，表示被<strong>指向的对象</strong>是常量，如果出现在<code>*</code>右边，则说明<strong>指针自身</strong>是常量，如果出现在两边，则表示被指对象和指针都是常量；</p>
+<h2 id="Chapter-3-Use-const-whenever-possible"><a href="#Chapter-3-Use-const-whenever-possible" class="headerlink" title="Chapter 3 Use const whenever possible"></a>Chapter 3 Use const whenever possible</h2><p><code>const</code> 出现在星号<code>*</code>左边时，表示<strong>被指向的对象</strong>是常量，如果出现在<code>*</code>右边，则说明<strong>指针自身</strong>是常量，如果出现在两边，则表示被指对象和指针都是常量；</p>
 <p>所以下面两种写法是一样的：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">(<span class="keyword">const</span> Widget* pw)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f2</span><span class="params">(Widget <span class="keyword">const</span> * pw)</span></span>;</span><br></pre></td></tr></table></figure>
 
-<p>让函数返回一个常量值，可以有效避免诸如<code>if( (a*b) = c )</code> 这种错误（编译器报错）</p>
+<p>const成员函数，让函数返回一个常量值，可以有效避免诸如<code>if( (a*b) = c )</code> 这种错误（编译器报错）</p>
+<p>non-const成员调用const成员函数并转型可以避免代码重复</p>
+<h2 id="Chapter-4-Make-sure-that-objects-are-initialized-before-they’re-used"><a href="#Chapter-4-Make-sure-that-objects-are-initialized-before-they’re-used" class="headerlink" title="Chapter 4 Make sure that objects are initialized before they’re used"></a>Chapter 4 Make sure that objects are initialized before they’re used</h2><ul>
+<li>内置类型：手动完成：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int x = 0;</span><br><span class="line">const char* text = &quot;A C-style string&quot;;</span><br><span class="line"></span><br><span class="line">double d;</span><br><span class="line">cin &gt;&gt; d;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>非内置类型：构造函数——确保每一个构造函数都将对象的每一个成员初始化。注意，C++规定，对象的成员变量的初始化动作发生在<strong>进入构造函数本体之前</strong>，即<strong>初始化列表</strong>中；</li>
+<li>父类总是先于子类被初始化；class成员变量以其<strong>声明次序</strong>被初始化（即使他们在初始化列表中的位置可能不同）</li>
+<li><strong>non-local static对象的初始化：</strong></li>
+</ul>
+<p>函数内的static对象称为local static对象，其他（包括global、定义在namespace中、classes中、file作用域内被声明为static的对象）称为non-local static对象。</p>
+<p>如果一个编译文件里的某个non-local static对象初始化动作使用了另一个文件中的non-local static对象，此时他用到的这个对象可能尚未被初始化。</p>
+<p>解决方法：将non-local static对象放进它的专属函数中，也就是<strong>将non-local static替换为local static对象</strong>，因为C++保证：<strong>函数内的local static对象会在“该函数被调用期间，首次遇上该对象的定义式”时被初始化。</strong>这也是单例模式（Singleton）的一个常见实现手法。</p>
+<h2 id="Chapter-5-Know-what-functions-C-silently-writes-and-call"><a href="#Chapter-5-Know-what-functions-C-silently-writes-and-call" class="headerlink" title="Chapter 5 Know what functions C++ silently writes and call"></a>Chapter 5 Know what functions C++ silently writes and call</h2><p>C++中一个空类默认包含：</p>
+<ul>
+<li>空的构造函数</li>
+<li>copy构造函数</li>
+<li>non-virtual析构函数</li>
+<li>copy assignment操作符（=）</li>
+</ul>
+<p>只有当这些函数被调用时，他们才会被编译器创建出来</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Empty el; <span class="comment">// 默认构造函数</span></span><br><span class="line"><span class="function">Empty <span class="title">e2</span><span class="params">(e1)</span></span>; <span class="comment">// copy构造函数</span></span><br><span class="line">e2 = e1; <span class="comment">// assignment操作符</span></span><br><span class="line"><span class="comment">// 析构函数</span></span><br></pre></td></tr></table></figure>
+
+<p>默认的copy行为是将对象的所有非static变量拷贝到目标对象。</p>
+<h2 id="Chapter-6-Explicitly-disallow-the-use-of-compiler-generated-functions-u-do-not-want"><a href="#Chapter-6-Explicitly-disallow-the-use-of-compiler-generated-functions-u-do-not-want" class="headerlink" title="Chapter 6 Explicitly disallow the use of compiler-generated functions u do not want"></a>Chapter 6 Explicitly disallow the use of compiler-generated functions u do not want</h2><ul>
+<li>阻止copy行为：<strong>声明copy函数为private但不实现</strong></li>
+<li>进一步：定义一个<code>Uncopyable</code>基类，并将有“阻止copy行为”需求的类作为它的private派生类</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Uncopyale</span>&#123;</span></span><br><span class="line">	<span class="keyword">protected</span>:</span><br><span class="line">		Uncopyable()&#123;&#125;</span><br><span class="line">		~Uncopyable()&#123;&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		Uncopyable(<span class="keyword">const</span> Uncopyable&amp;);</span><br><span class="line">		Uncopyable&amp; opeartor= (<span class="keyword">const</span> Uncopyable&amp;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeForSale</span>:</span> <span class="keyword">private</span> Uncopyalbe&#123;</span><br><span class="line">    <span class="comment">///...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Chapter-7-Declare-destructors-virtual-in-polymorphic-base-classes"><a href="#Chapter-7-Declare-destructors-virtual-in-polymorphic-base-classes" class="headerlink" title="Chapter 7 Declare destructors virtual in polymorphic base classes"></a>Chapter 7 Declare destructors virtual in polymorphic base classes</h2><ul>
+<li>通过为基类声明virtual析构函数，来让<strong>base class指针控制的derived对象</strong>正确销毁。</li>
+<li>当class不被用来作为base class时，不要用virtual析构函数。因为virtual导致<strong>在class中增加vptr指针指向vtbl，导致占用空间增大</strong></li>
+<li>只有当class内<strong>至少含有一个virtual函数</strong>，才为他添加virtual析构函数</li>
+<li>任何<strong>带多态性质的base class</strong>，应该为其声明一个virtual析构函数</li>
+</ul>
+<h2 id="Chapter-8-Prevent-exception-from-leaving-destructors"><a href="#Chapter-8-Prevent-exception-from-leaving-destructors" class="headerlink" title="Chapter 8  Prevent exception from leaving destructors"></a>Chapter 8  Prevent exception from leaving destructors</h2><ul>
+<li>不要让异常跑出析构函数</li>
+<li>可能会引发两个未被处理的异常同时存在，例如：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;Widget&gt; v; </span><br><span class="line">    ... </span><br><span class="line">    <span class="comment">// 假设Widget析构会抛出异常，那么此时会有多个异常被抛出，导致不确定行为</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>两个方法处理该问题：<ul>
+<li>在析构函数中处理异常，遇到异常就在catch中调用<code>abort()</code>结束程序，“抢先制不确定行为于死地”；</li>
+<li>“吞下”异常；在catch中记录该次调用失败。后续可以交由用户在普通函数中进行处理。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Chapter-9-Never-call-virtual-functions-during-construction-or-destruction"><a href="#Chapter-9-Never-call-virtual-functions-during-construction-or-destruction" class="headerlink" title="Chapter 9 Never call virtual functions during construction or destruction"></a>Chapter 9 Never call virtual functions during construction or destruction</h2><ul>
+<li><p>derived class对象的base class构造期间调用的virtual函数是base class中的virtual函数，因为此时derived class的成员变量还没有被构造；此时virtual被调用的实际行为并不符合virtual函数被期望的行为（实现多态），但是编译器不会报错。</p>
+</li>
+<li><p>相同的道理适用于析构函数，一旦derived class的析构函数开始执行，其对象内所有的成员变量<strong>都应视为未定义值</strong>。</p>
+</li>
+<li><p>解决方法：</p>
+<ul>
+<li>将要调用的函数声明为non-virtual；</li>
+<li>从derived class的构造列表中传值给base class的构造函数</li>
+<li>使用private static函数生成要传的值，比较可读，也保证了使用的变量在使用时已经被初始化完毕（因为仅能使用static变量）</li>
+</ul>
+</li>
+</ul>
+<h2 id="Chapter-10-Have-operator-return-a-reference-to-this"><a href="#Chapter-10-Have-operator-return-a-reference-to-this" class="headerlink" title="Chapter 10 Have operator= return a reference to *this"></a>Chapter 10 Have <code>operator=</code> return a reference to *this</h2><ul>
+<li>字面意思，令赋值操作符返回一个指向当前对象的引用</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Widget&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Widget&amp; ths)&#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以实现类似于<code>x = y = z = 15</code> 的操作</p>
+<h2 id="Chapter-11-Handle-assignment-to-self-in-operator"><a href="#Chapter-11-Handle-assignment-to-self-in-operator" class="headerlink" title="Chapter 11 Handle assignment to self in operator="></a>Chapter 11 Handle assignment to self in <code>operator=</code></h2><ul>
+<li>当出现<code>a[i] = a[j]</code>且 <code>i == j</code>，即自我赋值时，可能会出现不安全现象：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Widget&amp; Widget::Operator= (<span class="keyword">const</span> Widget&amp; rhs)&#123;</span><br><span class="line">	<span class="keyword">delete</span> pb;</span><br><span class="line">	pb = <span class="keyword">new</span> Bitmap(*rhs.pb); <span class="comment">// 这里，&amp;rhs可能是this，此时pb已经被释放了</span></span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>解决方法：</p>
+<ul>
+<li>identity test 证同测试：<code>if(this == &amp;rhs) return *this;</code> 缺点：引入了新的控制流分支，降低执行速度；</li>
+<li>另外一个思路是，通过“消除异常安全性”同时保证“自我赋值安全性”——在编写代码时就考虑到<code>&amp;rhs</code>是否可能是<code>this</code>这个问题，从而正确安排代码顺序；</li>
+<li>采用<strong>Chapter 29</strong>提到的<strong>copy and swap</strong>技术：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Widget&amp; Widget::Operator= (<span class="keyword">const</span> Widget rhs)&#123; <span class="comment">// 传入副本</span></span><br><span class="line">	swap(rhs); <span class="comment">// 将副本与当前对象进行数据交换</span></span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Chapter-12-Copy-all-part-of-an-object"><a href="#Chapter-12-Copy-all-part-of-an-object" class="headerlink" title="Chapter 12 Copy all part of an object"></a>Chapter 12 Copy all part of an object</h2><blockquote>
+<p>如果你声明自己的<em>copying</em>函数，意思就是告诉编译器你并不喜欢默认实现中的某些行为。编译器仿佛被冒犯似的，会以一种奇怪的方式回敬：当你的实现代码几乎必然出错时却不告诉你：)</p>
+</blockquote>
+<ul>
+<li><em>copying</em>函数 == <em>copy</em>构造函数 + <em>copy assignment</em>操作符</li>
+<li>当自定义<em>copying</em>函数时，如果缺少成员变量，编译器不会报错；因此注意要<strong>复制所有local成员变量</strong></li>
+<li>尤其是当编写derived class的<em>copying</em>函数时，必须也<strong>复制其base class的成分（通过调回base class的<em>copying</em>函数）</strong></li>
+<li>如果copy构造函数和copy assignment操作符有相近的代码，那么就可以从中抽出一个函数给二者调用。</li>
+</ul>
 
         </div>
         
@@ -317,7 +411,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            52
+                            53
                         </p>
                     </a>
                 </div>
@@ -329,7 +423,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            9
+                            10
                         </p>
                     </a>
                 </div>
@@ -341,7 +435,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            73
+                            74
                         </p>
                     </a>
                 </div>
@@ -417,6 +511,42 @@
         <a class="is-flex" href="#Chapter-3-Use-const-whenever-possible">
         <span class="has-mr-6">4</span>
         <span>Chapter 3 Use const whenever possible</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-4-Make-sure-that-objects-are-initialized-before-they’re-used">
+        <span class="has-mr-6">5</span>
+        <span>Chapter 4 Make sure that objects are initialized before they’re used</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-5-Know-what-functions-C-silently-writes-and-call">
+        <span class="has-mr-6">6</span>
+        <span>Chapter 5 Know what functions C++ silently writes and call</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-6-Explicitly-disallow-the-use-of-compiler-generated-functions-u-do-not-want">
+        <span class="has-mr-6">7</span>
+        <span>Chapter 6 Explicitly disallow the use of compiler-generated functions u do not want</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-7-Declare-destructors-virtual-in-polymorphic-base-classes">
+        <span class="has-mr-6">8</span>
+        <span>Chapter 7 Declare destructors virtual in polymorphic base classes</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-8-Prevent-exception-from-leaving-destructors">
+        <span class="has-mr-6">9</span>
+        <span>Chapter 8  Prevent exception from leaving destructors</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-9-Never-call-virtual-functions-during-construction-or-destruction">
+        <span class="has-mr-6">10</span>
+        <span>Chapter 9 Never call virtual functions during construction or destruction</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-10-Have-operator-return-a-reference-to-this">
+        <span class="has-mr-6">11</span>
+        <span>Chapter 10 Have operator= return a reference to *this</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-11-Handle-assignment-to-self-in-operator">
+        <span class="has-mr-6">12</span>
+        <span>Chapter 11 Handle assignment to self in operator=</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-12-Copy-all-part-of-an-object">
+        <span class="has-mr-6">13</span>
+        <span>Chapter 12 Copy all part of an object</span>
         </a></li></ul>
             </div>
         </div>

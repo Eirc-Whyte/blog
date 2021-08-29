@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Archives: 2019/8 - Eric&#39;s Blog</title>
+<title>Tag: 网课 - Eric&#39;s Blog</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="Eric&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/08/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/网课/index.html">
 <meta property="og:site_name" content="Eric&#39;s Blog">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
@@ -125,33 +125,159 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     <div class="card-content">
-        <h3 class="tag is-link">
-        August 2019
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-08-17T23:12:11.000Z">2019-08-17</time>
-                        <a href="/2019/08/18/Mysql+vscode+wsl环境配置/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Mysql+vscode+wsl环境配置</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-        </div>
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">Tags</a></li>
+            <li class="is-active"><a href="#" aria-current="page">网课</a></li>
+        </ul>
+        </nav>
     </div>
 </div>
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2021-08-19T15:42:01.000Z">2021-08-19</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/前端/">前端</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 424 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2021/08/19/字学校园-前端基础课程笔记/">字学校园-前端基础课程笔记</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="第四章：CSS高级"><a href="#第四章：CSS高级" class="headerlink" title="第四章：CSS高级"></a>第四章：CSS高级</h3><ol>
+<li>transform：</li>
+</ol>
+<ul>
+<li><p>平移<code>translate</code>：</p>
+<p><code>translate(100px,100px)</code>向右向上100px</p>
+<p><code>translateX/Y(100px)</code>向X/Y方向平移100px</p>
+<p><code>translate(100%,100%)</code> 向右向上移动<strong>自身高度</strong>的距离</p>
+</li>
+<li><p>旋转<code>rotate</code>：</p>
+<p><code>rotate(90deg)</code>默认顺时针旋转，锚点为<strong>中心点</strong></p>
+<p><code>rotate(0.5turn)</code>顺时针旋转半圈</p>
+<p><code>transform-origin:0 0</code> 将锚点改为左上角</p>
+</li>
+<li><p>缩放<code>scale</code>：</p>
+<p><code>scale(2)</code>放大两倍</p>
+<p><code>scale(3,0.5)</code> X轴方向放大为3倍，Y轴方向缩放为0.5倍</p>
+<p><code>scaleY/X</code>、<code>transform-origin</code>同样适用</p>
+</li>
+<li><p>错切<code>skew</code>:</p>
+<p><code>skew(30deg,20deg)</code>、<code>skewX(30deg)</code>、<code>skewY(20deg)</code></p>
+</li>
+<li><p>3D变换:</p>
+<p><code>perspective(100px)</code>设置视角（人眼距离屏幕距离<code>z</code>）</p>
+<p><code>rotateY</code>、<code>translate3d(10px,10px,20px)</code>在3d空间内旋转平移</p>
+</li>
+</ul>
+<ol start="2">
+<li>transition：</li>
+</ol>
+<p>属性：</p>
+<ul>
+<li>property : 指定哪个css属性需要过渡</li>
+<li>duration : 指定持续时间</li>
+<li>timing-function : 变化速度函数<ul>
+<li>linear</li>
+<li>ease-in</li>
+<li>ease-out</li>
+<li>ease</li>
+<li>ease-in-out</li>
+<li>step</li>
+</ul>
+</li>
+<li>delay : 指定延迟</li>
+</ul>
+<ol start="3">
+<li>animation</li>
+</ol>
+<p>属性：</p>
+<ul>
+<li><code>name</code> 动画名</li>
+<li><code>duration</code>  持续时间</li>
+<li><code>timing-fucntion</code>  速度函数</li>
+<li><code>delay</code>延迟</li>
+<li><code>iteration-count</code>  次数</li>
+<li><code>direction</code> 正反</li>
+</ul>
+<p>使用</p>
+<ul>
+<li><p>定义关键帧<code>@keyframes name{from{} 50%{} to{}}</code>：</p>
+</li>
+<li><p>使用<code>animation: name 1s ease infinite</code></p>
+</li>
+<li><p>循环<code>animation-direction:alternate/reverse/normal</code> 正反交替播放/反向循环播放/正向循环播放</p>
+</li>
+</ul>
+<ol start="4">
+<li>响应式</li>
+</ol>
+<ul>
+<li>设置视口<code>viewport</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span> = <span class="string">"viewport"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">content</span> = <span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在布局页面时使用和设备同样的宽度</p>
+<ul>
+<li>图片尺寸设置</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span>&#123;</span><br><span class="line">	<span class="attribute">max-width</span>:<span class="number">100%</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大屏：正常展示（img比容器小）</p>
+<p>小屏：自动缩小到容器大小（img比容器大）</p>
+<ul>
+<li>背景图</li>
+</ul>
+<p><code>background-size:content/cover</code>：content-图片大端充满/cover-图片小端充满</p>
+<ul>
+<li>媒体查询</li>
+</ul>
+<p><code>@media screen and (max-width:480px){xxx}</code></p>
+<p>屏幕最大宽度（小于）为480px时xxx</p>
+<ul>
+<li><p>使用不同尺寸图片</p>
+<p><code>srcset</code>配合<code>sizes</code>属性：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">srcset</span>=<span class="string">"/img/large.jpg 1200w</span></span></span><br><span class="line"><span class="tag"><span class="string">			/img/normal.jpg 800w</span></span></span><br><span class="line"><span class="tag"><span class="string">			/img/small.jpg 400w"</span></span></span><br><span class="line"><span class="tag">	 <span class="attr">sizes</span>= <span class="string">"(max-width 320px) 400px,</span></span></span><br><span class="line"><span class="tag"><span class="string">	 		(max-width 640px) 800px"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>css兼容性</p>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
 
 
 </div>

@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>浏览器渲染过程 - Eric&#39;s Blog</title>
+<title>字学校园-前端基础课程笔记 - Eric&#39;s Blog</title>
 
 
-    <meta name="description" content="导航过程完成之后，浏览器进程把数据交给了渲染进程，渲染进程负责tab内的所有事情，核心目的就是将HTML/CSS/JS代码，转化为用户可进行交互的web页面。那么渲染进程是如何工作的？面试中被问到无数次的问题，系统学习下。">
-<meta name="keywords" content="前端,浏览器渲染">
+    <meta name="description" content="第四章：CSS高级 transform：   平移translate： translate(100px,100px)向右向上100px translateX/Y(100px)向X/Y方向平移100px translate(100%,100%) 向右向上移动自身高度的距离  旋转rotate： rotate(90deg)默认顺时针旋转，锚点为中心点 rotate(0.5turn)顺时针旋转半圈 tr">
+<meta name="keywords" content="前端,网课">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浏览器渲染过程">
-<meta property="og:url" content="http://yoursite.com/2021/03/17/浏览器渲染过程/index.html">
+<meta property="og:title" content="字学校园-前端基础课程笔记">
+<meta property="og:url" content="http://yoursite.com/2021/08/19/字学校园-前端基础课程笔记/index.html">
 <meta property="og:site_name" content="Eric&#39;s Blog">
-<meta property="og:description" content="导航过程完成之后，浏览器进程把数据交给了渲染进程，渲染进程负责tab内的所有事情，核心目的就是将HTML/CSS/JS代码，转化为用户可进行交互的web页面。那么渲染进程是如何工作的？面试中被问到无数次的问题，系统学习下。">
+<meta property="og:description" content="第四章：CSS高级 transform：   平移translate： translate(100px,100px)向右向上100px translateX/Y(100px)向X/Y方向平移100px translate(100%,100%) 向右向上移动自身高度的距离  旋转rotate： rotate(90deg)默认顺时针旋转，锚点为中心点 rotate(0.5turn)顺时针旋转半圈 tr">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-07-23T15:23:56.658Z">
+<meta property="og:updated_time" content="2021-08-19T08:43:53.835Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浏览器渲染过程">
-<meta name="twitter:description" content="导航过程完成之后，浏览器进程把数据交给了渲染进程，渲染进程负责tab内的所有事情，核心目的就是将HTML/CSS/JS代码，转化为用户可进行交互的web页面。那么渲染进程是如何工作的？面试中被问到无数次的问题，系统学习下。">
+<meta name="twitter:title" content="字学校园-前端基础课程笔记">
+<meta name="twitter:description" content="第四章：CSS高级 transform：   平移translate： translate(100px,100px)向右向上100px translateX/Y(100px)向X/Y方向平移100px translate(100%,100%) 向右向上移动自身高度的距离  旋转rotate： rotate(90deg)默认顺时针旋转，锚点为中心点 rotate(0.5turn)顺时针旋转半圈 tr">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -89,7 +89,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/thumbnail.svg" alt="浏览器渲染过程" height="28">
+                <img src="/images/thumbnail.svg" alt="字学校园-前端基础课程笔记" height="28">
             
             </a>
         </div>
@@ -141,17 +141,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2021-03-16T23:05:09.000Z">2021-03-16</time>
+                <time class="level-item has-text-grey" datetime="2021-08-19T15:42:01.000Z">2021-08-19</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/工程开发/">工程开发</a>
+                <a class="has-link-grey -link" href="/categories/前端/">前端</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    15 minutes read (About 2179 words)
+                    3 minutes read (About 424 words)
                 </span>
                 
                 
@@ -160,78 +160,109 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                浏览器渲染过程
+                字学校园-前端基础课程笔记
             
         </h1>
         <div class="content">
-            <p>导航过程完成之后，浏览器进程把数据交给了渲染进程，渲染进程负责tab内的所有事情，核心目的就是将HTML/CSS/JS代码，转化为用户可进行交互的web页面。那么渲染进程是如何工作的？面试中被问到无数次的问题，系统学习下。</p>
-<a id="more"></a>
-
-
-
-
-
-<h3 id="渲染进程"><a href="#渲染进程" class="headerlink" title="渲染进程"></a>渲染进程</h3><p>渲染进程包括：</p>
+            <h3 id="第四章：CSS高级"><a href="#第四章：CSS高级" class="headerlink" title="第四章：CSS高级"></a>第四章：CSS高级</h3><ol>
+<li>transform：</li>
+</ol>
 <ul>
-<li>主线程</li>
-<li>多个工作线程</li>
-<li>一个合成器线程</li>
-<li>多个光栅化线程</li>
-</ul>
-<h3 id="构建DOM"><a href="#构建DOM" class="headerlink" title="构建DOM"></a>构建DOM</h3><p>收到来自网络进程的数据以及浏览器进程的渲染请求后，渲染进程开始解析数据，将其转化为DOM对象。</p>
-<h3 id="子资源加载"><a href="#子资源加载" class="headerlink" title="子资源加载"></a>子资源加载</h3><p>构建DOM的过程中，若解析到CSS/JS/图片等资源，需要从网络/缓存中获取。</p>
-<p>为了提升效率，浏览器也会运行<strong>预加载扫描程序</strong>，如果HTML中存在<code>img</code>、<code>link</code>、<code>script</code>等标签，预加载扫描程序会把这些请求传递给<code>Browser Process</code>的network thread进行资源<strong>下载</strong>。</p>
-<h3 id="JavaScript的下载与执行"><a href="#JavaScript的下载与执行" class="headerlink" title="JavaScript的下载与执行"></a>JavaScript的下载与执行</h3><p>构建DOM过程中，如果遇到<code>&lt;script&gt;</code>标签，渲染引擎会停止对HTML的解析，而去加载执行JS代码，原因在于JS代码可能会改变DOM的结构（比如执行<code>document.write()</code>等API）</p>
-<p>但如果开发者明确知道自己的脚本不会改变dom，那么可以字形添加async或者defer属性，浏览器就会异步加载和执行JS代码，而不阻塞渲染。</p>
-<h4 id="defer-amp-async区别"><a href="#defer-amp-async区别" class="headerlink" title="defer&amp;async区别"></a>defer&amp;async区别</h4><p>没有时：</p>
-<p><img src="https://beginor.github.io/assets/post-images/without-defer-async-head.png" alt="没有标记 defer 或 async 时"></p>
-<p>标记defer时：</p>
-<p><img src="https://beginor.github.io/assets/post-images/with-defer.png" alt="标记 defer 时"></p>
-<p>标记async时：</p>
-<p><img src="https://beginor.github.io/assets/post-images/with-async.png" alt="标记 async 时"></p>
-<p>通用做法：放到底部</p>
-<p><img src="https://beginor.github.io/assets/post-images/without-defer-async-body.png" alt="在 body 的最尾部"></p>
-<h3 id="样式计算（CSSOM树构建）"><a href="#样式计算（CSSOM树构建）" class="headerlink" title="样式计算（CSSOM树构建）"></a>样式计算（CSSOM树构建）</h3><p>DOM树只是页面的结构，而没有节点的样式。浏览器根据<strong>层叠</strong>和<strong>继承</strong>规则进行每个节点样式的构建。</p>
-<blockquote>
-<p><code>继承</code>：每个子节点会默认去继承父节点的样式，如果父节点中找不到，就会采用浏览器默认的样式，也叫<code>UserAgent样式</code>。</p>
-<p><code>层叠</code>：样式层叠，是CSS一个基本特征，它定义如何合并来自多个源的属性值的算法。某种意义上，它处于核心地位，具体的层叠规则属于深入 CSS 语言的范畴。</p>
-</blockquote>
-<p>计算的结果可以从<code>document.styleSheet</code>看到，也就是通常意义上指的CSSOM。</p>
-<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p>上述已经完成DOM以及样式计算，接下来主线程会遍历DOM以及相关元素的样式，计算出包含<strong>每个元素页面位置坐标信息</strong>以及<strong>盒模型大小的</strong>布局树（render tree）。遍历过程中会跳过隐藏的元素（display:none），对于不可见的节点，head,meta标签等都会被忽略。。另外，伪元素在布局树上是可见的。</p>
-<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210323131334972.png" alt="image-20210323131334972"></p>
-<h3 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h3><p>在绘制阶段，主线程会遍历布局树（layout tree），每次都会把一个复杂的图层拆分为很小的<strong>绘制指令</strong>，然后再按照这些指令的顺序组成一个<strong>绘制列表</strong>。绘制列表准备好了之后，渲染进程的主线程会给<code>合成线程</code>发送<code>commit</code>消息，把绘制列表提交给合成线程。</p>
-<h3 id="合成"><a href="#合成" class="headerlink" title="合成"></a>合成</h3><p>合成是一种将<strong>页面分成若干层</strong>，然后分别对它们进行光栅化，最后在一个单独的线程 - 合成线程（compositor thread）里面合并成一个页面的技术。</p>
-<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/1460000022634006.gif" alt="合成过程"></p>
-<p>通常情况下，<strong>并不是布局树的每个节点都包含一个图层，如果一个节点没有对应的层，那么这个节点就从属于父节点的图层。</strong></p>
-<ul>
-<li><p>显式合成：</p>
-<p>元素有了<strong>层叠上下文的属性</strong>或者<strong>需要被剪裁</strong>，满足其中任意一点，就会被提升成为单独一层。</p>
+<li><p>平移<code>translate</code>：</p>
+<p><code>translate(100px,100px)</code>向右向上100px</p>
+<p><code>translateX/Y(100px)</code>向X/Y方向平移100px</p>
+<p><code>translate(100%,100%)</code> 向右向上移动<strong>自身高度</strong>的距离</p>
 </li>
-<li><p>隐式合成：</p>
-<p><code>z-index</code>比较低的节点会提升为一个单独的途图层，那么<code>层叠等级比它高</code>的节点<strong>都会</strong>成为一个独立的图层。（可能会导致层爆炸）</p>
+<li><p>旋转<code>rotate</code>：</p>
+<p><code>rotate(90deg)</code>默认顺时针旋转，锚点为<strong>中心点</strong></p>
+<p><code>rotate(0.5turn)</code>顺时针旋转半圈</p>
+<p><code>transform-origin:0 0</code> 将锚点改为左上角</p>
+</li>
+<li><p>缩放<code>scale</code>：</p>
+<p><code>scale(2)</code>放大两倍</p>
+<p><code>scale(3,0.5)</code> X轴方向放大为3倍，Y轴方向缩放为0.5倍</p>
+<p><code>scaleY/X</code>、<code>transform-origin</code>同样适用</p>
+</li>
+<li><p>错切<code>skew</code>:</p>
+<p><code>skew(30deg,20deg)</code>、<code>skewX(30deg)</code>、<code>skewY(20deg)</code></p>
+</li>
+<li><p>3D变换:</p>
+<p><code>perspective(100px)</code>设置视角（人眼距离屏幕距离<code>z</code>）</p>
+<p><code>rotateY</code>、<code>translate3d(10px,10px,20px)</code>在3d空间内旋转平移</p>
 </li>
 </ul>
-<p>图层很大时，没有必要一次绘制出全部的图层，因此合成线程将会把图层分块，有了图块之后，合成线程会按照<strong>视口附近的图块</strong>来优先生成位图，实际生成位图的操作是由栅格化来执行的。所谓栅格化，是指将图块转换为位图。生成的位图被保存在 GPU 内存中。</p>
-<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/20210323131520.png" alt="渲染进程"></p>
-<p>当图层上面的图块都被栅格化后，合成线程会收集图块上面叫做<strong>绘画四边形</strong>（draw quads）的信息来构建一个<strong>合成帧</strong>（compositor frame）。</p>
+<ol start="2">
+<li>transition：</li>
+</ol>
+<p>属性：</p>
 <ul>
-<li>绘画四边形：包含图块在<strong>内存的位置</strong>以及图层合成后图块在页面的位置之类的信息。</li>
-<li>合成帧：代表页面一个帧的内容的绘制四边形<strong>集合</strong>。</li>
+<li>property : 指定哪个css属性需要过渡</li>
+<li>duration : 指定持续时间</li>
+<li>timing-function : 变化速度函数<ul>
+<li>linear</li>
+<li>ease-in</li>
+<li>ease-out</li>
+<li>ease</li>
+<li>ease-in-out</li>
+<li>step</li>
 </ul>
-<p>以上所有步骤完成后，合成线程就会通过IPC向浏览器进程（browser process）提交（commit）一个渲染帧。这个时候可能有另外一个合成帧被浏览器进程的UI线程（UI thread）提交以改变浏览器的UI。这些合成帧都会被发送给GPU从而展示在屏幕上。如果合成线程收到页面滚动的事件，合成线程会构建另外一个合成帧发送给GPU来更新页面。</p>
-<p>合成的好处在于这个过程<strong>没有涉及到主线程</strong>，所以合成线程<strong>不需要</strong>等待样式的计算以及JavaScript完成执行。这就是为什么<a href="https://www.html5rocks.com/en/tutorials/speed/high-performance-animations/">合成器相关的动画</a>最流畅，如果某个动画涉及到布局或者绘制的调整，就会涉及到主线程的重新计算，自然会慢很多。</p>
-<h3 id="PS：回流-重绘-合成"><a href="#PS：回流-重绘-合成" class="headerlink" title="PS：回流 重绘 合成"></a>PS：回流 重绘 合成</h3><h4 id="回流"><a href="#回流" class="headerlink" title="回流"></a>回流</h4><p>另外一个叫法是重排，回流触发的条件就是:<strong>对 DOM 结构的修改引发 DOM 几何尺寸变化的时候</strong>,会发生<code>回流</code>过程。</p>
-<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/1732ec388e85bd2d.png" alt="img"></p>
-<h4 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h4><p>当页面中元素样式的改变并不影响它在文档流中的<strong>位置</strong>时（例如：<code>color</code>、<code>background-color</code>、<code>visibility</code>等），浏览器会将新样式赋予给元素并重新绘制它，这个过程称为重绘。</p>
-<p><img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/1732ec3b24ec43c9.png" alt="img"></p>
-<p>跳过了<code>布局树</code>和<code>建图层树</code>,直接去绘制列表，然后在去分块,生成位图等一系列操作。</p>
-<p><strong>可以看到，重绘不一定导致回流，但回流一定发生了重绘。</strong></p>
-<h4 id="合成-1"><a href="#合成-1" class="headerlink" title="合成"></a>合成</h4><p>还有一种情况：就是<strong>更改了一个既不要布局也不要绘制</strong>的属性，那么渲染引擎会跳过布局和绘制，直接执行后续的<strong>合成</strong>操作，这个过程就叫<strong>合成</strong>。</p>
-<p>CSS的transform来实现动画效果，<strong>避免了回流跟重绘</strong>，直接在非主线程中执行合成动画操作。显然这样子的效率更高，毕竟这个是在非主线程上合成的，没有占用主线程资源，另外也避开了布局和绘制两个子阶段，所以<strong>相对于重绘和重排，合成能大大提升绘制效率。</strong></p>
-<p>提升合成层的最好方式是使用 CSS 的 will-change 属性</p>
-<p>利用 CSS3 的<code>transform</code>、<code>opacity</code>、<code>filter</code>这些属性就可以实现合成的效果，也就是大家常说的<strong>GPU加速</strong>。</p>
-<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><a href="https://segmentfault.com/a/1190000022633988">前端都该懂的浏览器工作原理，你懂了吗？</a></p>
-<p><a href="https://juejin.cn/post/6847902222349500430#heading-26">「浏览器工作原理」写给女友的秘籍-渲染流程篇（1.1W字）</a></p>
+</li>
+<li>delay : 指定延迟</li>
+</ul>
+<ol start="3">
+<li>animation</li>
+</ol>
+<p>属性：</p>
+<ul>
+<li><code>name</code> 动画名</li>
+<li><code>duration</code>  持续时间</li>
+<li><code>timing-fucntion</code>  速度函数</li>
+<li><code>delay</code>延迟</li>
+<li><code>iteration-count</code>  次数</li>
+<li><code>direction</code> 正反</li>
+</ul>
+<p>使用</p>
+<ul>
+<li><p>定义关键帧<code>@keyframes name{from{} 50%{} to{}}</code>：</p>
+</li>
+<li><p>使用<code>animation: name 1s ease infinite</code></p>
+</li>
+<li><p>循环<code>animation-direction:alternate/reverse/normal</code> 正反交替播放/反向循环播放/正向循环播放</p>
+</li>
+</ul>
+<ol start="4">
+<li>响应式</li>
+</ol>
+<ul>
+<li>设置视口<code>viewport</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span> = <span class="string">"viewport"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">content</span> = <span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在布局页面时使用和设备同样的宽度</p>
+<ul>
+<li>图片尺寸设置</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span>&#123;</span><br><span class="line">	<span class="attribute">max-width</span>:<span class="number">100%</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大屏：正常展示（img比容器小）</p>
+<p>小屏：自动缩小到容器大小（img比容器大）</p>
+<ul>
+<li>背景图</li>
+</ul>
+<p><code>background-size:content/cover</code>：content-图片大端充满/cover-图片小端充满</p>
+<ul>
+<li>媒体查询</li>
+</ul>
+<p><code>@media screen and (max-width:480px){xxx}</code></p>
+<p>屏幕最大宽度（小于）为480px时xxx</p>
+<ul>
+<li><p>使用不同尺寸图片</p>
+<p><code>srcset</code>配合<code>sizes</code>属性：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">srcset</span>=<span class="string">"/img/large.jpg 1200w</span></span></span><br><span class="line"><span class="tag"><span class="string">			/img/normal.jpg 800w</span></span></span><br><span class="line"><span class="tag"><span class="string">			/img/small.jpg 400w"</span></span></span><br><span class="line"><span class="tag">	 <span class="attr">sizes</span>= <span class="string">"(max-width 320px) 400px,</span></span></span><br><span class="line"><span class="tag"><span class="string">	 		(max-width 640px) 800px"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>css兼容性</p>
+</li>
+</ul>
 
         </div>
         
@@ -239,7 +270,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/前端/">前端</a>, <a class="has-link-grey -link" href="/tags/浏览器渲染/">浏览器渲染</a>
+                    <a class="has-link-grey -link" href="/tags/前端/">前端</a>, <a class="has-link-grey -link" href="/tags/网课/">网课</a>
                 </div>
             </div>
         </div>
@@ -256,17 +287,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2021/03/31/EdWordle笔记/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">EdWordle笔记</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2021/03/10/bind-apply-and-call/">
-                <span class="level-item">bind,apply and call</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2021/08/12/Ubuntu-18-04-手动编译Clang-环境配置/">
+                <span class="level-item">Ubuntu 18.04 手动编译Clang 环境配置</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -404,62 +428,10 @@
                 <h3 class="menu-label">
                     Catalogue
                 </h3>
-                <ul class="menu-list"><ul class="menu-list"><li>
-        <a class="is-flex" href="#渲染进程">
-        <span class="has-mr-6">1.1</span>
-        <span>渲染进程</span>
-        </a></li><li>
-        <a class="is-flex" href="#构建DOM">
-        <span class="has-mr-6">1.2</span>
-        <span>构建DOM</span>
-        </a></li><li>
-        <a class="is-flex" href="#子资源加载">
-        <span class="has-mr-6">1.3</span>
-        <span>子资源加载</span>
-        </a></li><li>
-        <a class="is-flex" href="#JavaScript的下载与执行">
-        <span class="has-mr-6">1.4</span>
-        <span>JavaScript的下载与执行</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#defer-amp-async区别">
-        <span class="has-mr-6">1.4.1</span>
-        <span>defer&amp;async区别</span>
-        </a></li></ul></li><li>
-        <a class="is-flex" href="#样式计算（CSSOM树构建）">
-        <span class="has-mr-6">1.5</span>
-        <span>样式计算（CSSOM树构建）</span>
-        </a></li><li>
-        <a class="is-flex" href="#布局">
-        <span class="has-mr-6">1.6</span>
-        <span>布局</span>
-        </a></li><li>
-        <a class="is-flex" href="#绘制">
-        <span class="has-mr-6">1.7</span>
-        <span>绘制</span>
-        </a></li><li>
-        <a class="is-flex" href="#合成">
-        <span class="has-mr-6">1.8</span>
-        <span>合成</span>
-        </a></li><li>
-        <a class="is-flex" href="#PS：回流-重绘-合成">
-        <span class="has-mr-6">1.9</span>
-        <span>PS：回流 重绘 合成</span>
-        </a><ul class="menu-list"><li>
-        <a class="is-flex" href="#回流">
-        <span class="has-mr-6">1.9.1</span>
-        <span>回流</span>
-        </a></li><li>
-        <a class="is-flex" href="#重绘">
-        <span class="has-mr-6">1.9.2</span>
-        <span>重绘</span>
-        </a></li><li>
-        <a class="is-flex" href="#合成-1">
-        <span class="has-mr-6">1.9.3</span>
-        <span>合成</span>
-        </a></li></ul></li></ul><li>
-        <a class="is-flex" href="#参考：">
-        <span class="has-mr-6">2</span>
-        <span>参考：</span>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#第四章：CSS高级">
+        <span class="has-mr-6">1</span>
+        <span>第四章：CSS高级</span>
         </a></li></ul>
             </div>
         </div>
@@ -483,7 +455,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/thumbnail.svg" alt="浏览器渲染过程" height="28">
+                    <img src="/images/thumbnail.svg" alt="字学校园-前端基础课程笔记" height="28">
                 
                 </a>
                 <p class="is-size-7">
