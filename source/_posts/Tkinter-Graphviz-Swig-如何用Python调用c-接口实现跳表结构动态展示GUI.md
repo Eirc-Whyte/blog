@@ -4,7 +4,7 @@ date: 2020-03-06 20:37:56
 tags:
 - python
 categories:
-- visualization
+- 可视化
 thumbnail: https://www.blastanalytics.com/wp-content/uploads/business-goals-analytics-strategy-header-450x250.jpg
 ---
 

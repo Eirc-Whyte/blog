@@ -1,5 +1,5 @@
 ---
-ctitle: css training
+title: css-training
 date: 2021-04-30 09:02:36
 tags:
 - css
@@ -75,12 +75,8 @@ categories:
 
 - `inherit`：默认属性，（当前元素）继承父元素属性
 - `initial`：设置属性值为浏览器默认样式
-- `unset`：如果CSS关键字 **`unset`** 从其父级继承，则将该属性重新设置为继承的值，如果没有继承父级样式，则将该属性重新设置为初始值。（相当于重置继承）
-- `revert`：
-
-撤销对所有样式继承属性的修改：
-
-`all:unset`
+- `unset`：如果CSS关键字 **`unset`** 从其父级继承，则将该属性重新设置为继承的值，如果没有继承父级样式，则将该属性重新设置为初始值。（相当于重置继承）撤销对所有样式继承属性的修改：`all:unset`
+- `revert`
 
 ### 选择器
 
@@ -171,7 +167,7 @@ display有一个特殊的值`inline-block`，它在内联和块之间提供了�
 
 标准盒模型：width、height不包含padding和border
 
-IE和模型：包含padding和border
+IE盒模型(border-box)：包含padding和border
 
 #### margin collapsing的三种情况：
 
@@ -201,13 +197,13 @@ BFC是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发�
 - 行内块元素（元素的 [`display`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/display) 为 `inline-block`）
 - 表格单元格（元素的 [`display`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/display) 为 `table-cell`，HTML表格单元格默认为该值）
 - 表格标题（元素的 [`display`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/display) 为 `table-caption`，HTML表格标题默认为该值）
-- 匿名表格单元格元素（元素的 [`display`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/display) 为 `table、``table-row`、 `table-row-group、``table-header-group、``table-footer-group`（分别是HTML table、row、tbody、thead、tfoot 的默认属性）或 `inline-table`）
+- 匿名表格单元格元素（元素的 [`display`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/display) 为 `table`、`table-row`、 `table-row-group`、`table-header-group`、`table-footer-group`（分别是HTML table、row、tbody、thead、tfoot 的默认属性）或 `inline-table`）
 - [`overflow`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow) 计算值(Computed)不为 `visible` 的块元素
 - [`display`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/display) 值为 `flow-root` 的元素（可以创建无副作用的BFC）
 - [`contain`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/contain) 值为 `layout`、`content `或 paint 的元素
 - 弹性元素（[`display`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/display) 为 `flex` 或 `inline-flex `元素的直接子元素）
 - 网格元素（[`display`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/display) 为 `grid` 或 `inline-grid` 元素的直接子元素）
-- 多列容器（元素的 [`column-count`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/column-count) 或 [`column-width` (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/column-width) 不为 `auto，包括 ``column-count` 为 `1`）
+- 多列容器（元素的 [`column-count`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/column-count) 或 [`column-width` (en-US)](https://developer.mozilla.org/en-US/docs/Web/CSS/column-width) 不为 `auto`，包括 `column-count` 为 `1`）
 - `column-span` 为 `all` 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（[标准变更](https://github.com/w3c/csswg-drafts/commit/a8634b96900279916bd6c505fda88dda71d8ec51)，[Chrome bug](https://bugs.chromium.org/p/chromium/issues/detail?id=709362)）。
 
 块格式化上下文对浮动定位（参见 [`float`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/float)）与清除浮动（参见 [`clear`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear)）都很重要。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其它BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（[Margin collapsing](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)）也只会发生在属于同一BFC的块级元素之间
@@ -494,6 +490,8 @@ button:first-child {
 }
 ```
 
+#### 间隙
+
 使用`grid-column-gap`调整列间隙
 
 使用`grid-row-gap`调整行间隙
@@ -508,22 +506,7 @@ button:first-child {
 }
 ```
 
-- 可以使用`repeat`重复构建行和列：`repeat(repeatNumber,value)`
-
-`repeatNumber`可以使用`auto-fill`和`auto-fit`关键词来代替固定的重复次数
-
-- 可以使用`minmax()` 函数设置最小值，例如`minmax(100, auto)`代表尺寸至少为100像素，并且如果内容尺寸大于100像素则会根据内容自动调整
-
-- 可以使用`grid-template-area(s)` 设置网格区域
-
-```css
-grid-template-areas: 
-            "a a ."
-            "a a ."
-            ". b c";
-```
-
-​	<img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210724173716918.png" alt="image-20210724173716918" style="zoom:33%;" />
+#### 显式网格
 
 - 使用`grid-row`/`grid-column`根据网格线设置区域
 
@@ -550,7 +533,76 @@ grid-template-areas:
 
 `grid-row: span 2/ 3` 距离3号基线向上两条线
 
-- 隐式网格：溢出时的网格；可以通过[`grid-auto-rows`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-rows)和[`grid-auto-columns`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-columns)属性手动设定隐式网格的大小
+- 可以使用`repeat`重复构建行和列：`repeat(repeatNumber,value)`
+
+`repeatNumber`可以使用`auto-fill`和`auto-fit`关键词来代替固定的重复次数
+
+`auto-fill ` 关键词**直接创**建若干个大小为`value`的轨道，直至填满网格
+
+`auto-fit` 关键词**按需创建**若干个大小为`value`的轨道
+
+- 可以使用`minmax()` 函数设置最小值，例如`minmax(100, auto)`代表尺寸至少为100像素，并且如果内容尺寸大于100像素则会根据内容自动调整
+- 还可以使用`grid-template-area(s)` 设置网格区域
+
+```css
+grid-template-areas: 
+            "a a ."
+            "a a ."
+            ". b c";
+```
+
+​	<img src="https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210724173716918.png" alt="image-20210724173716918" style="zoom:33%;" />
+
+#### 隐式网格
+
+溢出时的网格；可以通过[`grid-auto-rows`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-rows)和[`grid-auto-columns`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid-auto-columns)属性手动设定隐式网格的大小
+
+![image-20210725144729166](https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210725144729166.png)
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 100px 100px;
+  grid-gap: 20px;
+  max-width: 800px;
+}
+
+.item:first-child {
+  grid-column-start: -1;
+}
+
+.item:nth-child(2) {
+  grid-row-start: 4;
+}
+```
+
+隐式轨道不只是可以添加到显式网格的末尾，也有可能发生在显式网格开始。
+
+![image-20210725144900569](https://ericblog.oss-cn-beijing.aliyuncs.com/img/image-20210725144900569.png)
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 100px 100px;
+  grid-auto-columns: 200px;
+  grid-auto-rows: 60px;
+  grid-gap: 20px;
+  max-width: 800px;
+}
+
+
+.item:first-child {
+  grid-row: span 2 / 2;
+}
+
+.item:nth-child(2) {
+  grid-column: span 2 / 2;
+}
+```
+
+使用`grid-auto-rows`和`grid-auto-columns`可以自动地调整单元格大小，因此甚至不需要定义显式网格。
 
 ### 浮动
 
