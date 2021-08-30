@@ -19,7 +19,7 @@
 <meta property="og:description" content="学习程序语言根本大法是一回事，学习如何以某种语言设计并实现高效程序则是另一回事。这种说法对C++尤其适用。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2021-08-29T04:16:42.549Z">
+<meta property="og:updated_time" content="2021-08-29T09:39:25.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective Cpp 学习笔记">
 <meta name="twitter:description" content="学习程序语言根本大法是一回事，学习如何以某种语言设计并实现高效程序则是另一回事。这种说法对C++尤其适用。">
@@ -151,7 +151,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    19 minutes read (About 2856 words)
+                    26 minutes read (About 3945 words)
                 </span>
                 
                 
@@ -323,6 +323,85 @@
 <li>尤其是当编写derived class的<em>copying</em>函数时，必须也<strong>复制其base class的成分（通过调回base class的<em>copying</em>函数）</strong></li>
 <li>如果copy构造函数和copy assignment操作符有相近的代码，那么就可以从中抽出一个函数给二者调用。</li>
 </ul>
+<h1 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h1><blockquote>
+<p>所谓资源，就是那些使用之后必须还给系统的东西。如果不这样，糟糕的事情就会发生。</p>
+<p>C++中最常见的资源就是动态分配内存，包括文件描述符、互斥锁、图形界面中的字型和笔刷、数据库连接、网络sockets。无论哪种资源，重要的是，当你不再使用他，必须将他还给系统。</p>
+</blockquote>
+<h2 id="Chapter-13-Use-Object-to-manage-resources"><a href="#Chapter-13-Use-Object-to-manage-resources" class="headerlink" title="Chapter 13 Use Object to manage resources"></a>Chapter 13 Use Object to manage resources</h2><ul>
+<li>获得资源后<strong>立即</strong>放入对应的管理对象内（<em>Resource Acquisition Is Initialization</em> <strong><em>RAII</em></strong>）</li>
+<li>管理对象运用析构函数<strong>确保资源被正确释放</strong></li>
+<li>常用的<strong>RAII classes</strong>：<code>tr1::shared_ptr</code> 和 <code>auto_ptr</code></li>
+<li>智能指针被销毁时会自动删除它指向的对象，所以<strong>不要让多个智能指针指向同一个对象</strong></li>
+<li>为了解决上述问题，智能指针有如下特性：若通过copying函数复制它，它本身会变成null，而复制得到的指针将得到原资源的唯一拥有权：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">auto_ptr</span>&lt;Investment&gt;</span><br><span class="line">  p1(createInvestment()); <span class="comment">// p1指向工厂函数createInvestment返回的对象</span></span><br><span class="line"><span class="function"><span class="built_in">auto_ptr</span> <span class="title">p2</span><span class="params">(p1)</span></span>; <span class="comment">// p2指向该对象，p1设置为null</span></span><br><span class="line">p1 = p2; <span class="comment">// p1指向该对象，p2设置为null</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>STL容器要求元素发挥“正常的”复制行为，因此不允许容器类型为<code>auto_ptr</code></p>
+</li>
+<li><p><code>shared_ptr</code>采用引用计数追踪对象被引用的情况，当无人指向该对象时自动删除该资源</p>
+</li>
+<li><p><code>auto_ptr</code>和<code>shared_ptr</code>都是在析构函数中做<code>delete</code>而不是<code>delete []</code>，因此<strong>不能在动态申请的数组身上使用二者</strong>！</p>
+</li>
+</ul>
+<h2 id="Chapter-14-Think-carefully-about-copying-behavior-in-resource-managing-classes"><a href="#Chapter-14-Think-carefully-about-copying-behavior-in-resource-managing-classes" class="headerlink" title="Chapter 14 Think carefully about copying behavior in resource-managing classes"></a>Chapter 14 Think carefully about copying behavior in resource-managing classes</h2><ul>
+<li>当一个RAII对象被复制时，几种常见的行为：<ul>
+<li>禁止复制</li>
+<li>引用计数（使用<code>shared_ptr</code>）</li>
+<li>复制底层资源</li>
+<li>转移资源拥有权</li>
+</ul>
+</li>
+</ul>
+<h2 id="Chapter-15-Provide-access-to-raw-resources-in-resource-managing-classes"><a href="#Chapter-15-Provide-access-to-raw-resources-in-resource-managing-classes" class="headerlink" title="Chapter 15 Provide access to raw resources in resource-managing classes"></a>Chapter 15 Provide access to raw resources in resource-managing classes</h2><ul>
+<li>在资源管理类中封装并提供对<strong>原始资源</strong>的访问</li>
+<li>例如<code>shared_ptr</code>和<code>auto_ptr</code>都提供一个get成员函数，返回一个指向指针内部的原始指针（<strong>显示转换</strong>）：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">auto_ptr</span>&lt;Investment&gt; p1(createInvestment());</span><br><span class="line">Investment* ptr = p1.get();</span><br></pre></td></tr></table></figure>
+
+<p>当然也可以通过指针取值操作符(<code>-&gt;</code> / <code>*</code>)<strong>隐式转换至底部指针</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Investment</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">isTaxFree</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">bool</span> taxable = !(p1-&gt;isTaxFree());</span><br><span class="line"><span class="keyword">bool</span> taxable2 = (*p1).isTaxFree();</span><br></pre></td></tr></table></figure>
+
+<p>自定义隐式转换函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Font</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">FontHandle</span> <span class="params">()</span> <span class="keyword">const</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> f;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    FontHandle f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Chapter-16-Use-the-same-form-in-corresponding-uses-of-new-and-delete"><a href="#Chapter-16-Use-the-same-form-in-corresponding-uses-of-new-and-delete" class="headerlink" title="Chapter 16 Use the same form in corresponding uses of new and delete"></a>Chapter 16 Use the same form in corresponding uses of new and delete</h2><ul>
+<li>因为对象数组和单一对象的内存空间结构不同，导致了delete [] 和delete的行为不同</li>
+<li>因此new一个数组时需要用delete[ ]，单个对象使用delete；交错使用的行为都是不可预测的</li>
+<li>警惕typedef：尽量不要对数组形式做typedef，否则容易引发用户不正确的delete；</li>
+</ul>
+<h2 id="Chapter-17-Store-newed-objects-in-smart-pointers-in-standalone-statements"><a href="#Chapter-17-Store-newed-objects-in-smart-pointers-in-standalone-statements" class="headerlink" title="Chapter 17 Store newed objects in smart pointers in standalone statements"></a>Chapter 17 Store <code>new</code>ed objects in smart pointers in standalone statements</h2><ul>
+<li>使用智能指针时，需要用独立的语句将对象置入：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">priority</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">processWidget</span><span class="params">(<span class="built_in">std</span>::tr1::<span class="built_in">shared_ptr</span>&lt;Widget&gt; pw, <span class="keyword">int</span> priority)</span></span>;</span><br><span class="line"></span><br><span class="line">processWidget(<span class="keyword">new</span> Widget, priority()); <span class="comment">// 错误 不能通过编译 因为Widget的构造函数声明为了explicit，导致返回的Widget不能通过隐式转换转换成std::tr1::shared_ptr&lt;Widget&gt;类型</span></span><br><span class="line">processWidget(</span><br><span class="line">    <span class="built_in">std</span>::tr1::<span class="built_in">shared_ptr</span>&lt;Widget&gt;(<span class="keyword">new</span> Widget), priority()); <span class="comment">// 可以通过编译，但仍不推荐，会导致难以察觉的泄漏</span></span><br></pre></td></tr></table></figure>
+
+<p>上述情况下，第一实参由两部分组成：</p>
+<ul>
+<li>执行<code>new Widget</code>表达式</li>
+<li>调用<code>shared_ptr</code> 构造函数</li>
+</ul>
+<p>那么<code>processWidget</code>之前，编译器执行了如下三件事：</p>
+<ul>
+<li>计算第一参数<ul>
+<li>执行<code>new Widget</code>表达式</li>
+<li>调用<code>shared_ptr</code> 构造函数</li>
+</ul>
+</li>
+<li>计算第二参数<ul>
+<li>调用<code>priority</code></li>
+</ul>
+</li>
+</ul>
+<p>编译器只保证参数内部的计算顺序，不能保证计算各个参数的顺序，因此实际执行时可能会变成：</p>
+<ul>
+<li>执行<code>new Widget</code>表达式</li>
+<li>调用<code>priority</code></li>
+<li>调用<code>shared_ptr</code> 构造函数</li>
+</ul>
+<p>此时，如果调用priority时抛出异常，那么之前申请的空间就会发生泄漏。为了避免上述状况的出现：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::tr1::<span class="built_in">shared_ptr</span>&lt;Widget&gt; pw(<span class="keyword">new</span> Widget);</span><br><span class="line">processWidget(pw, priority());</span><br></pre></td></tr></table></figure>
+
+<p>这样才是最安全的。因为编译器对跨越语句的操作<strong>没有重新排列的自由</strong>。</p>
 
         </div>
         
@@ -495,59 +574,83 @@
                 <h3 class="menu-label">
                     Catalogue
                 </h3>
-                <ul class="menu-list"><li>
+                <ul class="menu-list"><ul class="menu-list"><li>
         <a class="is-flex" href="#Chapter-0-术语">
-        <span class="has-mr-6">1</span>
+        <span class="has-mr-6">1.1</span>
         <span>Chapter 0 术语</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-1-View-C-as-a-federation-of-languages">
-        <span class="has-mr-6">2</span>
+        <span class="has-mr-6">1.2</span>
         <span>Chapter 1 View C++ as a federation of languages</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-2-Prefer-consts-enums-and-inline-to-defines">
-        <span class="has-mr-6">3</span>
+        <span class="has-mr-6">1.3</span>
         <span>Chapter 2 Prefer consts, enums, and inline to #defines</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-3-Use-const-whenever-possible">
-        <span class="has-mr-6">4</span>
+        <span class="has-mr-6">1.4</span>
         <span>Chapter 3 Use const whenever possible</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-4-Make-sure-that-objects-are-initialized-before-they’re-used">
-        <span class="has-mr-6">5</span>
+        <span class="has-mr-6">1.5</span>
         <span>Chapter 4 Make sure that objects are initialized before they’re used</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-5-Know-what-functions-C-silently-writes-and-call">
-        <span class="has-mr-6">6</span>
+        <span class="has-mr-6">1.6</span>
         <span>Chapter 5 Know what functions C++ silently writes and call</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-6-Explicitly-disallow-the-use-of-compiler-generated-functions-u-do-not-want">
-        <span class="has-mr-6">7</span>
+        <span class="has-mr-6">1.7</span>
         <span>Chapter 6 Explicitly disallow the use of compiler-generated functions u do not want</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-7-Declare-destructors-virtual-in-polymorphic-base-classes">
-        <span class="has-mr-6">8</span>
+        <span class="has-mr-6">1.8</span>
         <span>Chapter 7 Declare destructors virtual in polymorphic base classes</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-8-Prevent-exception-from-leaving-destructors">
-        <span class="has-mr-6">9</span>
+        <span class="has-mr-6">1.9</span>
         <span>Chapter 8  Prevent exception from leaving destructors</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-9-Never-call-virtual-functions-during-construction-or-destruction">
-        <span class="has-mr-6">10</span>
+        <span class="has-mr-6">1.10</span>
         <span>Chapter 9 Never call virtual functions during construction or destruction</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-10-Have-operator-return-a-reference-to-this">
-        <span class="has-mr-6">11</span>
+        <span class="has-mr-6">1.11</span>
         <span>Chapter 10 Have operator= return a reference to *this</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-11-Handle-assignment-to-self-in-operator">
-        <span class="has-mr-6">12</span>
+        <span class="has-mr-6">1.12</span>
         <span>Chapter 11 Handle assignment to self in operator=</span>
         </a></li><li>
         <a class="is-flex" href="#Chapter-12-Copy-all-part-of-an-object">
-        <span class="has-mr-6">13</span>
+        <span class="has-mr-6">1.13</span>
         <span>Chapter 12 Copy all part of an object</span>
-        </a></li></ul>
+        </a></li></ul><li>
+        <a class="is-flex" href="#资源管理">
+        <span class="has-mr-6">2</span>
+        <span>资源管理</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Chapter-13-Use-Object-to-manage-resources">
+        <span class="has-mr-6">2.1</span>
+        <span>Chapter 13 Use Object to manage resources</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-14-Think-carefully-about-copying-behavior-in-resource-managing-classes">
+        <span class="has-mr-6">2.2</span>
+        <span>Chapter 14 Think carefully about copying behavior in resource-managing classes</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-15-Provide-access-to-raw-resources-in-resource-managing-classes">
+        <span class="has-mr-6">2.3</span>
+        <span>Chapter 15 Provide access to raw resources in resource-managing classes</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-16-Use-the-same-form-in-corresponding-uses-of-new-and-delete">
+        <span class="has-mr-6">2.4</span>
+        <span>Chapter 16 Use the same form in corresponding uses of new and delete</span>
+        </a></li><li>
+        <a class="is-flex" href="#Chapter-17-Store-newed-objects-in-smart-pointers-in-standalone-statements">
+        <span class="has-mr-6">2.5</span>
+        <span>Chapter 17 Store newed objects in smart pointers in standalone statements</span>
+        </a></li></ul></li></ul>
             </div>
         </div>
     </div>
